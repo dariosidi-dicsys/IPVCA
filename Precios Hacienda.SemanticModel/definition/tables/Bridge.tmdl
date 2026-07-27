@@ -1,0 +1,13 @@
+table Bridge
+	isHidden
+	lineageTag: b46cb0c5-2062-41f0-8a77-3b63d8edcc24
+
+	column BridgeKey
+		lineageTag: 5ab0f0c8-6eb0-45c8-887b-ba0f07f57d57
+		isNameInferred
+		sourceColumn: [BridgeKey]
+
+	partition Bridge = calculated
+		mode: import
+		source = ROW("BridgeKey", 1)
+

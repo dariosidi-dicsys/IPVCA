@@ -1,0 +1,113 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 96.666666666666671
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 976.66666539510106,
+            "y": 1088.7109375000002
+          },
+          "nodeIndex": "Medidas",
+          "nodeLineageTag": "f4cf3e11-e925-48f1-95fd-13eb3056c30f",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 203.33333333333348,
+            "y": 1073.7109375000002
+          },
+          "nodeIndex": "vw_precio_hacienda",
+          "nodeLineageTag": "4453d3b2-7948-4c92-9179-591c8a4251f0",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 635.99999999999989,
+            "y": 635.37760416666674
+          },
+          "nodeIndex": "Calendario",
+          "nodeLineageTag": "84f8dfd7-87f7-414c-9254-47a3cca4edf0",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1057.3333320617676,
+            "y": 866.7109375
+          },
+          "nodeIndex": "CG Variaciones",
+          "nodeLineageTag": "ac40807b-cfbb-42a1-b001-08a82cefaf19",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 519.33333206176724,
+            "y": 231.52343750000009
+          },
+          "nodeIndex": "Bridge_ProductoCategoria",
+          "nodeLineageTag": "01e880a3-8c4b-40a1-b5db-2b597d4bdc3e",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1035.9999987284339,
+            "y": 480.27343750000011
+          },
+          "nodeIndex": "Bridge",
+          "nodeLineageTag": "b46cb0c5-2062-41f0-8a77-3b63d8edcc24",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1473.3333320617671,
+            "y": 514.60156250000011
+          },
+          "nodeIndex": "Productos",
+          "nodeLineageTag": "c1037cf1-ae28-4247-9735-e21d4535446e",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Todas las tablas",
+      "zoomValue": 60,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas las tablas",
+  "defaultDiagram": "Todas las tablas"
+}

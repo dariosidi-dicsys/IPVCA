@@ -1,0 +1,105 @@
+table vw_precio_hacienda
+	lineageTag: 4453d3b2-7948-4c92-9179-591c8a4251f0
+
+	column fecha
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 663a7c6f-43c0-4f41-9cf2-a3f4794bcbbc
+		summarizeBy: none
+		sourceColumn: fecha
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column anio
+		dataType: int64
+		formatString: 0
+		lineageTag: 18f66dd2-9423-427b-8107-ca4db1027ba7
+		summarizeBy: sum
+		sourceColumn: anio
+
+		annotation SummarizationSetBy = Automatic
+
+	column fuente
+		dataType: string
+		lineageTag: e6dc8c24-888b-40da-8fc2-b52e8ba3de69
+		summarizeBy: none
+		sourceColumn: fuente
+
+		annotation SummarizationSetBy = Automatic
+
+	column animal
+		dataType: string
+		lineageTag: 2bff864d-1632-4e99-8c9c-62af74218014
+		summarizeBy: none
+		sourceColumn: animal
+
+		annotation SummarizationSetBy = Automatic
+
+	column categoria
+		dataType: string
+		lineageTag: 3b45a3ae-f086-4ca0-a6d8-8bcb4d4763a4
+		summarizeBy: none
+		sourceColumn: categoria
+
+		annotation SummarizationSetBy = Automatic
+
+	column moneda
+		dataType: string
+		lineageTag: 2f493270-8d2e-4188-b502-432349c22564
+		summarizeBy: none
+		sourceColumn: moneda
+
+		annotation SummarizationSetBy = Automatic
+
+	column precio
+		dataType: double
+		lineageTag: 3600bc7e-fa8b-4ee9-b11d-94b7fe3e608e
+		summarizeBy: sum
+		sourceColumn: precio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column gancho
+		dataType: string
+		lineageTag: fae055ba-048d-4411-9b38-18a6884dfba5
+		summarizeBy: none
+		sourceColumn: gancho
+
+		annotation SummarizationSetBy = Automatic
+
+	column pie
+		dataType: string
+		lineageTag: 63e86af7-6e7c-4538-8bf3-368ec89ecc19
+		summarizeBy: none
+		sourceColumn: pie
+
+		annotation SummarizationSetBy = Automatic
+
+	column pie_dolares
+		dataType: string
+		lineageTag: 00c54138-1764-44de-9be5-8d875c44da90
+		summarizeBy: none
+		sourceColumn: pie_dolares
+
+		annotation SummarizationSetBy = Automatic
+
+	partition vw_precio_hacienda = m
+		mode: import
+		source =
+				let
+				    Origen = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"services-ipcva_Database" = Origen{[Name="services-ipcva",Kind="Database"]}[Data],
+				    ipcva_trusted_data_Schema = #"services-ipcva_Database"{[Name="ipcva_trusted_data",Kind="Schema"]}[Data],
+				    vw_precio_hacienda_View = ipcva_trusted_data_Schema{[Name="vw_precio_hacienda",Kind="View"]}[Data],
+				    #"Tipo cambiado" = Table.TransformColumnTypes(vw_precio_hacienda_View,{{"fecha", type date}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

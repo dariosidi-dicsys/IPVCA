@@ -1,0 +1,111 @@
+table 'CG Variaciones'
+	lineageTag: ac40807b-cfbb-42a1-b001-08a82cefaf19
+
+	/// Grupo de cálculo para aplicar variaciones (mes anterior, 3 meses anterior, año anterior) a cualquier medida del modelo, arrastrándolo junto a la medida en la visualización.
+	calculationGroup
+
+		/// Valor tal cual, sin variación aplicada.
+		calculationItem 'Valor Actual' = SELECTEDMEASURE()
+
+		/// Diferencia (absoluta) contra el mismo valor 1 mes calendario atrás.
+		calculationItem 'Diferencia 1 mes anterior' =
+				VAR ValorActual = SELECTEDMEASURE()
+				VAR ValorAnterior =
+				    CALCULATE(
+				        SELECTEDMEASURE(),
+				        DATEADD(Calendario[Date], -1, MONTH)
+				    )
+				RETURN
+				IF(
+				    ISBLANK(ValorActual) || ISBLANK(ValorAnterior),
+				    BLANK(),
+				    ValorActual - ValorAnterior
+				)
+
+		/// Variación % contra el mismo valor 1 mes calendario atrás.
+		calculationItem '% 1 mes Anterior' =
+				VAR ValorActual = SELECTEDMEASURE()
+				VAR ValorAnterior =
+				    CALCULATE(
+				        SELECTEDMEASURE(),
+				        DATEADD(Calendario[Date], -1, MONTH)
+				    )
+				RETURN
+				IF(
+				    ISBLANK(ValorActual) || ISBLANK(ValorAnterior),
+				    BLANK(),
+				    DIVIDE(ValorActual - ValorAnterior, ValorAnterior)
+				)
+
+			formatStringDefinition = "0.00%;-0.00%;0.00%"
+
+		/// Diferencia (absoluta) contra el mismo valor 3 meses calendario atrás (punto contra punto, ej: abril vs enero).
+		calculationItem 'Diferencia 3 Meses anterior' =
+				VAR ValorActual = SELECTEDMEASURE()
+				VAR ValorAnterior =
+				    CALCULATE(
+				        SELECTEDMEASURE(),
+				        DATEADD(Calendario[Date], -3, MONTH)
+				    )
+				RETURN
+				IF(
+				    ISBLANK(ValorActual) || ISBLANK(ValorAnterior),
+				    BLANK(),
+				    ValorActual - ValorAnterior
+				)
+
+		/// Variación % contra el mismo valor 3 meses calendario atrás (punto contra punto).
+		calculationItem '% 3 Meses anterior' =
+				VAR ValorActual = SELECTEDMEASURE()
+				VAR ValorAnterior =
+				    CALCULATE(
+				        SELECTEDMEASURE(),
+				        DATEADD(Calendario[Date], -3, MONTH)
+				    )
+				RETURN
+				IF(
+				    ISBLANK(ValorActual) || ISBLANK(ValorAnterior),
+				    BLANK(),
+				    DIVIDE(ValorActual - ValorAnterior, ValorAnterior)
+				)
+
+			formatStringDefinition = "0.00%;-0.00%;0.00%"
+
+		/// Diferencia (absoluta) contra el mismo mes, 1 año calendario atrás (punto contra punto, ej: abr-2026 vs abr-2025).
+		calculationItem 'Diferencia 1 año anterior' =
+				VAR ValorActual = SELECTEDMEASURE()
+				VAR ValorAnterior =
+				    CALCULATE(
+				        SELECTEDMEASURE(),
+				        DATEADD(Calendario[Date], -1, YEAR)
+				    )
+				RETURN
+				IF(
+				    ISBLANK(ValorActual) || ISBLANK(ValorAnterior),
+				    BLANK(),
+				    ValorActual - ValorAnterior
+				)
+
+		/// Variación % contra el mismo mes, 1 año calendario atrás (punto contra punto).
+		calculationItem '% 1 año anterior' =
+				VAR ValorActual = SELECTEDMEASURE()
+				VAR ValorAnterior =
+				    CALCULATE(
+				        SELECTEDMEASURE(),
+				        DATEADD(Calendario[Date], -1, YEAR)
+				    )
+				RETURN
+				IF(
+				    ISBLANK(ValorActual) || ISBLANK(ValorAnterior),
+				    BLANK(),
+				    DIVIDE(ValorActual - ValorAnterior, ValorAnterior)
+				)
+
+			formatStringDefinition = "0.00%;-0.00%;0.00%"
+
+	column 'CG Variaciones'
+		dataType: string
+		lineageTag: 2664e3bb-a8b8-48a1-b339-685daab0a51a
+
+	partition 'Partition_CG Variaciones' = calculationGroup
+

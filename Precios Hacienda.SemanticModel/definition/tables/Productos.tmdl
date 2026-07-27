@@ -1,0 +1,72 @@
+table Productos
+	lineageTag: c1037cf1-ae28-4247-9735-e21d4535446e
+
+	column NombreProducto
+		lineageTag: 440f69f5-30ad-4ce8-9999-71bc493e0bea
+		isNameInferred
+		sourceColumn: [NombreProducto]
+
+	column Tipo
+		lineageTag: 32d87527-fbab-4bba-aeba-ad36034a0e57
+		isNameInferred
+		sourceColumn: [Tipo]
+
+	column Animal
+		lineageTag: 0d824327-c2a4-46ac-8a3d-27313b10cbd1
+		isNameInferred
+		sourceColumn: [Animal]
+
+	column Coeficiente
+		lineageTag: 92f05120-f6d7-47cd-9375-467ab4b30b10
+		isNameInferred
+		sourceColumn: [Coeficiente]
+
+	column Operacion
+		lineageTag: 7c1cd319-bfc3-4515-bd19-01464c5489fa
+		isNameInferred
+		sourceColumn: [Operacion]
+
+	column Llave
+		isHidden
+		lineageTag: b5910c6b-c2bd-4856-94f1-b048f689cc5a
+		isNameInferred
+		sourceColumn: [Llave]
+
+	partition Productos = calculated
+		mode: import
+		source =
+				DATATABLE(
+				    "NombreProducto", STRING,
+				    "Tipo", STRING,
+				    "Animal", STRING,
+				    "Coeficiente", DOUBLE,
+				    "Operacion", STRING,
+				    "Llave", INTEGER,
+				    {
+				        {"Novillo Exportación", "Gancho", "Novillo", 1, "Ninguna", 1},
+				        {"Novillito -300/390", "Gancho", "Novillo", 0.575, "Divide", 1},
+				        {"Novillito 391/430", "Gancho", "Novillo", 0.58, "Divide", 1},
+				        {"Vaquillona (270-390)", "Gancho", "Vaquillona", 1, "Ninguna", 1},
+				        {"Vaca Conserva", "Gancho", "Vaca", 1, "Ninguna", 1},
+				        {"Novillo Exportación", "Pie", "Novillo", 0.585, "Multiplica", 1},
+				        {"Novillito -300/390", "Pie", "Novillo", 1, "Ninguna", 1},
+				        {"Novillito 391/430", "Pie", "Novillo", 1, "Ninguna", 1},
+				        {"Vaquillona (270-390)", "Pie", "Vaquillona", 1, "Ninguna", 1},
+				        {"Consumo Liviano", "Pie", "Novillo y Vaquillona", 1, "Ninguna", 1},
+				        {"Vaca Conserva", "Pie", "Vaca", 0.46, "Multiplica", 1},
+				        {"Ternera Cruza", "Pie", "Ternera", 1, "Ninguna", 1},
+				        {"Ternero AA", "Pie", "Ternero", 1, "Ninguna", 1},
+				        {"Vaca Manuf", "Pie", "Vaca", 0.5, "Multiplica", 1},
+				        {"Vaca c/cría usada (Julio)", "Pie", "Vaca", 1, "Ninguna", 1},
+				        {"Novillos +520", "Pie", "Novillo", 1, "Ninguna", 1},
+				        {"Novillos 431/460", "Pie", "Novillo", 1, "Ninguna", 1},
+				        {"Novillos 461/490", "Pie", "Novillo", 1, "Ninguna", 1},
+				        {"Novillos 491/520", "Pie", "Novillo", 1, "Ninguna", 1},
+				        {"Novillos +520", "Pie en Dólares", "Novillo", 1, "Ninguna", 1},
+				        {"Novillos 431/460", "Pie en Dólares", "Novillo", 1, "Ninguna", 1},
+				        {"Novillos 461/490", "Pie en Dólares", "Novillo", 1, "Ninguna", 1},
+				        {"Novillos 491/520", "Pie en Dólares", "Novillo", 1, "Ninguna", 1},
+				        {"Novillito 391/430", "Pie en Dólares", "Novillo", 1, "Ninguna", 1}
+				    }
+				)
+

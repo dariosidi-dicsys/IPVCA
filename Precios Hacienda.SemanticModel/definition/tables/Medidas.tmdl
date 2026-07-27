@@ -1,0 +1,540 @@
+table Medidas
+	lineageTag: f4cf3e11-e925-48f1-95fd-13eb3056c30f
+
+	measure Ultima_Fecha_Datos = ```
+			
+			VAR _maxFecha = 
+			    CALCULATE(
+			        MAX('vw_precio_hacienda'[fecha]),
+			        REMOVEFILTERS('vw_precio_hacienda'),
+			        REMOVEFILTERS('Calendario')
+			    )
+			VAR _mes = FORMAT(_maxFecha, "mmmm")
+			VAR _anio = FORMAT(_maxFecha, "yyyy")
+			
+			-- Tomamos la primera letra, la pasamos a Mayúscula y pegamos el resto
+			RETURN
+			    UPPER(LEFT(_mes, 1)) & RIGHT(_mes, LEN(_mes) - 1) & " " & _anio
+			```
+		lineageTag: 23db5140-c4f8-4b7a-b31b-c7d565904b3b
+
+	/// Promedio mensual de precio Novillo Exportación (fuente CCDH, categorías M/C 440-460, 460-490, 490+ y Overo Negro), expresado en gancho (valor base sin ajuste).
+	measure 'Novillo Exp Gancho' =
+			CALCULATE(
+			    AVERAGE(vw_precio_hacienda[precio]),
+			    vw_precio_hacienda[fuente] = "CCDH",
+			    vw_precio_hacienda[categoria] IN {
+			        "M 440-460", "M 460-490", "M 490+",
+			        "C 440-460", "C 460-490", "C 490+",
+			        "Overo Negro"
+			    }
+			)
+		formatString: #,##0.00
+		displayFolder: Novillo Exp
+		lineageTag: 110b1e93-2622-4877-8816-75a7afbabb78
+
+	/// Precio Novillo Exportación expresado en pie: resultado de Novillo Exp Gancho multiplicado por el coeficiente 0,585 (rendimiento gancho->pie).
+	measure 'Novillo Exp Pie' = [Novillo Exp Gancho] * 0.585
+		formatString: #,##0.00
+		displayFolder: Novillo Exp
+		lineageTag: 8cd8d6dd-9f14-40f8-9420-a26eabac21c5
+
+	/// Promedio mensual de precio Ternero AA, fuente CCDH, categoría Ternero Mestizo INVERNADA (160-180 kg). El valor de la fuente ya está expresado en pie, no se aplica coeficiente.
+	measure 'Ternero AA' =
+			CALCULATE(
+			    AVERAGE(vw_precio_hacienda[precio]),
+			    vw_precio_hacienda[fuente] = "CCDH",
+			    vw_precio_hacienda[categoria] = "Ternero Mestizo INVERNADA (160 - 180 kg)"
+			)
+		formatString: #,##0.00
+		displayFolder: Ternero AA
+		lineageTag: 67bfb52a-a728-43ce-b4c7-3d7e7616d313
+
+	/// Promedio mensual de precio Ternera Cruza, fuente CCDH, categoría Ternera Cruza (160 - 180 g).
+	measure 'Ternera Cruza' =
+			CALCULATE(
+			    AVERAGE(vw_precio_hacienda[precio]),
+			    vw_precio_hacienda[fuente] = "CCDH",
+			    vw_precio_hacienda[categoria] = "Ternera Cruza (160 - 180 g)"
+			)
+		formatString: #,##0.00
+		displayFolder: Ternera Cruza
+		lineageTag: 6a706ad2-85c2-428c-884c-78d691f90578
+
+	/// Promedio mensual de precio Vaca con cría, fuente MDO Agroganadero, categoría Vaca c/cría usada (Julio).
+	measure 'Vaca con cría' =
+			CALCULATE(
+			    AVERAGE(vw_precio_hacienda[precio]),
+			    vw_precio_hacienda[fuente] = "MDO Agroganadero",
+			    vw_precio_hacienda[categoria] = "Vaca c/cría usada (Julio)"
+			)
+		formatString: #,##0.00
+		displayFolder: Vaca con cría
+		lineageTag: 5f230f4e-6a1f-42b3-b828-433dc8f4eda8
+
+	/// Promedio mensual de precio Vaca Manuf, fuente CCDH, categoría Vaca Manuf, expresado en gancho (valor base sin ajuste).
+	measure 'Vaca Manuf Gancho' =
+			CALCULATE(
+			    AVERAGE(vw_precio_hacienda[precio]),
+			    vw_precio_hacienda[fuente] = "CCDH",
+			    vw_precio_hacienda[categoria] = "Vaca Manuf"
+			)
+		formatString: #,##0.00
+		displayFolder: Vaca Manuf
+		lineageTag: e299f166-9598-4b2d-96dc-e33656393948
+
+	/// Precio Vaca Manuf expresado en pie: resultado de Vaca Manuf Gancho multiplicado por el coeficiente 0,5.
+	measure 'Vaca Manuf Pie' = [Vaca Manuf Gancho] * 0.5
+		formatString: #,##0.00
+		displayFolder: Vaca Manuf
+		lineageTag: 1fa229dc-3e98-4915-9989-193162c78eba
+
+	/// Promedio mensual de precio Vaca Conserva, fuente CCDH, categoría Vaca Conserva, expresado en gancho (valor base sin ajuste).
+	measure 'Vaca Conserva Gancho' =
+			CALCULATE(
+			    AVERAGE(vw_precio_hacienda[precio]),
+			    vw_precio_hacienda[fuente] = "CCDH",
+			    vw_precio_hacienda[categoria] = "Vaca Conserva"
+			)
+		formatString: #,##0.00
+		displayFolder: Vaca Conserva
+		lineageTag: b01055fa-9942-45db-918f-e847baa99625
+
+	/// Precio Vaca Conserva expresado en pie: resultado de Vaca Conserva Gancho multiplicado por el coeficiente 0,46.
+	measure 'Vaca Conserva Pie' = [Vaca Conserva Gancho] * 0.46
+		formatString: #,##0.00
+		displayFolder: Vaca Conserva
+		lineageTag: 061041ae-7d73-4c10-a336-8ff57c5d58b7
+
+	/// Promedio mensual de precio Novillito 391/430, fuente MDO Agroganadero, categoría Novillito 391/430, en Dólares.
+	measure 'Novillito 391/430 Dólares' =
+			CALCULATE(
+			    AVERAGE(vw_precio_hacienda[precio]),
+			    vw_precio_hacienda[fuente] = "MDO Agroganadero",
+			    vw_precio_hacienda[categoria] = "Novillito 391/430",
+			    vw_precio_hacienda[moneda] = "Dolares"
+			)
+		formatString: #,##0.00
+		displayFolder: Novillito 391/430
+		lineageTag: 465eb6c6-9fa4-4639-96dd-6488a9df9bb3
+
+	/// Promedio mensual de precio NOVILLOS 431/460, fuente MDO Agroganadero, moneda Dólares.
+	measure 'NOVILLOS 431/460 Dólares' =
+			CALCULATE(
+			    AVERAGE(vw_precio_hacienda[precio]),
+			    vw_precio_hacienda[fuente] = "MDO Agroganadero",
+			    vw_precio_hacienda[categoria] = "NOVILLOS 431/460",
+			    vw_precio_hacienda[moneda] = "Dolares"
+			)
+		formatString: #,##0.00
+		displayFolder: NOVILLOS 431/460
+		lineageTag: 6306ffb2-eb58-49f3-8bbf-3417bc24a509
+
+	/// Promedio mensual de precio NOVILLOS 461/490, fuente MDO Agroganadero, moneda Dólares.
+	measure 'NOVILLOS 461/490 Dólares' =
+			CALCULATE(
+			    AVERAGE(vw_precio_hacienda[precio]),
+			    vw_precio_hacienda[fuente] = "MDO Agroganadero",
+			    vw_precio_hacienda[categoria] = "NOVILLOS 461/490",
+			    vw_precio_hacienda[moneda] = "Dolares"
+			)
+		formatString: #,##0.00
+		displayFolder: NOVILLOS 461/490
+		lineageTag: dd6a4451-b6d2-4dce-a27c-7d66ef8ca47c
+
+	/// Promedio mensual de precio NOVILLOS 491/520, fuente MDO Agroganadero, moneda Dólares.
+	measure 'NOVILLOS 491/520 Dólares' =
+			CALCULATE(
+			    AVERAGE(vw_precio_hacienda[precio]),
+			    vw_precio_hacienda[fuente] = "MDO Agroganadero",
+			    vw_precio_hacienda[categoria] = "NOVILLOS 491/520",
+			    vw_precio_hacienda[moneda] = "Dolares"
+			)
+		formatString: #,##0.00
+		displayFolder: NOVILLOS 491/520
+		lineageTag: 34e53f9e-939c-4583-abaa-6ef8d74090cc
+
+	/// Promedio mensual de precio NOVILLOS + 520, fuente MDO Agroganadero, moneda Dólares.
+	measure 'NOVILLOS + 520 Dólares' =
+			CALCULATE(
+			    AVERAGE(vw_precio_hacienda[precio]),
+			    vw_precio_hacienda[fuente] = "MDO Agroganadero",
+			    vw_precio_hacienda[categoria] = "NOVILLOS + 520",
+			    vw_precio_hacienda[moneda] = "Dolares"
+			)
+		formatString: #,##0.00
+		displayFolder: NOVILLOS + 520
+		lineageTag: c978bc7e-ead7-4173-b4ee-e210da7bf17c
+
+	/// Promedio mensual de precio Novillito 391/430, fuente MDO Agroganadero, moneda Pesos.
+	measure 'Novillito 391/430 Pesos' =
+			CALCULATE(
+			    AVERAGE(vw_precio_hacienda[precio]),
+			    vw_precio_hacienda[fuente] = "MDO Agroganadero",
+			    vw_precio_hacienda[categoria] = "Novillito 391/430",
+			    vw_precio_hacienda[moneda] = "Pesos"
+			)
+		formatString: #,##0.00
+		displayFolder: Novillito 391/430
+		lineageTag: 04080e1c-803d-4b17-a93d-5ca8a4f41a3b
+
+	/// Promedio mensual de precio NOVILLOS 431/460, fuente MDO Agroganadero, moneda Pesos.
+	measure 'NOVILLOS 431/460 Pesos' =
+			CALCULATE(
+			    AVERAGE(vw_precio_hacienda[precio]),
+			    vw_precio_hacienda[fuente] = "MDO Agroganadero",
+			    vw_precio_hacienda[categoria] = "NOVILLOS 431/460",
+			    vw_precio_hacienda[moneda] = "Pesos"
+			)
+		formatString: #,##0.00
+		displayFolder: NOVILLOS 431/460
+		lineageTag: 2e487966-143a-433c-96db-67ce9a08ffef
+
+	/// Promedio mensual de precio NOVILLOS 461/490, fuente MDO Agroganadero, moneda Pesos.
+	measure 'NOVILLOS 461/490 Pesos' =
+			CALCULATE(
+			    AVERAGE(vw_precio_hacienda[precio]),
+			    vw_precio_hacienda[fuente] = "MDO Agroganadero",
+			    vw_precio_hacienda[categoria] = "NOVILLOS 461/490",
+			    vw_precio_hacienda[moneda] = "Pesos"
+			)
+		formatString: #,##0.00
+		displayFolder: NOVILLOS 461/490
+		lineageTag: 4804e9aa-1ea9-4c89-828f-9de644efb082
+
+	/// Promedio mensual de precio NOVILLOS 491/520, fuente MDO Agroganadero, moneda Pesos.
+	measure 'NOVILLOS 491/520 Pesos' =
+			CALCULATE(
+			    AVERAGE(vw_precio_hacienda[precio]),
+			    vw_precio_hacienda[fuente] = "MDO Agroganadero",
+			    vw_precio_hacienda[categoria] = "NOVILLOS 491/520",
+			    vw_precio_hacienda[moneda] = "Pesos"
+			)
+		formatString: #,##0.00
+		displayFolder: NOVILLOS 491/520
+		lineageTag: 3d4a8c5b-0180-4695-82df-5bab5a09b5ba
+
+	/// Promedio mensual de precio NOVILLOS + 520, fuente MDO Agroganadero, moneda Pesos.
+	measure 'NOVILLOS + 520 Pesos' =
+			CALCULATE(
+			    AVERAGE(vw_precio_hacienda[precio]),
+			    vw_precio_hacienda[fuente] = "MDO Agroganadero",
+			    vw_precio_hacienda[categoria] = "NOVILLOS + 520",
+			    vw_precio_hacienda[moneda] = "Pesos"
+			)
+		formatString: #,##0.00
+		displayFolder: NOVILLOS + 520
+		lineageTag: 669d72a1-05b4-4c54-84b5-fc07bab5bb7e
+
+	/// Promedio mensual de precio Novillito -300/390 (-350), fuente MDO Agroganadero, expresado en gancho.
+	measure 'Novillito -300/390 (-350) Gancho' =
+			CALCULATE(
+			    AVERAGE(vw_precio_hacienda[precio]),
+			    vw_precio_hacienda[fuente] = "MDO Agroganadero",
+			    vw_precio_hacienda[categoria] = "Novillito -300/390 (-350)"
+			)/0.575
+		formatString: #,##0.00
+		displayFolder: Novillito -300/390 (-350)
+		lineageTag: 6886ebab-bece-4a7c-811e-9494ad0b5811
+
+	/// Promedio mensual de precio Vaquillona (270-390), fuente MDO Agroganadero, categoría Vaquillona -350 (270-390)*, expresado en gancho.
+	measure 'Vaquillona (270-390) Gancho' =
+			CALCULATE(
+			    AVERAGE(vw_precio_hacienda[precio]),
+			    vw_precio_hacienda[fuente] = "MDO Agroganadero",
+			    vw_precio_hacienda[categoria] = "Vaquillona -350 (270-390)*"
+			)
+		formatString: #,##0.00
+		displayFolder: Vaquillona (270-390)
+		lineageTag: 16d56356-60f7-4f9a-a1e6-09c5e4681bec
+
+	/// Motor generico: promedio de precio segun el producto seleccionado en la tabla Productos, aplicando fuente/categorias de Bridge_ProductoCategoria y coeficiente/operacion de Productos.
+	measure 'Precio Base (Generico)' =
+			VAR _nombre = SELECTEDVALUE('Productos'[NombreProducto])
+			VAR _tipo = SELECTEDVALUE('Productos'[Tipo])
+			VAR _fuente =
+			    CALCULATE(
+			        SELECTEDVALUE('Bridge_ProductoCategoria'[Fuente]),
+			        'Bridge_ProductoCategoria'[NombreProducto] = _nombre,
+			        'Bridge_ProductoCategoria'[Tipo] = _tipo
+			    )
+			VAR _moneda =
+			    CALCULATE(
+			        SELECTEDVALUE('Bridge_ProductoCategoria'[Moneda]),
+			        'Bridge_ProductoCategoria'[NombreProducto] = _nombre,
+			        'Bridge_ProductoCategoria'[Tipo] = _tipo
+			    )
+			VAR _categorias =
+			    CALCULATETABLE(
+			        VALUES('Bridge_ProductoCategoria'[Categoria]),
+			        'Bridge_ProductoCategoria'[NombreProducto] = _nombre,
+			        'Bridge_ProductoCategoria'[Tipo] = _tipo
+			    )
+			VAR _promedioCrudo =
+			    CALCULATE(
+			        AVERAGE(vw_precio_hacienda[precio]),
+			        vw_precio_hacienda[fuente] = _fuente,
+			        TREATAS(_categorias, vw_precio_hacienda[categoria]),
+			        vw_precio_hacienda[moneda] = _moneda || ISBLANK(_moneda)
+			    )
+			VAR _coef =
+			    CALCULATE(
+			        SELECTEDVALUE('Productos'[Coeficiente]),
+			        'Productos'[NombreProducto] = _nombre,
+			        'Productos'[Tipo] = _tipo
+			    )
+			VAR _operacion =
+			    CALCULATE(
+			        SELECTEDVALUE('Productos'[Operacion]),
+			        'Productos'[NombreProducto] = _nombre,
+			        'Productos'[Tipo] = _tipo
+			    )
+			RETURN
+			    IF(
+			        OR(ISBLANK(_nombre), ISBLANK(_tipo)),
+			        BLANK(),
+			        SWITCH(
+			            _operacion,
+			            "Multiplica", _promedioCrudo * _coef,
+			            "Divide", DIVIDE(_promedioCrudo, _coef),
+			            _promedioCrudo
+			        )
+			    )
+		formatString: #,##0.00
+		displayFolder: Motor Generico
+		lineageTag: 0e5d4d03-7451-4ca4-a30f-d239e7adae17
+
+	measure 'Precio Base Mes Anterior' = CALCULATE([Precio Base (Generico)], DATEADD('Calendario'[Date], -1, MONTH))
+		formatString: #,##0.00
+		displayFolder: Motor Generico
+		lineageTag: 6536a4f9-dbf2-407b-8040-80539bc37ae6
+
+	measure 'Precio Base 3M Anterior' = CALCULATE([Precio Base (Generico)], DATEADD('Calendario'[Date], -3, MONTH))
+		formatString: #,##0.00
+		displayFolder: Motor Generico
+		lineageTag: aa9b4eae-a3d8-424d-9241-0fd3035469f1
+
+	measure 'Precio Base Var % Mensual' = DIVIDE([Precio Base (Generico)] - [Precio Base Mes Anterior], [Precio Base Mes Anterior])
+		formatString: 0.00%
+		displayFolder: Motor Generico
+		lineageTag: 7f11c2e8-f0bc-47a6-8c35-b88d643c1e7d
+
+	measure 'Precio Base Var % 3M' = DIVIDE([Precio Base (Generico)] - [Precio Base 3M Anterior], [Precio Base 3M Anterior])
+		formatString: 0.00%
+		displayFolder: Motor Generico
+		lineageTag: fa51be32-492a-4f4c-b9e7-05ee63d351ea
+
+	measure 'Precio Base Var % Anual' = DIVIDE([Precio Base (Generico)] - CALCULATE([Precio Base (Generico)], DATEADD('Calendario'[Date], -1, YEAR)), CALCULATE([Precio Base (Generico)], DATEADD('Calendario'[Date], -1, YEAR)))
+		formatString: 0.00%
+		displayFolder: Motor Generico
+		lineageTag: 37d953a1-6cb2-45d4-9450-bad5b4c4dfab
+
+	/// Promedio del precio base entre todos los productos visibles en el contexto actual (ej: todos los del Tipo filtrado en la página). Usa la medida Precio Base (Generico) por producto y promedia, ignorando blancos.
+	measure 'Precio Base (Generico) Promedio' =
+			AVERAGEX(
+			    VALUES('Productos'[NombreProducto]),
+			    [Precio Base (Generico)]
+			)
+		formatString: #,##0.00
+		displayFolder: Motor Generico
+		lineageTag: d6fbdfbc-a639-4ee0-adc3-0617000eb012
+
+	measure 'Precio Base Mes Anterior Promedio' = CALCULATE([Precio Base (Generico) Promedio], DATEADD('Calendario'[Date], -1, MONTH))
+		formatString: #,##0.00
+		displayFolder: Motor Generico
+		lineageTag: 2e962e27-da67-4814-a595-300ac2dd5502
+
+	measure 'Precio Base 3M Anterior Promedio' = CALCULATE([Precio Base (Generico) Promedio], DATEADD('Calendario'[Date], -3, MONTH))
+		formatString: #,##0.00
+		displayFolder: Motor Generico
+		lineageTag: 0a90fee3-ee0d-47ef-9510-2964eb85d3ff
+
+	measure 'Precio Base Var % Mensual Promedio' = DIVIDE([Precio Base (Generico) Promedio] - [Precio Base Mes Anterior Promedio], [Precio Base Mes Anterior Promedio])
+		formatString: 0.00%
+		displayFolder: Motor Generico
+		lineageTag: 9c3b215a-7e87-475e-8f66-4b0f22f16623
+
+	measure 'Precio Base Var % 3M Promedio' = DIVIDE([Precio Base (Generico) Promedio] - [Precio Base 3M Anterior Promedio], [Precio Base 3M Anterior Promedio])
+		formatString: 0.00%
+		displayFolder: Motor Generico
+		lineageTag: b2932db5-8f4f-4b32-a0a7-0a1ad2e91c9b
+
+	measure 'Precio Base Var % Anual Promedio' =
+			
+			DIVIDE([Precio Base (Generico) Promedio] - CALCULATE([Precio Base (Generico) Promedio], DATEADD('Calendario'[Date], -1, YEAR)), CALCULATE([Precio Base (Generico) Promedio], DATEADD('Calendario'[Date], -1, YEAR)))
+		formatString: 0.00%
+		displayFolder: Motor Generico
+		lineageTag: f3ec3fb2-e42e-4096-8b4d-b499b27130de
+
+	measure 'Precio Base Año Anterior' = CALCULATE([Precio Base (Generico)], DATEADD('Calendario'[Date], -1, YEAR))
+		formatString: #,##0.00
+		displayFolder: Motor Generico
+		lineageTag: 43b1c375-9ea1-4ac5-bfa7-a55b81c9f9c4
+
+	measure 'Precio Base Año Anterior Promedio' = CALCULATE([Precio Base (Generico) Promedio], DATEADD('Calendario'[Date], -1, YEAR))
+		formatString: #,##0.00
+		displayFolder: Motor Generico
+		lineageTag: 9395660e-41fb-420e-b8f3-a1b58198aa81
+
+	measure 'Precio Base Diferencia Mensual' = [Precio Base (Generico)] - [Precio Base Mes Anterior]
+		formatString: #,##0.00;-#,##0.00
+		displayFolder: Motor Generico
+		lineageTag: 6954cfbc-01ce-404f-85c4-21f24217c043
+
+	measure 'Precio Base Diferencia Mensual Promedio' = [Precio Base (Generico) Promedio] - [Precio Base Mes Anterior Promedio]
+		formatString: #,##0.00;-#,##0.00
+		displayFolder: Motor Generico
+		lineageTag: 1f6d51a9-90bf-4a35-87dd-78ed702d16a9
+
+	measure 'Precio Base Diferencia 3M' = [Precio Base (Generico)] - [Precio Base 3M Anterior]
+		formatString: #,##0.00;-#,##0.00
+		displayFolder: Motor Generico
+		lineageTag: 70e428fd-e7cb-4a16-8c02-e54ae76f81da
+
+	measure 'Precio Base Diferencia 3M Promedio' = [Precio Base (Generico) Promedio] - [Precio Base 3M Anterior Promedio]
+		formatString: #,##0.00;-#,##0.00
+		displayFolder: Motor Generico
+		lineageTag: 538807e3-5d89-4fef-908f-f054a46d3470
+
+	measure 'Precio Base Diferencia Anual' = IF(ISBLANK([Precio Base Año Anterior]), BLANK(), [Precio Base (Generico)] - [Precio Base Año Anterior])
+		formatString: #,##0.00;-#,##0.00
+		displayFolder: Motor Generico
+		lineageTag: 5586b7b9-c058-4507-8636-87c7432a9b63
+
+	measure 'Precio Base Diferencia Anual Promedio' = IF(ISBLANK([Precio Base Año Anterior Promedio]), BLANK(), [Precio Base (Generico) Promedio] - [Precio Base Año Anterior Promedio])
+		formatString: #,##0.00;-#,##0.00
+		displayFolder: Motor Generico
+		lineageTag: 414e9fd1-7dfd-4115-90ff-f47f32409550
+
+	measure 'Precio Base 6M Anterior' = CALCULATE([Precio Base (Generico)], DATEADD('Calendario'[Date], -6, MONTH))
+		formatString: #,##0.00
+		displayFolder: Motor Generico
+		lineageTag: 435d7319-16c5-4fa9-a97f-8a98d2e5cde2
+
+	measure 'Precio Base Diferencia 6M' = IF(ISBLANK([Precio Base 6M Anterior]), BLANK(), [Precio Base (Generico)] - [Precio Base 6M Anterior])
+		formatString: #,##0.00;-#,##0.00
+		displayFolder: Motor Generico
+		lineageTag: 69e8189b-2ac3-4683-9ea4-4f486bf6cdf8
+
+	measure 'Precio Base Var % 6M' = DIVIDE([Precio Base (Generico)] - [Precio Base 6M Anterior], [Precio Base 6M Anterior])
+		formatString: 0.00%
+		displayFolder: Motor Generico
+		lineageTag: 74deef13-2b24-4c4c-b575-0a6092230996
+
+	measure 'Precio Base 6M Anterior Promedio' = CALCULATE([Precio Base (Generico) Promedio], DATEADD('Calendario'[Date], -6, MONTH))
+		formatString: #,##0.00
+		displayFolder: Motor Generico
+		lineageTag: 9cc6aa31-6c1b-4b76-99d9-1c81126519e3
+
+	measure 'Precio Base Diferencia 6M Promedio' = IF(ISBLANK([Precio Base 6M Anterior Promedio]), BLANK(), [Precio Base (Generico) Promedio] - [Precio Base 6M Anterior Promedio])
+		formatString: #,##0.00;-#,##0.00
+		displayFolder: Motor Generico
+		lineageTag: cc793184-2033-4054-bb49-3ed7f3961830
+
+	measure 'Precio Base Var % 6M Promedio' = DIVIDE([Precio Base (Generico) Promedio] - [Precio Base 6M Anterior Promedio], [Precio Base 6M Anterior Promedio])
+		formatString: 0.00%
+		displayFolder: Motor Generico
+		lineageTag: 5267925c-627b-4cbb-acbe-8c78eee0a545
+
+	/// Precio del motor generico 15 dias antes (quincena anterior)
+	measure 'Precio Base Q1 Anterior' = CALCULATE([Precio Base (Generico)], DATEADD('Calendario'[Date], -15, DAY))
+		formatString: #,##0.00
+		displayFolder: Motor Generico
+		lineageTag: e8921c1f-fac0-45fb-aeae-f95e7b533fc7
+
+	/// Variacion % del motor generico contra la quincena anterior (15 dias)
+	measure 'Precio Base Var % Q1' = DIVIDE([Precio Base (Generico)] - [Precio Base Q1 Anterior], [Precio Base Q1 Anterior])
+		formatString: 0.00%
+		displayFolder: Motor Generico
+		lineageTag: 34352ac2-91fd-4b28-afb7-6d32b61c8354
+
+	measure 'Precio Base Diferencia Q1' = [Precio Base (Generico)] - [Precio Base Q1 Anterior]
+		formatString: #,##0.00;-#,##0.00
+		displayFolder: Motor Generico
+		lineageTag: 448cf83a-d701-45ff-9dbd-25ab3894a211
+
+	measure 'Precio Base Q1 Anterior Promedio' = CALCULATE([Precio Base (Generico) Promedio], DATEADD('Calendario'[Date], -15, DAY))
+		formatString: #,##0.00
+		displayFolder: Motor Generico
+		lineageTag: db75234f-2ce1-4d0c-b8a0-ea0d5a5a32a2
+
+	measure 'Precio Base Diferencia Q1 Promedio' = [Precio Base (Generico) Promedio] - [Precio Base Q1 Anterior Promedio]
+		formatString: #,##0.00;-#,##0.00
+		displayFolder: Motor Generico
+		lineageTag: e99d23e0-bdd8-486f-b499-d436bd012901
+
+	measure 'Precio Base Var % Q1 Promedio' = DIVIDE([Precio Base (Generico) Promedio] - [Precio Base Q1 Anterior Promedio], [Precio Base Q1 Anterior Promedio])
+		formatString: 0.00%
+		displayFolder: Motor Generico
+		lineageTag: 4225ed09-5a52-4249-b08b-a02b1391f70f
+
+	/// Precio del motor generico 30 dias antes (quincena anterior a Q1)
+	measure 'Precio Base Q2 Anterior' = CALCULATE([Precio Base (Generico)], DATEADD('Calendario'[Date], -30, DAY))
+		formatString: #,##0.00
+		displayFolder: Motor Generico
+		lineageTag: 8d0519a2-d1e4-43a0-ac50-f3a9d00d58d8
+
+	measure 'Precio Base Q2 Anterior Promedio' = CALCULATE([Precio Base (Generico) Promedio], DATEADD('Calendario'[Date], -30, DAY))
+		formatString: #,##0.00
+		displayFolder: Motor Generico
+		lineageTag: a5e0c6c3-f2c0-4497-b1cc-83b417105abd
+
+	/// Diferencia entre Q1 (quincena anterior, -15d) y Q2 (-30d)
+	measure 'Precio Base Diferencia Q1 Q2' = [Precio Base Q1 Anterior] - [Precio Base Q2 Anterior]
+		formatString: #,##0.00;-#,##0.00
+		displayFolder: Motor Generico
+		lineageTag: bde8d127-53d5-46f2-a1ae-9689c3ad4657
+
+	measure 'Precio Base Diferencia Q1 Q2 Promedio' = [Precio Base Q1 Anterior Promedio] - [Precio Base Q2 Anterior Promedio]
+		formatString: #,##0.00;-#,##0.00
+		displayFolder: Motor Generico
+		lineageTag: 3acb103c-3e7b-45be-8ee5-f7b0ea3924aa
+
+	/// Variacion % de Q1 (quincena anterior) contra Q2 (dos quincenas atras)
+	measure 'Precio Base Var % Q1 Q2' = DIVIDE([Precio Base Q1 Anterior] - [Precio Base Q2 Anterior], [Precio Base Q2 Anterior])
+		formatString: 0.00%
+		displayFolder: Motor Generico
+		lineageTag: 516961ec-3c6f-4c78-a69e-f344a1f6f201
+
+	measure 'Precio Base Var % Q1 Q2 Promedio' = DIVIDE([Precio Base Q1 Anterior Promedio] - [Precio Base Q2 Anterior Promedio], [Precio Base Q2 Anterior Promedio])
+		formatString: 0.00%
+		displayFolder: Motor Generico
+		lineageTag: b90916df-8ebf-4acc-98cc-2cc8b24504d8
+
+	/// Diferencia entre el precio actual y Q2 (30 dias antes)
+	measure 'Precio Base Diferencia Q2' = [Precio Base (Generico)] - [Precio Base Q2 Anterior]
+		formatString: #,##0.00;-#,##0.00
+		displayFolder: Motor Generico
+		lineageTag: 0ed3054c-b719-4e30-9f50-e891d6533c15
+
+	measure 'Precio Base Diferencia Q2 Promedio' = [Precio Base (Generico) Promedio] - [Precio Base Q2 Anterior Promedio]
+		formatString: #,##0.00;-#,##0.00
+		displayFolder: Motor Generico
+		lineageTag: a432f806-4363-4ea0-ad62-452881aa70fe
+
+	/// Variacion % entre el precio actual y Q2 (30 dias antes)
+	measure 'Precio Base Var % Q2' = DIVIDE([Precio Base (Generico)] - [Precio Base Q2 Anterior], [Precio Base Q2 Anterior])
+		formatString: 0.00%
+		displayFolder: Motor Generico
+		lineageTag: 2a507856-8c35-43d9-814c-3a4df951b9d7
+
+	measure 'Precio Base Var % Q2 Promedio' = DIVIDE([Precio Base (Generico) Promedio] - [Precio Base Q2 Anterior Promedio], [Precio Base Q2 Anterior Promedio])
+		formatString: 0.00%
+		displayFolder: Motor Generico
+		lineageTag: b2071d24-022e-4fc8-878d-16e0186dc2d5
+
+	column Column
+		formatString: 0
+		lineageTag: 06fe462a-37e9-41a2-95ba-d88759169861
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Medidas = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = e85d586a03184fcfbf75c5bdb850e0e8
+

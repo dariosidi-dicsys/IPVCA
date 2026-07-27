@@ -1,0 +1,571 @@
+createOrReplace
+
+	ref table 'public faena'
+
+		/// Porcentaje de cabezas hembra sobre el total
+		measure '% Cabezas Hembra' =
+				DIVIDE(
+				    CALCULATE(SUM('public faena'[cantidad_cabezas]), 'public faena'[sexo] = "Hembra"),
+				    [Total Cabezas],
+				    0
+				)
+			formatString: 0.0%
+			displayFolder: Composición
+			lineageTag: 6e250836-fe06-4d5a-a48a-e71bd0e443a0
+
+		/// Porcentaje de cabezas macho sobre el total
+		measure '% Cabezas Macho' =
+				DIVIDE(
+				    CALCULATE(SUM('public faena'[cantidad_cabezas]), 'public faena'[sexo] = "Macho"),
+				    [Total Cabezas],
+				    0
+				)
+			formatString: 0.0%
+			displayFolder: Composición
+			lineageTag: de3ac751-8cb3-4687-adf8-c8a4a9eec518
+
+		/// Participación porcentual de la categoría MEJ sobre el total de cabezas
+		measure '% MEJ sobre Total' =
+				DIVIDE(
+				    CALCULATE(SUM('public faena'[cantidad_cabezas]), 'public faena'[categoria] = "MEJ"),
+				    SUM('public faena'[cantidad_cabezas])
+				)
+			formatString: 0.0%
+			displayFolder: Categorías
+			lineageTag: 17d6e95b-a1a6-4209-822e-aefebeb76dac
+
+		/// Porcentaje de participación de cada categoría sobre el total de cabezas
+		measure '% Participación Categoría' =
+				DIVIDE(
+				    SUM('public faena'[cantidad_cabezas]),
+				    CALCULATE(SUM('public faena'[cantidad_cabezas]), ALL('public faena'[categoria])),
+				    0
+				)
+			formatString: 0.0%
+			displayFolder: Composición
+			lineageTag: d1d785c0-4575-439b-a8b7-4f014c219e6e
+
+		/// Porcentaje de participación de cada categoría sobre el total de toneladas
+		measure '% Participación Categoría Ton' =
+				DIVIDE(
+				    SUM('public faena'[toneladas_res]),
+				    CALCULATE(SUM('public faena'[toneladas_res]), ALL('public faena'[categoria])),
+				    0
+				)
+			formatString: 0.0%
+			displayFolder: Composición
+			lineageTag: fb98faa7-a88c-49ca-ac97-8740fbe5e507
+
+		/// Cabezas faenadas con dentición 2 dientes
+		measure 'Cabezas 2 Dientes' = CALCULATE(SUM('public faena'[cantidad_cabezas]), 'public faena'[denticion] = "2 dientes")
+			formatString: #,##0
+			displayFolder: Dentición
+			lineageTag: 0b4e2641-a461-4e95-94cd-466b6a1883f3
+
+		/// Cabezas faenadas con dentición 4 dientes
+		measure 'Cabezas 4 Dientes' = CALCULATE(SUM('public faena'[cantidad_cabezas]), 'public faena'[denticion] = "4 dientes")
+			formatString: #,##0
+			displayFolder: Dentición
+			lineageTag: 0b42934e-d499-49ee-80ee-c499a86bbaa9
+
+		/// Cabezas faenadas con dentición 6 dientes
+		measure 'Cabezas 6 Dientes' = CALCULATE(SUM('public faena'[cantidad_cabezas]), 'public faena'[denticion] = "6 dientes")
+			formatString: #,##0
+			displayFolder: Dentición
+			lineageTag: 432af1f4-9497-4939-89c5-edc4e95d55eb
+
+		/// Cabezas faenadas con dentición 8 dientes
+		measure 'Cabezas 8 Dientes' = CALCULATE(SUM('public faena'[cantidad_cabezas]), 'public faena'[denticion] = "8 dientes")
+			formatString: #,##0
+			displayFolder: Dentición
+			lineageTag: df26368d-db6f-4044-ac79-541d2775d9d4
+
+		/// Cabezas acumuladas en el año hasta el mes seleccionado
+		measure 'Cabezas Acumulado YTD' =
+				VAR _anioSel = SELECTEDVALUE('public faena'[anio])
+				VAR _mesSel = SELECTEDVALUE(Calendario[NumMes])
+				RETURN
+				IF(
+				    NOT ISBLANK(_anioSel) && NOT ISBLANK(_mesSel),
+				    CALCULATE(
+				        SUM('public faena'[cantidad_cabezas]),
+				        'public faena'[anio] = _anioSel,
+				        Calendario[NumMes] <= _mesSel
+				    ),
+				    SUM('public faena'[cantidad_cabezas])
+				)
+			formatString: #,##0
+			displayFolder: Acumulados
+			lineageTag: a98a0e65-4323-4f00-86dd-dc5bd54ae2a0
+
+		/// Total cabezas del año anterior al seleccionado
+		measure 'Cabezas Año Anterior' =
+				CALCULATE(
+				    SUM('public faena'[cantidad_cabezas]),
+				    FILTER(
+				        ALL('public faena'[anio]),
+				        'public faena'[anio] = FORMAT(VALUE(SELECTEDVALUE('public faena'[anio], "0")) - 1, "####")
+				    )
+				)
+			formatString: #,##0
+			displayFolder: Comparativos
+			lineageTag: b6355b67-a356-481d-a7ab-a9ff92dad239
+
+		/// Cabezas faenadas del año seleccionado en el slicer Año Base
+		measure 'Cabezas Año Base' =
+				VAR _anio = SELECTEDVALUE('Año Base'[Año])
+				RETURN
+				CALCULATE(
+				    SUM('public faena'[cantidad_cabezas]),
+				    REMOVEFILTERS('public faena'[anio]),
+				    'public faena'[anio] = _anio
+				)
+			formatString: #,##0
+			displayFolder: Comparación A vs B
+			lineageTag: 09deaa72-bf76-4e8a-acc1-6f84b4e13ed9
+
+		/// Cabezas faenadas del año seleccionado en el slicer Año Comparación
+		measure 'Cabezas Año Comparación' =
+				VAR _anio = SELECTEDVALUE('Año Comparación'[Año])
+				RETURN
+				CALCULATE(
+				    SUM('public faena'[cantidad_cabezas]),
+				    REMOVEFILTERS('public faena'[anio]),
+				    'public faena'[anio] = _anio
+				)
+			formatString: #,##0
+			displayFolder: Comparación A vs B
+			lineageTag: 4b8da323-4b05-45ae-a2a2-24d949a30ec4
+
+		/// Total de cabezas de categorías hembra (Vaca + Vaquillona)
+		measure 'Cabezas Hembra Total' =
+				CALCULATE(
+				    SUM('public faena'[cantidad_cabezas]),
+				    'public faena'[sexo] = "Hembra"
+				)
+			formatString: #,##0
+			displayFolder: Categorías
+			lineageTag: 75f14838-fb7f-4511-b2fa-e231e3ce9f29
+
+		/// Total de cabezas de categorías macho (Novillo + Novillito + Toro + MEJ)
+		measure 'Cabezas Macho Total' =
+				CALCULATE(
+				    SUM('public faena'[cantidad_cabezas]),
+				    'public faena'[sexo] = "Macho"
+				)
+			formatString: #,##0
+			displayFolder: Categorías
+			lineageTag: 277c157d-e283-4f68-a9e1-c2f58ca61515
+
+		/// Cabezas faenadas con dentición más de 8 dientes
+		measure 'Cabezas Más de 8 Dientes' = CALCULATE(SUM('public faena'[cantidad_cabezas]), 'public faena'[denticion] = "Más de 8 dientes")
+			formatString: #,##0
+			displayFolder: Dentición
+			lineageTag: 2fdda075-6c8f-4835-8b29-c8031de663db
+
+		/// Promedio mensual de cabezas faenadas
+		measure 'Cabezas Promedio Mensual' =
+				AVERAGEX(
+				    SUMMARIZE(
+				        'public faena',
+				        'public faena'[anio],
+				        'public faena'[mes],
+				        "_cab", SUM('public faena'[cantidad_cabezas])
+				    ),
+				    [_cab]
+				)
+			formatString: #,##0.0
+			displayFolder: Promedios
+			lineageTag: 16f5751e-bdf9-46f3-b7e2-4a64447b033e
+
+		/// Diferencia entre cabezas actuales y el promedio histórico mensual
+		measure 'Cabezas vs Promedio Histórico' =
+				VAR _actual = SUM('public faena'[cantidad_cabezas])
+				VAR _promedio = CALCULATE(
+				    AVERAGEX(
+				        SUMMARIZE(
+				            ALL('public faena'),
+				            'public faena'[anio],
+				            'public faena'[mes],
+				            "_cab", SUM('public faena'[cantidad_cabezas])
+				        ),
+				        [_cab]
+				    )
+				)
+				RETURN _actual - _promedio
+			formatString: #,##0.0
+			displayFolder: Comparativos
+			lineageTag: a9aa47df-e17d-4246-8a57-e28095e5d153
+
+		/// Máximo de cabezas registrado en un solo mes dentro del contexto
+		measure 'Máximo Cabezas en Mes' =
+				MAXX(
+				    SUMMARIZE(
+				        'public faena',
+				        'public faena'[anio],
+				        'public faena'[mes],
+				        "_cab", SUM('public faena'[cantidad_cabezas])
+				    ),
+				    [_cab]
+				)
+			formatString: #,##0
+			displayFolder: Rankings
+			lineageTag: 4ddb26ed-290b-4acf-8617-0ba3d9f14ea1
+
+		/// Mínimo de cabezas registrado en un solo mes dentro del contexto
+		measure 'Mínimo Cabezas en Mes' =
+				MINX(
+				    SUMMARIZE(
+				        'public faena',
+				        'public faena'[anio],
+				        'public faena'[mes],
+				        "_cab", SUM('public faena'[cantidad_cabezas])
+				    ),
+				    [_cab]
+				)
+			formatString: #,##0
+			displayFolder: Rankings
+			lineageTag: 55c32dc6-6178-43d2-bd8c-dbad074aefc2
+
+		/// Peso promedio por res del año seleccionado en Año Base
+		measure 'Peso Promedio Año Base' =
+				VAR _anio = SELECTEDVALUE('Año Base'[Año])
+				RETURN
+				CALCULATE(
+				    AVERAGE('public faena'[peso_res]),
+				    REMOVEFILTERS('public faena'[anio]),
+				    'public faena'[anio] = _anio
+				)
+			formatString: #,##0.0
+			displayFolder: Comparación A vs B
+			lineageTag: 22e68dc2-be59-4826-b284-31a009e46a0b
+
+		/// Peso promedio por res del año seleccionado en Año Comparación
+		measure 'Peso Promedio Año Comparación' =
+				VAR _anio = SELECTEDVALUE('Año Comparación'[Año])
+				RETURN
+				CALCULATE(
+				    AVERAGE('public faena'[peso_res]),
+				    REMOVEFILTERS('public faena'[anio]),
+				    'public faena'[anio] = _anio
+				)
+			formatString: #,##0.0
+			displayFolder: Comparación A vs B
+			lineageTag: 36815637-f0d0-414c-ba5f-4149309ba6b5
+
+		/// Peso promedio en kg de las categorías hembra
+		measure 'Peso Promedio Hembra (kg)' =
+				CALCULATE(
+				    AVERAGE('public faena'[peso_res]),
+				    'public faena'[sexo] = "Hembra"
+				)
+			formatString: #,##0.0
+			displayFolder: Categorías
+			lineageTag: eae2de5e-300c-46cc-8bdc-c49dfe0166f2
+
+		/// Peso promedio en kg de las categorías macho
+		measure 'Peso Promedio Macho (kg)' =
+				CALCULATE(
+				    AVERAGE('public faena'[peso_res]),
+				    'public faena'[sexo] = "Macho"
+				)
+			formatString: #,##0.0
+			displayFolder: Categorías
+			lineageTag: be2f5a86-6985-4ca9-9232-26b34214238d
+
+		/// Peso promedio en kg por dentición en el contexto de filtro
+		measure 'Peso Promedio por Dentición' = AVERAGE('public faena'[peso_res])
+			formatString: #,##0.0
+			displayFolder: Dentición
+			lineageTag: 4d569a5d-a24c-48bf-8c96-facbbf6f80c9
+
+		/// Peso promedio por res en kilogramos
+		measure 'Peso Promedio Res (kg)' = DIVIDE(SUM('public faena'[toneladas_res]) * 1000, SUM('public faena'[cantidad_cabezas]), 0)
+			formatString: #,##0.0
+			displayFolder: Promedios
+			lineageTag: be501819-8c8c-4f98-b10d-633ad0ba227b
+
+		/// Posición de la categoría según volumen de cabezas faenadas (1 = mayor)
+		measure 'Ranking Categoría por Cabezas' =
+				IF(
+				    HASONEVALUE('public faena'[categoria]),
+				    RANKX(
+				        ALLSELECTED('public faena'[categoria]),
+				        CALCULATE(SUM('public faena'[cantidad_cabezas])),
+				        ,
+				        DESC,
+				        DENSE
+				    ),
+				    BLANK()
+				)
+			formatString: #,##0
+			displayFolder: Rankings
+			lineageTag: c46f158b-c180-4d05-9326-41cd092ccf71
+
+		/// Posición del mes según volumen de cabezas faenadas (1 = mayor)
+		measure 'Ranking Mes por Cabezas' =
+				IF(
+				    HASONEVALUE('public faena'[mes]),
+				    RANKX(
+				        ALLSELECTED('public faena'[mes]),
+				        CALCULATE(SUM('public faena'[cantidad_cabezas])),
+				        ,
+				        DESC,
+				        DENSE
+				    ),
+				    BLANK()
+				)
+			formatString: #,##0
+			displayFolder: Rankings
+			lineageTag: a8620875-3a73-4dfa-bcca-d201436ba0c1
+
+		/// Ratio de cabezas hembra por cada cabeza macho
+		measure 'Relación Hembra/Macho' =
+				DIVIDE(
+				    CALCULATE(SUM('public faena'[cantidad_cabezas]), 'public faena'[sexo] = "Hembra"),
+				    CALCULATE(SUM('public faena'[cantidad_cabezas]), 'public faena'[sexo] = "Macho")
+				)
+			formatString: 0.00
+			displayFolder: Categorías
+			lineageTag: 057b4ea2-376e-412c-a990-b0bee18bb332
+
+		/// Rendimiento promedio en kg por cabeza
+		measure 'Rendimiento Res (kg/ton)' =
+				DIVIDE(
+				    SUM('public faena'[toneladas_res]) * 1000,
+				    SUM('public faena'[cantidad_cabezas]),
+				    0
+				)
+			formatString: #,##0.00
+			displayFolder: Promedios
+			lineageTag: 4579ede4-9088-4ff5-8b54-623f7726cfd8
+
+		/// Toneladas acumuladas en el año hasta el mes seleccionado
+		measure 'Toneladas Acumulado YTD' =
+				VAR _anioSel = SELECTEDVALUE('public faena'[anio])
+				VAR _mesSel = SELECTEDVALUE(Calendario[NumMes])
+				RETURN
+				IF(
+				    NOT ISBLANK(_anioSel) && NOT ISBLANK(_mesSel),
+				    CALCULATE(
+				        SUM('public faena'[toneladas_res]),
+				        'public faena'[anio] = _anioSel,
+				        Calendario[NumMes] <= _mesSel
+				    ),
+				    SUM('public faena'[toneladas_res])
+				)
+			formatString: #,##0.0
+			displayFolder: Acumulados
+			lineageTag: 98c19745-72bd-4cf2-8dfd-c3b914b2d3d3
+
+		/// Total toneladas del año anterior al seleccionado
+		measure 'Toneladas Año Anterior' =
+				CALCULATE(
+				    SUM('public faena'[toneladas_res]),
+				    FILTER(
+				        ALL('public faena'[anio]),
+				        'public faena'[anio] = FORMAT(VALUE(SELECTEDVALUE('public faena'[anio], "0")) - 1, "####")
+				    )
+				)
+			formatString: #,##0.0
+			displayFolder: Comparativos
+			lineageTag: db5a42d5-4230-4efa-bf1d-fea7e06b1021
+
+		/// Toneladas del año seleccionado en el slicer Año Base
+		measure 'Toneladas Año Base' =
+				VAR _anio = SELECTEDVALUE('Año Base'[Año])
+				RETURN
+				CALCULATE(
+				    SUM('public faena'[toneladas_res]),
+				    REMOVEFILTERS('public faena'[anio]),
+				    'public faena'[anio] = _anio
+				)
+			formatString: #,##0.0
+			displayFolder: Comparación A vs B
+			lineageTag: aa2cac97-ceb7-41ea-98a7-d9b6c6d53487
+
+		/// Toneladas del año seleccionado en el slicer Año Comparación
+		measure 'Toneladas Año Comparación' =
+				VAR _anio = SELECTEDVALUE('Año Comparación'[Año])
+				RETURN
+				CALCULATE(
+				    SUM('public faena'[toneladas_res]),
+				    REMOVEFILTERS('public faena'[anio]),
+				    'public faena'[anio] = _anio
+				)
+			formatString: #,##0.0
+			displayFolder: Comparación A vs B
+			lineageTag: e9cfa862-8a89-4410-bca0-312bee66c02a
+
+		/// Total de toneladas de categorías hembra
+		measure 'Toneladas Hembra Total' =
+				CALCULATE(
+				    SUM('public faena'[toneladas_res]),
+				    'public faena'[sexo] = "Hembra"
+				)
+			formatString: #,##0.0
+			displayFolder: Categorías
+			lineageTag: 3527e875-41a9-4310-bae1-0ea8a7179324
+
+		/// Total de toneladas de categorías macho
+		measure 'Toneladas Macho Total' =
+				CALCULATE(
+				    SUM('public faena'[toneladas_res]),
+				    'public faena'[sexo] = "Macho"
+				)
+			formatString: #,##0.0
+			displayFolder: Categorías
+			lineageTag: 0f9fb55a-d57e-4f00-b6c7-a73eda73bd12
+
+		/// Total de cabezas faenadas
+		measure 'Total Cabezas' = SUM('public faena'[cantidad_cabezas])
+			formatString: #,##0
+			displayFolder: Volumen
+			lineageTag: 4b90fba9-6a1b-4458-a7b7-8c1268ccabd4
+
+		/// Total de toneladas en res
+		measure 'Total Toneladas' = SUM('public faena'[toneladas_res])
+			formatString: #,##0.0
+			displayFolder: Volumen
+			lineageTag: e7a40d68-d391-44cd-8bb1-dc0a0ddfdf5e
+
+		/// Diferencia neta de cabezas entre Año Base y Año Comparación
+		measure 'Variación Cabezas A vs B' =
+				VAR _base = SELECTEDVALUE('Año Base'[Año])
+				VAR _comp = SELECTEDVALUE('Año Comparación'[Año])
+				VAR _cabBase = CALCULATE(SUM('public faena'[cantidad_cabezas]), REMOVEFILTERS('public faena'[anio]), 'public faena'[anio] = _base)
+				VAR _cabComp = CALCULATE(SUM('public faena'[cantidad_cabezas]), REMOVEFILTERS('public faena'[anio]), 'public faena'[anio] = _comp)
+				RETURN _cabBase - _cabComp
+			formatString: #,##0
+			displayFolder: Comparación A vs B
+			lineageTag: cf89c896-72ad-471b-9fd8-2de0779355c7
+
+		/// Variación porcentual de cabezas entre Año Base y Año Comparación
+		measure 'Variación Cabezas A vs B %' =
+				VAR _base = SELECTEDVALUE('Año Base'[Año])
+				VAR _comp = SELECTEDVALUE('Año Comparación'[Año])
+				VAR _cabBase = CALCULATE(SUM('public faena'[cantidad_cabezas]), REMOVEFILTERS('public faena'[anio]), 'public faena'[anio] = _base)
+				VAR _cabComp = CALCULATE(SUM('public faena'[cantidad_cabezas]), REMOVEFILTERS('public faena'[anio]), 'public faena'[anio] = _comp)
+				RETURN DIVIDE(_cabBase - _cabComp, _cabComp)
+			formatString: 0.0%
+			displayFolder: Comparación A vs B
+			lineageTag: 3300073b-1e74-46e4-b3d5-967637e6b4cb
+
+		/// Variación neta de cabezas por dentición vs año anterior
+		measure 'Variación Cabezas Dentición' =
+				VAR _actual = SUM('public faena'[cantidad_cabezas])
+				VAR _anterior = CALCULATE(
+				    SUM('public faena'[cantidad_cabezas]),
+				    FILTER(ALL('public faena'[anio]), 'public faena'[anio] = FORMAT(VALUE(SELECTEDVALUE('public faena'[anio])) - 1, "####"))
+				)
+				RETURN _actual - _anterior
+			formatString: #,##0
+			displayFolder: Variaciones
+			lineageTag: 2126406c-ddfe-4003-8823-08530643589d
+
+		/// Variación porcentual de cabezas por dentición vs año anterior
+		measure 'Variación Cabezas Dentición %' =
+				VAR _actual = SUM('public faena'[cantidad_cabezas])
+				VAR _anterior = CALCULATE(
+				    SUM('public faena'[cantidad_cabezas]),
+				    FILTER(ALL('public faena'[anio]), 'public faena'[anio] = FORMAT(VALUE(SELECTEDVALUE('public faena'[anio])) - 1, "####"))
+				)
+				RETURN DIVIDE(_actual - _anterior, _anterior)
+			formatString: 0.0%
+			displayFolder: Variaciones
+			lineageTag: b486e646-f71a-4d5a-be83-ada4c5958a30
+
+		/// Variación neta de cabezas hembra vs año anterior
+		measure 'Variación Cabezas Hembra' =
+				VAR _actual = CALCULATE(SUM('public faena'[cantidad_cabezas]), 'public faena'[sexo] = "Hembra")
+				VAR _anterior = CALCULATE(
+				    SUM('public faena'[cantidad_cabezas]),
+				    'public faena'[sexo] = "Hembra",
+				    FILTER(ALL('public faena'[anio]), 'public faena'[anio] = FORMAT(VALUE(SELECTEDVALUE('public faena'[anio])) - 1, "####"))
+				)
+				RETURN _actual - _anterior
+			formatString: #,##0
+			displayFolder: Variaciones
+			lineageTag: 8d2e60e0-e526-4ee0-9af3-4003d16a7b1d
+
+		/// Variación porcentual de cabezas hembra vs año anterior
+		measure 'Variación Cabezas Hembra %' =
+				VAR _actual = CALCULATE(SUM('public faena'[cantidad_cabezas]), 'public faena'[sexo] = "Hembra")
+				VAR _anterior = CALCULATE(
+				    SUM('public faena'[cantidad_cabezas]),
+				    'public faena'[sexo] = "Hembra",
+				    FILTER(ALL('public faena'[anio]), 'public faena'[anio] = FORMAT(VALUE(SELECTEDVALUE('public faena'[anio])) - 1, "####"))
+				)
+				RETURN DIVIDE(_actual - _anterior, _anterior)
+			formatString: 0.0%
+			displayFolder: Variaciones
+			lineageTag: 6d0d5f7d-ea4f-4f89-8f20-6dbca4415c1a
+
+		/// Variación neta de cabezas macho vs año anterior
+		measure 'Variación Cabezas Macho' =
+				VAR _actual = CALCULATE(SUM('public faena'[cantidad_cabezas]), 'public faena'[sexo] = "Macho")
+				VAR _anterior = CALCULATE(
+				    SUM('public faena'[cantidad_cabezas]),
+				    'public faena'[sexo] = "Macho",
+				    FILTER(ALL('public faena'[anio]), 'public faena'[anio] = FORMAT(VALUE(SELECTEDVALUE('public faena'[anio])) - 1, "####"))
+				)
+				RETURN _actual - _anterior
+			formatString: #,##0
+			displayFolder: Variaciones
+			lineageTag: 96605e3f-6074-46ab-98b6-aa09bc23f879
+
+		/// Variación porcentual de cabezas macho vs año anterior
+		measure 'Variación Cabezas Macho %' =
+				VAR _actual = CALCULATE(SUM('public faena'[cantidad_cabezas]), 'public faena'[sexo] = "Macho")
+				VAR _anterior = CALCULATE(
+				    SUM('public faena'[cantidad_cabezas]),
+				    'public faena'[sexo] = "Macho",
+				    FILTER(ALL('public faena'[anio]), 'public faena'[anio] = FORMAT(VALUE(SELECTEDVALUE('public faena'[anio])) - 1, "####"))
+				)
+				RETURN DIVIDE(_actual - _anterior, _anterior)
+			formatString: 0.0%
+			displayFolder: Variaciones
+			lineageTag: 9aaa2577-4254-4bf4-9c2d-0a5060b0055d
+
+		/// Variación porcentual de cabezas año vs año anterior
+		measure 'Variación Cabezas YoY %' =
+				VAR _actual = [Total Cabezas]
+				VAR _anterior = [Cabezas Año Anterior]
+				RETURN
+				DIVIDE(_actual - _anterior, _anterior, BLANK())
+			formatString: 0.0%
+			displayFolder: Comparativos
+			lineageTag: d435ff06-832f-4089-84b5-728f0fd816d7
+
+		/// Diferencia neta de toneladas entre Año Base y Año Comparación
+		measure 'Variación Toneladas A vs B' =
+				VAR _base = SELECTEDVALUE('Año Base'[Año])
+				VAR _comp = SELECTEDVALUE('Año Comparación'[Año])
+				VAR _tonBase = CALCULATE(SUM('public faena'[toneladas_res]), REMOVEFILTERS('public faena'[anio]), 'public faena'[anio] = _base)
+				VAR _tonComp = CALCULATE(SUM('public faena'[toneladas_res]), REMOVEFILTERS('public faena'[anio]), 'public faena'[anio] = _comp)
+				RETURN _tonBase - _tonComp
+			formatString: #,##0.0
+			displayFolder: Comparación A vs B
+			lineageTag: 9744fc94-7ad3-49ac-93c2-6872b6fd3fe8
+
+		/// Variación porcentual de toneladas entre Año Base y Año Comparación
+		measure 'Variación Toneladas A vs B %' =
+				VAR _base = SELECTEDVALUE('Año Base'[Año])
+				VAR _comp = SELECTEDVALUE('Año Comparación'[Año])
+				VAR _tonBase = CALCULATE(SUM('public faena'[toneladas_res]), REMOVEFILTERS('public faena'[anio]), 'public faena'[anio] = _base)
+				VAR _tonComp = CALCULATE(SUM('public faena'[toneladas_res]), REMOVEFILTERS('public faena'[anio]), 'public faena'[anio] = _comp)
+				RETURN DIVIDE(_tonBase - _tonComp, _tonComp)
+			formatString: 0.0%
+			displayFolder: Comparación A vs B
+			lineageTag: aed539ec-fbe4-4b50-8df3-25aa0e1248dd
+
+		/// Variación porcentual de toneladas año vs año anterior
+		measure 'Variación Toneladas YoY %' =
+				VAR _actual = [Total Toneladas]
+				VAR _anterior = [Toneladas Año Anterior]
+				RETURN
+				DIVIDE(_actual - _anterior, _anterior, BLANK())
+			formatString: 0.0%
+			displayFolder: Comparativos
+			lineageTag: af3cf1e3-3776-43d7-a7e7-c9a8e0e52204
+

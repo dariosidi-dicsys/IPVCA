@@ -7,6 +7,7 @@ relationship vw_precio_hacienda_fecha_Calendario_Date
 	toColumn: Calendario.Date
 
 relationship Productos_Llave_Calendario_Llave
+	isActive: false
 	toCardinality: many
 	fromColumn: Productos.Llave
 	toColumn: Calendario.Llave

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "2a7161ca28d26131159c",
   "position": {
     "x": 38.066914498141266,
@@ -30,6 +30,21 @@
               "nativeQueryRef": "Mes",
               "active": true,
               "displayName": "Mes"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendario"
+                    }
+                  },
+                  "Property": "Quincena"
+                }
+              },
+              "queryRef": "Calendario.Quincena",
+              "nativeQueryRef": "Quincena",
+              "active": false
             }
           ]
         }
@@ -47,6 +62,12 @@
             ],
             "isCollapsed": true,
             "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "Calendario.Quincena"
+            ],
+            "isCollapsed": true
           }
         ],
         "root": {}
@@ -131,6 +152,84 @@
                               }
                             }
                           ]
+                        ]
+                      }
+                    },
+                    "Annotations": {
+                      "filterExpressionMetadata": {
+                        "expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "Calendario"
+                                }
+                              },
+                              "Property": "NombreMes"
+                            }
+                          }
+                        ],
+                        "decomposedIdentities": {
+                          "values": [
+                            [
+                              {
+                                "0": [
+                                  {
+                                    "Literal": {
+                                      "Value": "'enero'"
+                                    }
+                                  }
+                                ]
+                              }
+                            ],
+                            [
+                              {
+                                "0": [
+                                  {
+                                    "Literal": {
+                                      "Value": "'febrero'"
+                                    }
+                                  }
+                                ]
+                              }
+                            ],
+                            [
+                              {
+                                "0": [
+                                  {
+                                    "Literal": {
+                                      "Value": "'abril'"
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          ],
+                          "columns": [
+                            {
+                              "value": {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "Calendario"
+                                    }
+                                  },
+                                  "Property": "NombreMes"
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "valueMap": [
+                          {
+                            "0": "enero"
+                          },
+                          {
+                            "0": "febrero"
+                          },
+                          {
+                            "0": "abril"
+                          }
                         ]
                       }
                     }
@@ -248,5 +347,37 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "f84ee8b2e60695d4900e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calendario"
+              }
+            },
+            "Property": "NombreMes"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "be6a601c4105a5527466",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calendario"
+              }
+            },
+            "Property": "Quincena"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

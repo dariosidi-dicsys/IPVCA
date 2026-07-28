@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "4e9e665bd50e389455bc",
   "position": {
     "x": 37.810945273631845,
@@ -30,6 +30,21 @@
               "nativeQueryRef": "Mes",
               "active": true,
               "displayName": "Mes"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendario"
+                    }
+                  },
+                  "Property": "Quincena"
+                }
+              },
+              "queryRef": "Calendario.Quincena",
+              "nativeQueryRef": "Quincena",
+              "active": true
             }
           ]
         }
@@ -46,10 +61,62 @@
               "Calendario.NombreMes"
             ],
             "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Calendario"
+                    }
+                  },
+                  "Property": "NombreMes"
+                }
+              }
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "Calendario.Quincena"
+            ],
+            "isCollapsed": true,
             "isPinned": true
           }
         ],
-        "root": {}
+        "root": {
+          "children": [
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'junio'"
+                  }
+                }
+              ],
+              "isToggled": true
+            },
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'abril'"
+                  }
+                }
+              ],
+              "isToggled": true
+            },
+            {
+              "identityValues": [
+                {
+                  "Literal": {
+                    "Value": "'mayo'"
+                  }
+                }
+              ],
+              "isToggled": true
+            }
+          ]
+        }
       }
     ],
     "objects": {
@@ -123,14 +190,71 @@
                                 "Value": "'junio'"
                               }
                             }
+                          ]
+                        ]
+                      }
+                    },
+                    "Annotations": {
+                      "filterExpressionMetadata": {
+                        "expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "Calendario"
+                                }
+                              },
+                              "Property": "NombreMes"
+                            }
+                          }
+                        ],
+                        "decomposedIdentities": {
+                          "values": [
+                            [
+                              {
+                                "0": [
+                                  {
+                                    "Literal": {
+                                      "Value": "'mayo'"
+                                    }
+                                  }
+                                ]
+                              }
+                            ],
+                            [
+                              {
+                                "0": [
+                                  {
+                                    "Literal": {
+                                      "Value": "'junio'"
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
                           ],
-                          [
+                          "columns": [
                             {
-                              "Literal": {
-                                "Value": "'abril'"
+                              "value": {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Entity": "Calendario"
+                                    }
+                                  },
+                                  "Property": "NombreMes"
+                                }
                               }
                             }
                           ]
+                        },
+                        "valueMap": [
+                          {
+                            "0": "mayo"
+                          },
+                          {
+                            "0": "junio"
+                          }
                         ]
                       }
                     }
@@ -248,5 +372,37 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "cd8a187320abe93e0a72",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calendario"
+              }
+            },
+            "Property": "NombreMes"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "8003bb31232a320878b5",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calendario"
+              }
+            },
+            "Property": "Quincena"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

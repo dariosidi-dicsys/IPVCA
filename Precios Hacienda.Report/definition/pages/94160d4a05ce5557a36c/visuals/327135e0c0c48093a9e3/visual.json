@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
-  "name": "817166b8241c7b327900",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "327135e0c0c48093a9e3",
   "position": {
     "x": 313.43283582089555,
     "y": 134.32835820895525,
-    "z": 10000,
+    "z": 10002,
     "height": 272.636815920398,
     "width": 940.29850746268664,
-    "tabOrder": 10000
+    "tabOrder": 10002
   },
   "visual": {
     "visualType": "pivotTable",
@@ -87,12 +87,12 @@
                       "Entity": "Medidas"
                     }
                   },
-                  "Property": "Precio Base Diferencia Q1 Promedio"
+                  "Property": "Precio Base Diferencia Q1 Mes Anterior Promedio"
                 }
               },
-              "queryRef": "Medidas.Precio Base Diferencia Q1 Promedio",
-              "nativeQueryRef": "Dif Q1",
-              "displayName": "Dif Q1"
+              "queryRef": "Medidas.Precio Base Diferencia Q1 Mes Anterior Promedio",
+              "nativeQueryRef": "Q1 Mes Ant",
+              "displayName": "Q1 Mes Ant"
             },
             {
               "field": {
@@ -102,12 +102,12 @@
                       "Entity": "Medidas"
                     }
                   },
-                  "Property": "Precio Base Var % Q1 Promedio"
+                  "Property": "Precio Base Var % Q1 Mes Anterior Promedio"
                 }
               },
-              "queryRef": "Medidas.Precio Base Var % Q1 Promedio",
-              "nativeQueryRef": "Var % Q1",
-              "displayName": "Var % Q1"
+              "queryRef": "Medidas.Precio Base Var % Q1 Mes Anterior Promedio",
+              "nativeQueryRef": "Var % Q1 Ant",
+              "displayName": "Var % Q1 Ant"
             },
             {
               "field": {
@@ -117,12 +117,12 @@
                       "Entity": "Medidas"
                     }
                   },
-                  "Property": "Precio Base Diferencia Mensual Promedio"
+                  "Property": "Precio Base Diferencia Q2 Mes Anterior Promedio"
                 }
               },
-              "queryRef": "Medidas.Precio Base Diferencia Mensual Promedio",
-              "nativeQueryRef": "Dif 1M",
-              "displayName": "Dif 1M"
+              "queryRef": "Medidas.Precio Base Diferencia Q2 Mes Anterior Promedio",
+              "nativeQueryRef": "Q2 Mes Ant",
+              "displayName": "Q2 Mes Ant"
             },
             {
               "field": {
@@ -132,12 +132,12 @@
                       "Entity": "Medidas"
                     }
                   },
-                  "Property": "Precio Base Var % Mensual Promedio"
+                  "Property": "Precio Base Var % Q2 Mes Anterior Promedio"
                 }
               },
-              "queryRef": "Medidas.Precio Base Var % Mensual Promedio",
-              "nativeQueryRef": "Var % 1M",
-              "displayName": "Var % 1M"
+              "queryRef": "Medidas.Precio Base Var % Q2 Mes Anterior Promedio",
+              "nativeQueryRef": "Var % Q2 Mes Ant",
+              "displayName": "Var % Q2 Mes Ant"
             },
             {
               "field": {
@@ -430,7 +430,7 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "3d6c8a17c3282c673dd8",
+        "name": "331c9d1d41c09e47a253",
         "field": {
           "Column": {
             "Expression": {
@@ -445,7 +445,7 @@
         "howCreated": "User"
       },
       {
-        "name": "bba75601bd6677972090",
+        "name": "b46a7c749da340d2388e",
         "field": {
           "Column": {
             "Expression": {
@@ -458,6 +458,202 @@
         },
         "type": "Advanced",
         "howCreated": "User"
+      },
+      {
+        "name": "966e3b14b0b48d8d3149",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calendario"
+              }
+            },
+            "Property": "Año"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "5630460fb258346844e1",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calendario"
+              }
+            },
+            "Property": "NombreMes"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "c13221396a9588a1311b",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Productos"
+              }
+            },
+            "Property": "NombreProducto"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "ff84fa0fabea68c11120",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas"
+              }
+            },
+            "Property": "Precio Base (Generico) Promedio"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "40150258052075321536",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas"
+              }
+            },
+            "Property": "Precio Base Diferencia 3M Promedio"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "0e4de588be13b1540990",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas"
+              }
+            },
+            "Property": "Precio Base Var % 3M Promedio"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "21c2b6a58e9a96070484",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas"
+              }
+            },
+            "Property": "Precio Base Diferencia 6M Promedio"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "1a98bc2ebc6581c95c68",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas"
+              }
+            },
+            "Property": "Precio Base Var % 6M Promedio"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d9ac049b1298453976e3",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas"
+              }
+            },
+            "Property": "Precio Base Diferencia Anual Promedio"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "92320d210cea0d03dba8",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas"
+              }
+            },
+            "Property": "Precio Base Var % Anual Promedio"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "a7d51318880b8c60a99b",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas"
+              }
+            },
+            "Property": "Precio Base Diferencia Q1 Mes Anterior Promedio"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "ab5d1cff1a040327671c",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas"
+              }
+            },
+            "Property": "Precio Base Var % Q1 Mes Anterior Promedio"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "ef823742b2b3c628ac03",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas"
+              }
+            },
+            "Property": "Precio Base Diferencia Q2 Mes Anterior Promedio"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "da7e744820da7e48054d",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas"
+              }
+            },
+            "Property": "Precio Base Var % Q2 Mes Anterior Promedio"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

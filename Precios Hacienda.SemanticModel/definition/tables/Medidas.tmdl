@@ -523,6 +523,112 @@ table Medidas
 		displayFolder: Motor Generico
 		lineageTag: b2071d24-022e-4fc8-878d-16e0186dc2d5
 
+	/// Precio del motor generico en la primera quincena (Q1) del mes calendario anterior. Replica el patron de 'Promedio Q1 Mes Anterior' de Precios Nacionales (misma quincena, mes calendario anterior via Calendario[Quincena]), distinto del offset fijo -15 dias de 'Precio Base Q1 Anterior'.
+	measure 'Precio Base Q1 Mes Anterior' = CALCULATE([Precio Base (Generico)], DATEADD('Calendario'[Date], -1, MONTH), 'Calendario'[Quincena] = "Q1")
+		formatString: #,##0.00
+		displayFolder: Motor Generico
+		lineageTag: c7e5d334-107e-4b2a-b249-8352923ec747
+
+	/// Precio del motor generico en la segunda quincena (Q2) del mes calendario anterior. Replica el patron de 'Promedio Q2 Mes Anterior' de Precios Nacionales, distinto del offset fijo -30 dias de 'Precio Base Q2 Anterior'.
+	measure 'Precio Base Q2 Mes Anterior' = CALCULATE([Precio Base (Generico)], DATEADD('Calendario'[Date], -1, MONTH), 'Calendario'[Quincena] = "Q2")
+		formatString: #,##0.00
+		displayFolder: Motor Generico
+		lineageTag: 32a4d7a6-0697-4651-94fb-770e8f1542cd
+
+	/// Version promediada (todos los productos visibles) de Precio Base Q1 Mes Anterior.
+	measure 'Precio Base Q1 Mes Anterior Promedio' = CALCULATE([Precio Base (Generico) Promedio], DATEADD('Calendario'[Date], -1, MONTH), 'Calendario'[Quincena] = "Q1")
+		formatString: #,##0.00
+		displayFolder: Motor Generico
+		lineageTag: 562f2ad4-a840-43cc-9017-7bf7bb9b0c15
+
+	/// Version promediada (todos los productos visibles) de Precio Base Q2 Mes Anterior.
+	measure 'Precio Base Q2 Mes Anterior Promedio' = CALCULATE([Precio Base (Generico) Promedio], DATEADD('Calendario'[Date], -1, MONTH), 'Calendario'[Quincena] = "Q2")
+		formatString: #,##0.00
+		displayFolder: Motor Generico
+		lineageTag: 6bca09c9-ae18-480c-8d2c-7ebd8839cbe7
+
+	/// Comparativo generico de la quincena cronologicamente anterior: si el contexto actual es Q2, compara contra Q1 del MISMO mes; si es Q1, compara contra Q2 del mes calendario anterior. Replica exactamente 'Precio Promedio Quincena Anterior' de Precios Nacionales.
+	measure 'Precio Base Quincena Anterior' =
+			IF(
+			    SELECTEDVALUE('Calendario'[Quincena]) = "Q2",
+			    CALCULATE([Precio Base (Generico)], 'Calendario'[Quincena] = "Q1"),
+			    CALCULATE([Precio Base (Generico)], DATEADD('Calendario'[Date], -1, MONTH), 'Calendario'[Quincena] = "Q2")
+			)
+		formatString: #,##0.00
+		displayFolder: Motor Generico
+		lineageTag: d536ff72-f3c0-4ec6-b535-f7e545cd61cc
+
+	/// Version promediada (todos los productos visibles) de Precio Base Quincena Anterior.
+	measure 'Precio Base Quincena Anterior Promedio' =
+			IF(
+			    SELECTEDVALUE('Calendario'[Quincena]) = "Q2",
+			    CALCULATE([Precio Base (Generico) Promedio], 'Calendario'[Quincena] = "Q1"),
+			    CALCULATE([Precio Base (Generico) Promedio], DATEADD('Calendario'[Date], -1, MONTH), 'Calendario'[Quincena] = "Q2")
+			)
+		formatString: #,##0.00
+		displayFolder: Motor Generico
+		lineageTag: 7d0a3d8d-91e3-4287-8463-2ab013b1b107
+
+	measure 'Precio Base Diferencia Q1 Mes Anterior' = [Precio Base (Generico)] - [Precio Base Q1 Mes Anterior]
+		formatString: #,##0.00;-#,##0.00
+		displayFolder: Motor Generico
+		lineageTag: 8e90f87d-0760-4894-a2ec-83ca2d0e7f8c
+
+	measure 'Precio Base Diferencia Q2 Mes Anterior' = [Precio Base (Generico)] - [Precio Base Q2 Mes Anterior]
+		formatString: #,##0.00;-#,##0.00
+		displayFolder: Motor Generico
+		lineageTag: 1433b353-1516-4af7-a0e1-b4a8b9bf79d6
+
+	measure 'Precio Base Diferencia Quincena Anterior' = [Precio Base (Generico)] - [Precio Base Quincena Anterior]
+		formatString: #,##0.00;-#,##0.00
+		displayFolder: Motor Generico
+		lineageTag: d3f6b075-5063-4e31-8620-7049fb401d13
+
+	measure 'Precio Base Var % Q1 Mes Anterior' = DIVIDE([Precio Base (Generico)] - [Precio Base Q1 Mes Anterior], [Precio Base Q1 Mes Anterior])
+		formatString: 0.00%
+		displayFolder: Motor Generico
+		lineageTag: f2174400-a3b4-4f59-9343-9ffd58d09f2a
+
+	measure 'Precio Base Var % Q2 Mes Anterior' = DIVIDE([Precio Base (Generico)] - [Precio Base Q2 Mes Anterior], [Precio Base Q2 Mes Anterior])
+		formatString: 0.00%
+		displayFolder: Motor Generico
+		lineageTag: 33364c83-7b63-49ad-b140-81c5cdfebce5
+
+	measure 'Precio Base Var % Quincena Anterior' = DIVIDE([Precio Base (Generico)] - [Precio Base Quincena Anterior], [Precio Base Quincena Anterior])
+		formatString: 0.00%
+		displayFolder: Motor Generico
+		lineageTag: 1239eb65-7ae6-4482-a387-722eef6b4c1c
+
+	measure 'Precio Base Diferencia Q1 Mes Anterior Promedio' = [Precio Base (Generico) Promedio] - [Precio Base Q1 Mes Anterior Promedio]
+		formatString: #,##0.00;-#,##0.00
+		displayFolder: Motor Generico
+		lineageTag: 1473f5f0-f412-47e3-9145-5c541e375ab8
+
+	measure 'Precio Base Diferencia Q2 Mes Anterior Promedio' = [Precio Base (Generico) Promedio] - [Precio Base Q2 Mes Anterior Promedio]
+		formatString: #,##0.00;-#,##0.00
+		displayFolder: Motor Generico
+		lineageTag: 600be854-c95a-4c28-8869-9034fb8e2b60
+
+	measure 'Precio Base Diferencia Quincena Anterior Promedio' = [Precio Base (Generico) Promedio] - [Precio Base Quincena Anterior Promedio]
+		formatString: #,##0.00;-#,##0.00
+		displayFolder: Motor Generico
+		lineageTag: cea418b5-0374-4ff7-beb7-e7e1df5090ea
+
+	measure 'Precio Base Var % Q1 Mes Anterior Promedio' = DIVIDE([Precio Base (Generico) Promedio] - [Precio Base Q1 Mes Anterior Promedio], [Precio Base Q1 Mes Anterior Promedio])
+		formatString: 0.00%
+		displayFolder: Motor Generico
+		lineageTag: fd85f8f9-ebbc-49e5-9fc9-0b6d11a2a7f2
+
+	measure 'Precio Base Var % Q2 Mes Anterior Promedio' = DIVIDE([Precio Base (Generico) Promedio] - [Precio Base Q2 Mes Anterior Promedio], [Precio Base Q2 Mes Anterior Promedio])
+		formatString: 0.00%
+		displayFolder: Motor Generico
+		lineageTag: 10a1b4fe-c04f-490e-a417-1d837288770d
+
+	measure 'Precio Base Var % Quincena Anterior Promedio' = DIVIDE([Precio Base (Generico) Promedio] - [Precio Base Quincena Anterior Promedio], [Precio Base Quincena Anterior Promedio])
+		formatString: 0.00%
+		displayFolder: Motor Generico
+		lineageTag: 01b16053-cb9f-48e8-bc9d-397f5b7a7e81
+
 	column Column
 		formatString: 0
 		lineageTag: 06fe462a-37e9-41a2-95ba-d88759169861

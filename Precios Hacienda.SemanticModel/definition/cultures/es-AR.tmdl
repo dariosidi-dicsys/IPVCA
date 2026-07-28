@@ -1641,120 +1641,6 @@ cultureInfo es-AR
 			        }
 			      ]
 			    },
-			    "medida.entity__precio_base_var__6M_promedio_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Var % 6M Promedio FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_precio base var % 6M promedio FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__precio_base_diferencia_6M_promedio_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Diferencia 6M Promedio FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_precio base diferencia 6M promedio FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__precio_base_6M_anterior_promedio_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base 6M Anterior Promedio FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_precio base 6M anterior promedio FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__precio_base_var__6M_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Var % 6M FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_precio base var % 6M FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__precio_base_diferencia_6M_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Diferencia 6M FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_precio base diferencia 6M FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__precio_base_6M_anterior_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base 6M Anterior FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_precio base 6M anterior FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
 			    "medida.precio_base_var__6M_promedio": {
 			      "Definition": {
 			        "Binding": {
@@ -1818,530 +1704,6 @@ cultureInfo es-AR
 			      "Terms": [
 			        {
 			          "precio base 6M anterior promedio": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__Ultima_Fecha_Datos_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Ultima_Fecha_Datos FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_Ultima_Fecha_Datos FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__novillo_exp_gancho_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Novillo Exp Gancho FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_novillo exp gancho FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__novillo_exp_pie_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Novillo Exp Pie FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_novillo exp pie FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__ternero_AA_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Ternero AA FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_ternero AA FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__ternera_cruza_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Ternera Cruza FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_ternera cruza FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__vaca_con_cría_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Vaca con cría FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_vaca con cría FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__vaca_manuf_gancho_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Vaca Manuf Gancho FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_vaca manuf gancho FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__vaca_manuf_pie_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Vaca Manuf Pie FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_vaca manuf pie FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__vaca_conserva_gancho_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Vaca Conserva Gancho FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_vaca conserva gancho FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__vaca_conserva_pie_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Vaca Conserva Pie FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_vaca conserva pie FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__novillito_391_430_dólares_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Novillito 391/430 Dólares FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_novillito 391/430 dólares FormatString": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "_novillito 391": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "_ novillito 391 430 dólares FormatString": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "430 dólares FormatString": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__NOVILLOS_431_460_dólares_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_NOVILLOS 431/460 Dólares FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_NOVILLOS 431/460 dólares FormatString": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "_NOVILLOS 431": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "_ NOVILLOS 431 460 dólares FormatString": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "460 dólares FormatString": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__NOVILLOS_461_490_dólares_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_NOVILLOS 461/490 Dólares FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_NOVILLOS 461/490 dólares FormatString": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "_NOVILLOS 461": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "_ NOVILLOS 461 490 dólares FormatString": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "490 dólares FormatString": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__NOVILLOS_491_520_dólares_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_NOVILLOS 491/520 Dólares FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_NOVILLOS 491/520 dólares FormatString": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "_NOVILLOS 491": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "_ NOVILLOS 491 520 dólares FormatString": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "520 dólares FormatString": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__NOVILLOS__520_dólares_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_NOVILLOS + 520 Dólares FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_NOVILLOS + 520 dólares FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__novillito_391_430_pesos_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Novillito 391/430 Pesos FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_novillito 391/430 pesos FormatString": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "_novillito 391": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "_ novillito 391 430 pesos FormatString": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "430 pesos FormatString": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__NOVILLOS_431_460_pesos_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_NOVILLOS 431/460 Pesos FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_NOVILLOS 431/460 pesos FormatString": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "_NOVILLOS 431": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "_ NOVILLOS 431 460 pesos FormatString": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "460 pesos FormatString": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__NOVILLOS_461_490_pesos_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_NOVILLOS 461/490 Pesos FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_NOVILLOS 461/490 pesos FormatString": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "_NOVILLOS 461": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "_ NOVILLOS 461 490 pesos FormatString": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "490 pesos FormatString": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__NOVILLOS_491_520_pesos_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_NOVILLOS 491/520 Pesos FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_NOVILLOS 491/520 pesos FormatString": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "_NOVILLOS 491": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "_ NOVILLOS 491 520 pesos FormatString": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "520 pesos FormatString": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__NOVILLOS__520_pesos_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_NOVILLOS + 520 Pesos FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_NOVILLOS + 520 pesos FormatString": {
 			            "State": "Generated"
 			          }
 			        }
@@ -2422,123 +1784,6 @@ cultureInfo es-AR
 			          }
 			        }
 			      ]
-			    },
-			    "medida.entity__novillito_300_390_350_gancho_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Novillito -300/390 (-350) Gancho FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_novillito -300/390 (-350) gancho FormatString": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "_novillito -300": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "_ novillito - 300 390 ( - 350 ) gancho FormatString": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "390 (-350) gancho FormatString": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "_novillito 300": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "_ novillito 300 390 ( 350 ) gancho FormatString": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "390 ( 350) gancho FormatString": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__vaquillona_270390_gancho_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Vaquillona (270-390) Gancho FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_vaquillona (270-390) gancho FormatString": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "_vaquillona (270 390) gancho FormatString": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        }
-			      ]
-			    },
-			    "CG_variacione": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "CG Variaciones"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "CG variacione": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "CG_variacione.CG_variacione": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "CG Variaciones",
-			          "ConceptualProperty": "CG Variaciones"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "CG variacione": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "CG variacione name": {
-			            "State": "Generated"
-			          }
-			        }
-			      ],
-			      "NameType": "Name"
 			    },
 			    "medida.precio_base_3M_anterior": {
 			      "Definition": {
@@ -2834,234 +2079,6 @@ cultureInfo es-AR
 			              "Agent": "PowerBI.VisualColumnRename"
 			            },
 			            "Weight": 0.9
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__precio_base_generico_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base (Generico) FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_precio base (generico) FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__precio_base_mes_anterior_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Mes Anterior FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_precio base mes anterior FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__precio_base_3M_anterior_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base 3M Anterior FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_precio base 3M anterior FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__precio_base_var__mensual_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Var % Mensual FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_precio base var % mensual FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__precio_base_var__3M_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Var % 3M FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_precio base var % 3M FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__precio_base_var__anual_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Var % Anual FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_precio base var % anual FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__precio_base_generico_promedio_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base (Generico) Promedio FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_precio base (generico) promedio FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__precio_base_mes_anterior_promedio_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Mes Anterior Promedio FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_precio base mes anterior promedio FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__precio_base_3M_anterior_promedio_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base 3M Anterior Promedio FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_precio base 3M anterior promedio FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__precio_base_var__mensual_promedio_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Var % Mensual Promedio FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_precio base var % mensual promedio FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__precio_base_var__3M_promedio_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Var % 3M Promedio FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_precio base var % 3M promedio FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__precio_base_var__anual_promedio_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Var % Anual Promedio FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_precio base var % anual promedio FormatString": {
-			            "State": "Generated"
 			          }
 			        }
 			      ]
@@ -3720,154 +2737,44 @@ cultureInfo es-AR
 			        }
 			      ]
 			    },
-			    "medida.entity__precio_base_año_anterior_FormatString": {
+			    "medida.precio_base_var__quincena_anterior_promedio": {
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Año Anterior FormatString"
+			          "ConceptualProperty": "Precio Base Var % Quincena Anterior Promedio"
 			        }
 			      },
 			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
 			      "Terms": [
 			        {
-			          "_precio base año anterior FormatString": {
+			          "precio base var % quincena anterior promedio": {
 			            "State": "Generated"
 			          }
 			        }
 			      ]
 			    },
-			    "medida.entity__precio_base_año_anterior_promedio_FormatString": {
+			    "medida.precio_base_var__Q2_mes_anterior_promedio": {
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Año Anterior Promedio FormatString"
+			          "ConceptualProperty": "Precio Base Var % Q2 Mes Anterior Promedio"
 			        }
 			      },
 			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
 			      "Terms": [
 			        {
-			          "_precio base año anterior promedio FormatString": {
+			          "precio base var % Q2 mes anterior promedio": {
 			            "State": "Generated"
 			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__precio_base_diferencia_mensual_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Diferencia Mensual FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
+			        },
 			        {
-			          "_precio base diferencia mensual FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__precio_base_diferencia_mensual_promedio_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Diferencia Mensual Promedio FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_precio base diferencia mensual promedio FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__precio_base_diferencia_3M_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Diferencia 3M FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_precio base diferencia 3M FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__precio_base_diferencia_3M_promedio_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Diferencia 3M Promedio FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_precio base diferencia 3M promedio FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__precio_base_diferencia_anual_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Diferencia Anual FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_precio base diferencia anual FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__precio_base_diferencia_anual_promedio_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Diferencia Anual Promedio FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_precio base diferencia anual promedio FormatString": {
-			            "State": "Generated"
+			          "Var % Q2 Mes Ant": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -4256,305 +3163,287 @@ cultureInfo es-AR
 			        }
 			      ]
 			    },
-			    "medida.entity__precio_base_Q1_anterior_FormatString": {
+			    "medida.precio_base_var__Q1_mes_anterior_promedio": {
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Q1 Anterior FormatString"
+			          "ConceptualProperty": "Precio Base Var % Q1 Mes Anterior Promedio"
 			        }
 			      },
 			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
 			      "Terms": [
 			        {
-			          "_precio base Q1 anterior FormatString": {
+			          "precio base var % Q1 mes anterior promedio": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Var % Q1 Ant": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medida.precio_base_diferencia_quincena_anterior_promedio": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Precio Base Diferencia Quincena Anterior Promedio"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "precio base diferencia quincena anterior promedio": {
 			            "State": "Generated"
 			          }
 			        }
 			      ]
 			    },
-			    "medida.entity__precio_base_var__Q1_FormatString": {
+			    "medida.precio_base_diferencia_Q2_mes_anterior_promedio": {
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Var % Q1 FormatString"
+			          "ConceptualProperty": "Precio Base Diferencia Q2 Mes Anterior Promedio"
 			        }
 			      },
 			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
 			      "Terms": [
 			        {
-			          "_precio base var % Q1 FormatString": {
+			          "precio base diferencia Q2 mes anterior promedio": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Q2 Mes Ant": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medida.precio_base_diferencia_Q1_mes_anterior_promedio": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Precio Base Diferencia Q1 Mes Anterior Promedio"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "precio base diferencia Q1 mes anterior promedio": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Q1 Mes Ant": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medida.precio_base_var__quincena_anterior": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Precio Base Var % Quincena Anterior"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "precio base var % quincena anterior": {
 			            "State": "Generated"
 			          }
 			        }
 			      ]
 			    },
-			    "medida.entity__precio_base_diferencia_Q1_FormatString": {
+			    "medida.precio_base_var__Q2_mes_anterior": {
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Diferencia Q1 FormatString"
+			          "ConceptualProperty": "Precio Base Var % Q2 Mes Anterior"
 			        }
 			      },
 			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
 			      "Terms": [
 			        {
-			          "_precio base diferencia Q1 FormatString": {
+			          "precio base var % Q2 mes anterior": {
 			            "State": "Generated"
 			          }
 			        }
 			      ]
 			    },
-			    "medida.entity__precio_base_Q1_anterior_promedio_FormatString": {
+			    "medida.precio_base_var__Q1_mes_anterior": {
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Q1 Anterior Promedio FormatString"
+			          "ConceptualProperty": "Precio Base Var % Q1 Mes Anterior"
 			        }
 			      },
 			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
 			      "Terms": [
 			        {
-			          "_precio base Q1 anterior promedio FormatString": {
+			          "precio base var % Q1 mes anterior": {
 			            "State": "Generated"
 			          }
 			        }
 			      ]
 			    },
-			    "medida.entity__precio_base_diferencia_Q1_promedio_FormatString": {
+			    "medida.precio_base_diferencia_quincena_anterior": {
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Diferencia Q1 Promedio FormatString"
+			          "ConceptualProperty": "Precio Base Diferencia Quincena Anterior"
 			        }
 			      },
 			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
 			      "Terms": [
 			        {
-			          "_precio base diferencia Q1 promedio FormatString": {
+			          "precio base diferencia quincena anterior": {
 			            "State": "Generated"
 			          }
 			        }
 			      ]
 			    },
-			    "medida.entity__precio_base_var__Q1_promedio_FormatString": {
+			    "medida.precio_base_diferencia_Q2_mes_anterior": {
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Var % Q1 Promedio FormatString"
+			          "ConceptualProperty": "Precio Base Diferencia Q2 Mes Anterior"
 			        }
 			      },
 			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
 			      "Terms": [
 			        {
-			          "_precio base var % Q1 promedio FormatString": {
+			          "precio base diferencia Q2 mes anterior": {
 			            "State": "Generated"
 			          }
 			        }
 			      ]
 			    },
-			    "medida.entity__precio_base_Q2_anterior_FormatString": {
+			    "medida.precio_base_diferencia_Q1_mes_anterior": {
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Q2 Anterior FormatString"
+			          "ConceptualProperty": "Precio Base Diferencia Q1 Mes Anterior"
 			        }
 			      },
 			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
 			      "Terms": [
 			        {
-			          "_precio base Q2 anterior FormatString": {
+			          "precio base diferencia Q1 mes anterior": {
 			            "State": "Generated"
 			          }
 			        }
 			      ]
 			    },
-			    "medida.entity__precio_base_Q2_anterior_promedio_FormatString": {
+			    "medida.precio_base_quincena_anterior_promedio": {
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Q2 Anterior Promedio FormatString"
+			          "ConceptualProperty": "Precio Base Quincena Anterior Promedio"
 			        }
 			      },
 			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
 			      "Terms": [
 			        {
-			          "_precio base Q2 anterior promedio FormatString": {
+			          "precio base quincena anterior promedio": {
 			            "State": "Generated"
 			          }
 			        }
 			      ]
 			    },
-			    "medida.entity__precio_base_diferencia_Q1_Q2_FormatString": {
+			    "medida.precio_base_quincena_anterior": {
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Diferencia Q1 Q2 FormatString"
+			          "ConceptualProperty": "Precio Base Quincena Anterior"
 			        }
 			      },
 			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
 			      "Terms": [
 			        {
-			          "_precio base diferencia Q1 Q2 FormatString": {
+			          "precio base quincena anterior": {
 			            "State": "Generated"
 			          }
 			        }
 			      ]
 			    },
-			    "medida.entity__precio_base_diferencia_Q1_Q2_promedio_FormatString": {
+			    "medida.precio_base_Q2_mes_anterior_promedio": {
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Diferencia Q1 Q2 Promedio FormatString"
+			          "ConceptualProperty": "Precio Base Q2 Mes Anterior Promedio"
 			        }
 			      },
 			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
 			      "Terms": [
 			        {
-			          "_precio base diferencia Q1 Q2 promedio FormatString": {
+			          "precio base Q2 mes anterior promedio": {
 			            "State": "Generated"
 			          }
 			        }
 			      ]
 			    },
-			    "medida.entity__precio_base_var__Q1_Q2_FormatString": {
+			    "medida.precio_base_Q1_mes_anterior_promedio": {
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Var % Q1 Q2 FormatString"
+			          "ConceptualProperty": "Precio Base Q1 Mes Anterior Promedio"
 			        }
 			      },
 			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
 			      "Terms": [
 			        {
-			          "_precio base var % Q1 Q2 FormatString": {
+			          "precio base Q1 mes anterior promedio": {
 			            "State": "Generated"
 			          }
 			        }
 			      ]
 			    },
-			    "medida.entity__precio_base_var__Q1_Q2_promedio_FormatString": {
+			    "medida.precio_base_Q2_mes_anterior": {
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Var % Q1 Q2 Promedio FormatString"
+			          "ConceptualProperty": "Precio Base Q2 Mes Anterior"
 			        }
 			      },
 			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
 			      "Terms": [
 			        {
-			          "_precio base var % Q1 Q2 promedio FormatString": {
+			          "precio base Q2 mes anterior": {
 			            "State": "Generated"
 			          }
 			        }
 			      ]
 			    },
-			    "medida.entity__precio_base_diferencia_Q2_FormatString": {
+			    "medida.precio_base_Q1_mes_anterior": {
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Diferencia Q2 FormatString"
+			          "ConceptualProperty": "Precio Base Q1 Mes Anterior"
 			        }
 			      },
 			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
 			      "Terms": [
 			        {
-			          "_precio base diferencia Q2 FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__precio_base_diferencia_Q2_promedio_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Diferencia Q2 Promedio FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_precio base diferencia Q2 promedio FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__precio_base_var__Q2_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Var % Q2 FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_precio base var % Q2 FormatString": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "medida.entity__precio_base_var__Q2_promedio_FormatString": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "_Precio Base Var % Q2 Promedio FormatString"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "_precio base var % Q2 promedio FormatString": {
+			          "precio base Q1 mes anterior": {
 			            "State": "Generated"
 			          }
 			        }
@@ -4784,6 +3673,1227 @@ cultureInfo es-AR
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "calendarios_have_quincenas"
+			        }
+			      ]
+			    },
+			    "vw_precio_hacienda_has_medida_precio_base_Q1_mes_anterior": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_precio_hacienda"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_precio_hacienda": {
+			          "Target": {
+			            "Entity": "vw_precio_hacienda"
+			          }
+			        },
+			        "medida.precio_base_Q1_mes_anterior": {
+			          "Target": {
+			            "Entity": "medida.precio_base_Q1_mes_anterior"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_precio_hacienda"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_Q1_mes_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_precio_haciendas_have_precio_base_Q1_mes_anterior"
+			        }
+			      ]
+			    },
+			    "producto_has_medida_precio_base_Q1_mes_anterior": {
+			      "Binding": {
+			        "ConceptualEntity": "Productos"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "producto": {
+			          "Target": {
+			            "Entity": "producto"
+			          }
+			        },
+			        "medida.precio_base_Q1_mes_anterior": {
+			          "Target": {
+			            "Entity": "medida.precio_base_Q1_mes_anterior"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "producto"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_Q1_mes_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "productos_have_precio_base_Q1_mes_anterior"
+			        }
+			      ]
+			    },
+			    "vw_precio_hacienda_has_medida_precio_base_Q2_mes_anterior": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_precio_hacienda"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_precio_hacienda": {
+			          "Target": {
+			            "Entity": "vw_precio_hacienda"
+			          }
+			        },
+			        "medida.precio_base_Q2_mes_anterior": {
+			          "Target": {
+			            "Entity": "medida.precio_base_Q2_mes_anterior"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_precio_hacienda"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_Q2_mes_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_precio_haciendas_have_precio_base_Q2_mes_anterior"
+			        }
+			      ]
+			    },
+			    "producto_has_medida_precio_base_Q2_mes_anterior": {
+			      "Binding": {
+			        "ConceptualEntity": "Productos"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "producto": {
+			          "Target": {
+			            "Entity": "producto"
+			          }
+			        },
+			        "medida.precio_base_Q2_mes_anterior": {
+			          "Target": {
+			            "Entity": "medida.precio_base_Q2_mes_anterior"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "producto"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_Q2_mes_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "productos_have_precio_base_Q2_mes_anterior"
+			        }
+			      ]
+			    },
+			    "vw_precio_hacienda_has_medida_precio_base_Q1_mes_anterior_promedio": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_precio_hacienda"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_precio_hacienda": {
+			          "Target": {
+			            "Entity": "vw_precio_hacienda"
+			          }
+			        },
+			        "medida.precio_base_Q1_mes_anterior_promedio": {
+			          "Target": {
+			            "Entity": "medida.precio_base_Q1_mes_anterior_promedio"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_precio_hacienda"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_Q1_mes_anterior_promedio"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_precio_haciendas_have_precio_base_Q1_mes_anterior_promedio"
+			        }
+			      ]
+			    },
+			    "producto_has_medida_precio_base_Q1_mes_anterior_promedio": {
+			      "Binding": {
+			        "ConceptualEntity": "Productos"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "producto": {
+			          "Target": {
+			            "Entity": "producto"
+			          }
+			        },
+			        "medida.precio_base_Q1_mes_anterior_promedio": {
+			          "Target": {
+			            "Entity": "medida.precio_base_Q1_mes_anterior_promedio"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "producto"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_Q1_mes_anterior_promedio"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "productos_have_precio_base_Q1_mes_anterior_promedio"
+			        }
+			      ]
+			    },
+			    "vw_precio_hacienda_has_medida_precio_base_Q2_mes_anterior_promedio": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_precio_hacienda"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_precio_hacienda": {
+			          "Target": {
+			            "Entity": "vw_precio_hacienda"
+			          }
+			        },
+			        "medida.precio_base_Q2_mes_anterior_promedio": {
+			          "Target": {
+			            "Entity": "medida.precio_base_Q2_mes_anterior_promedio"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_precio_hacienda"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_Q2_mes_anterior_promedio"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_precio_haciendas_have_precio_base_Q2_mes_anterior_promedio"
+			        }
+			      ]
+			    },
+			    "producto_has_medida_precio_base_Q2_mes_anterior_promedio": {
+			      "Binding": {
+			        "ConceptualEntity": "Productos"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "producto": {
+			          "Target": {
+			            "Entity": "producto"
+			          }
+			        },
+			        "medida.precio_base_Q2_mes_anterior_promedio": {
+			          "Target": {
+			            "Entity": "medida.precio_base_Q2_mes_anterior_promedio"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "producto"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_Q2_mes_anterior_promedio"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "productos_have_precio_base_Q2_mes_anterior_promedio"
+			        }
+			      ]
+			    },
+			    "vw_precio_hacienda_has_medida_precio_base_quincena_anterior": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_precio_hacienda"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_precio_hacienda": {
+			          "Target": {
+			            "Entity": "vw_precio_hacienda"
+			          }
+			        },
+			        "medida.precio_base_quincena_anterior": {
+			          "Target": {
+			            "Entity": "medida.precio_base_quincena_anterior"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_precio_hacienda"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_quincena_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_precio_haciendas_have_precio_base_quincena_anterior"
+			        }
+			      ]
+			    },
+			    "producto_has_medida_precio_base_quincena_anterior": {
+			      "Binding": {
+			        "ConceptualEntity": "Productos"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "producto": {
+			          "Target": {
+			            "Entity": "producto"
+			          }
+			        },
+			        "medida.precio_base_quincena_anterior": {
+			          "Target": {
+			            "Entity": "medida.precio_base_quincena_anterior"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "producto"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_quincena_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "productos_have_precio_base_quincena_anterior"
+			        }
+			      ]
+			    },
+			    "calendario_has_medida_precio_base_quincena_anterior": {
+			      "Binding": {
+			        "ConceptualEntity": "Calendario"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "calendario": {
+			          "Target": {
+			            "Entity": "calendario"
+			          }
+			        },
+			        "medida.precio_base_quincena_anterior": {
+			          "Target": {
+			            "Entity": "medida.precio_base_quincena_anterior"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "calendario"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_quincena_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "calendarios_have_precio_base_quincena_anterior"
+			        }
+			      ]
+			    },
+			    "vw_precio_hacienda_has_medida_precio_base_quincena_anterior_promedio": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_precio_hacienda"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_precio_hacienda": {
+			          "Target": {
+			            "Entity": "vw_precio_hacienda"
+			          }
+			        },
+			        "medida.precio_base_quincena_anterior_promedio": {
+			          "Target": {
+			            "Entity": "medida.precio_base_quincena_anterior_promedio"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_precio_hacienda"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_quincena_anterior_promedio"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_precio_haciendas_have_precio_base_quincena_anterior_promedio"
+			        }
+			      ]
+			    },
+			    "producto_has_medida_precio_base_quincena_anterior_promedio": {
+			      "Binding": {
+			        "ConceptualEntity": "Productos"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "producto": {
+			          "Target": {
+			            "Entity": "producto"
+			          }
+			        },
+			        "medida.precio_base_quincena_anterior_promedio": {
+			          "Target": {
+			            "Entity": "medida.precio_base_quincena_anterior_promedio"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "producto"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_quincena_anterior_promedio"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "productos_have_precio_base_quincena_anterior_promedio"
+			        }
+			      ]
+			    },
+			    "calendario_has_medida_precio_base_quincena_anterior_promedio": {
+			      "Binding": {
+			        "ConceptualEntity": "Calendario"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "calendario": {
+			          "Target": {
+			            "Entity": "calendario"
+			          }
+			        },
+			        "medida.precio_base_quincena_anterior_promedio": {
+			          "Target": {
+			            "Entity": "medida.precio_base_quincena_anterior_promedio"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "calendario"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_quincena_anterior_promedio"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "calendarios_have_precio_base_quincena_anterior_promedio"
+			        }
+			      ]
+			    },
+			    "vw_precio_hacienda_has_medida_precio_base_diferencia_Q1_mes_anterior": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_precio_hacienda"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_precio_hacienda": {
+			          "Target": {
+			            "Entity": "vw_precio_hacienda"
+			          }
+			        },
+			        "medida.precio_base_diferencia_Q1_mes_anterior": {
+			          "Target": {
+			            "Entity": "medida.precio_base_diferencia_Q1_mes_anterior"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_precio_hacienda"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_diferencia_Q1_mes_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_precio_haciendas_have_precio_base_diferencia_Q1_mes_anterior"
+			        }
+			      ]
+			    },
+			    "producto_has_medida_precio_base_diferencia_Q1_mes_anterior": {
+			      "Binding": {
+			        "ConceptualEntity": "Productos"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "producto": {
+			          "Target": {
+			            "Entity": "producto"
+			          }
+			        },
+			        "medida.precio_base_diferencia_Q1_mes_anterior": {
+			          "Target": {
+			            "Entity": "medida.precio_base_diferencia_Q1_mes_anterior"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "producto"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_diferencia_Q1_mes_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "productos_have_precio_base_diferencia_Q1_mes_anterior"
+			        }
+			      ]
+			    },
+			    "vw_precio_hacienda_has_medida_precio_base_diferencia_Q2_mes_anterior": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_precio_hacienda"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_precio_hacienda": {
+			          "Target": {
+			            "Entity": "vw_precio_hacienda"
+			          }
+			        },
+			        "medida.precio_base_diferencia_Q2_mes_anterior": {
+			          "Target": {
+			            "Entity": "medida.precio_base_diferencia_Q2_mes_anterior"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_precio_hacienda"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_diferencia_Q2_mes_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_precio_haciendas_have_precio_base_diferencia_Q2_mes_anterior"
+			        }
+			      ]
+			    },
+			    "producto_has_medida_precio_base_diferencia_Q2_mes_anterior": {
+			      "Binding": {
+			        "ConceptualEntity": "Productos"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "producto": {
+			          "Target": {
+			            "Entity": "producto"
+			          }
+			        },
+			        "medida.precio_base_diferencia_Q2_mes_anterior": {
+			          "Target": {
+			            "Entity": "medida.precio_base_diferencia_Q2_mes_anterior"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "producto"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_diferencia_Q2_mes_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "productos_have_precio_base_diferencia_Q2_mes_anterior"
+			        }
+			      ]
+			    },
+			    "vw_precio_hacienda_has_medida_precio_base_diferencia_quincena_anterior": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_precio_hacienda"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_precio_hacienda": {
+			          "Target": {
+			            "Entity": "vw_precio_hacienda"
+			          }
+			        },
+			        "medida.precio_base_diferencia_quincena_anterior": {
+			          "Target": {
+			            "Entity": "medida.precio_base_diferencia_quincena_anterior"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_precio_hacienda"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_diferencia_quincena_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_precio_haciendas_have_precio_base_diferencia_quincena_anterior"
+			        }
+			      ]
+			    },
+			    "producto_has_medida_precio_base_diferencia_quincena_anterior": {
+			      "Binding": {
+			        "ConceptualEntity": "Productos"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "producto": {
+			          "Target": {
+			            "Entity": "producto"
+			          }
+			        },
+			        "medida.precio_base_diferencia_quincena_anterior": {
+			          "Target": {
+			            "Entity": "medida.precio_base_diferencia_quincena_anterior"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "producto"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_diferencia_quincena_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "productos_have_precio_base_diferencia_quincena_anterior"
+			        }
+			      ]
+			    },
+			    "calendario_has_medida_precio_base_diferencia_quincena_anterior": {
+			      "Binding": {
+			        "ConceptualEntity": "Calendario"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "calendario": {
+			          "Target": {
+			            "Entity": "calendario"
+			          }
+			        },
+			        "medida.precio_base_diferencia_quincena_anterior": {
+			          "Target": {
+			            "Entity": "medida.precio_base_diferencia_quincena_anterior"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "calendario"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_diferencia_quincena_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "calendarios_have_precio_base_diferencia_quincena_anterior"
+			        }
+			      ]
+			    },
+			    "vw_precio_hacienda_has_medida_precio_base_var__Q1_mes_anterior": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_precio_hacienda"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_precio_hacienda": {
+			          "Target": {
+			            "Entity": "vw_precio_hacienda"
+			          }
+			        },
+			        "medida.precio_base_var__Q1_mes_anterior": {
+			          "Target": {
+			            "Entity": "medida.precio_base_var__Q1_mes_anterior"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_precio_hacienda"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_var__Q1_mes_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_precio_haciendas_have_precio_base_var__Q1_mes_anterior"
+			        }
+			      ]
+			    },
+			    "producto_has_medida_precio_base_var__Q1_mes_anterior": {
+			      "Binding": {
+			        "ConceptualEntity": "Productos"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "producto": {
+			          "Target": {
+			            "Entity": "producto"
+			          }
+			        },
+			        "medida.precio_base_var__Q1_mes_anterior": {
+			          "Target": {
+			            "Entity": "medida.precio_base_var__Q1_mes_anterior"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "producto"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_var__Q1_mes_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "productos_have_precio_base_var__Q1_mes_anterior"
+			        }
+			      ]
+			    },
+			    "vw_precio_hacienda_has_medida_precio_base_var__Q2_mes_anterior": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_precio_hacienda"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_precio_hacienda": {
+			          "Target": {
+			            "Entity": "vw_precio_hacienda"
+			          }
+			        },
+			        "medida.precio_base_var__Q2_mes_anterior": {
+			          "Target": {
+			            "Entity": "medida.precio_base_var__Q2_mes_anterior"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_precio_hacienda"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_var__Q2_mes_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_precio_haciendas_have_precio_base_var__Q2_mes_anterior"
+			        }
+			      ]
+			    },
+			    "producto_has_medida_precio_base_var__Q2_mes_anterior": {
+			      "Binding": {
+			        "ConceptualEntity": "Productos"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "producto": {
+			          "Target": {
+			            "Entity": "producto"
+			          }
+			        },
+			        "medida.precio_base_var__Q2_mes_anterior": {
+			          "Target": {
+			            "Entity": "medida.precio_base_var__Q2_mes_anterior"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "producto"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_var__Q2_mes_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "productos_have_precio_base_var__Q2_mes_anterior"
+			        }
+			      ]
+			    },
+			    "vw_precio_hacienda_has_medida_precio_base_var__quincena_anterior": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_precio_hacienda"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_precio_hacienda": {
+			          "Target": {
+			            "Entity": "vw_precio_hacienda"
+			          }
+			        },
+			        "medida.precio_base_var__quincena_anterior": {
+			          "Target": {
+			            "Entity": "medida.precio_base_var__quincena_anterior"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_precio_hacienda"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_var__quincena_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_precio_haciendas_have_precio_base_var__quincena_anterior"
+			        }
+			      ]
+			    },
+			    "producto_has_medida_precio_base_var__quincena_anterior": {
+			      "Binding": {
+			        "ConceptualEntity": "Productos"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "producto": {
+			          "Target": {
+			            "Entity": "producto"
+			          }
+			        },
+			        "medida.precio_base_var__quincena_anterior": {
+			          "Target": {
+			            "Entity": "medida.precio_base_var__quincena_anterior"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "producto"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_var__quincena_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "productos_have_precio_base_var__quincena_anterior"
+			        }
+			      ]
+			    },
+			    "calendario_has_medida_precio_base_var__quincena_anterior": {
+			      "Binding": {
+			        "ConceptualEntity": "Calendario"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "calendario": {
+			          "Target": {
+			            "Entity": "calendario"
+			          }
+			        },
+			        "medida.precio_base_var__quincena_anterior": {
+			          "Target": {
+			            "Entity": "medida.precio_base_var__quincena_anterior"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "calendario"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_var__quincena_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "calendarios_have_precio_base_var__quincena_anterior"
+			        }
+			      ]
+			    },
+			    "vw_precio_hacienda_has_medida_precio_base_diferencia_Q1_mes_anterior_promedio": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_precio_hacienda"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_precio_hacienda": {
+			          "Target": {
+			            "Entity": "vw_precio_hacienda"
+			          }
+			        },
+			        "medida.precio_base_diferencia_Q1_mes_anterior_promedio": {
+			          "Target": {
+			            "Entity": "medida.precio_base_diferencia_Q1_mes_anterior_promedio"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_precio_hacienda"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_diferencia_Q1_mes_anterior_promedio"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_precio_haciendas_have_precio_base_diferencia_Q1_mes_anterior_promedio"
+			        }
+			      ]
+			    },
+			    "producto_has_medida_precio_base_diferencia_Q1_mes_anterior_promedio": {
+			      "Binding": {
+			        "ConceptualEntity": "Productos"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "producto": {
+			          "Target": {
+			            "Entity": "producto"
+			          }
+			        },
+			        "medida.precio_base_diferencia_Q1_mes_anterior_promedio": {
+			          "Target": {
+			            "Entity": "medida.precio_base_diferencia_Q1_mes_anterior_promedio"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "producto"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_diferencia_Q1_mes_anterior_promedio"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "productos_have_precio_base_diferencia_Q1_mes_anterior_promedio"
+			        }
+			      ]
+			    },
+			    "vw_precio_hacienda_has_medida_precio_base_diferencia_Q2_mes_anterior_promedio": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_precio_hacienda"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_precio_hacienda": {
+			          "Target": {
+			            "Entity": "vw_precio_hacienda"
+			          }
+			        },
+			        "medida.precio_base_diferencia_Q2_mes_anterior_promedio": {
+			          "Target": {
+			            "Entity": "medida.precio_base_diferencia_Q2_mes_anterior_promedio"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_precio_hacienda"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_diferencia_Q2_mes_anterior_promedio"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_precio_haciendas_have_precio_base_diferencia_Q2_mes_anterior_promedio"
+			        }
+			      ]
+			    },
+			    "producto_has_medida_precio_base_diferencia_Q2_mes_anterior_promedio": {
+			      "Binding": {
+			        "ConceptualEntity": "Productos"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "producto": {
+			          "Target": {
+			            "Entity": "producto"
+			          }
+			        },
+			        "medida.precio_base_diferencia_Q2_mes_anterior_promedio": {
+			          "Target": {
+			            "Entity": "medida.precio_base_diferencia_Q2_mes_anterior_promedio"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "producto"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_diferencia_Q2_mes_anterior_promedio"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "productos_have_precio_base_diferencia_Q2_mes_anterior_promedio"
+			        }
+			      ]
+			    },
+			    "vw_precio_hacienda_has_medida_precio_base_diferencia_quincena_anterior_promedio": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_precio_hacienda"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_precio_hacienda": {
+			          "Target": {
+			            "Entity": "vw_precio_hacienda"
+			          }
+			        },
+			        "medida.precio_base_diferencia_quincena_anterior_promedio": {
+			          "Target": {
+			            "Entity": "medida.precio_base_diferencia_quincena_anterior_promedio"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_precio_hacienda"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_diferencia_quincena_anterior_promedio"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_precio_haciendas_have_precio_base_diferencia_quincena_anterior_promedio"
+			        }
+			      ]
+			    },
+			    "producto_has_medida_precio_base_diferencia_quincena_anterior_promedio": {
+			      "Binding": {
+			        "ConceptualEntity": "Productos"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "producto": {
+			          "Target": {
+			            "Entity": "producto"
+			          }
+			        },
+			        "medida.precio_base_diferencia_quincena_anterior_promedio": {
+			          "Target": {
+			            "Entity": "medida.precio_base_diferencia_quincena_anterior_promedio"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "producto"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_diferencia_quincena_anterior_promedio"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "productos_have_precio_base_diferencia_quincena_anterior_promedio"
+			        }
+			      ]
+			    },
+			    "calendario_has_medida_precio_base_diferencia_quincena_anterior_promedio": {
+			      "Binding": {
+			        "ConceptualEntity": "Calendario"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "calendario": {
+			          "Target": {
+			            "Entity": "calendario"
+			          }
+			        },
+			        "medida.precio_base_diferencia_quincena_anterior_promedio": {
+			          "Target": {
+			            "Entity": "medida.precio_base_diferencia_quincena_anterior_promedio"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "calendario"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_diferencia_quincena_anterior_promedio"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "calendarios_have_precio_base_diferencia_quincena_anterior_promedio"
+			        }
+			      ]
+			    },
+			    "vw_precio_hacienda_has_medida_precio_base_var__Q1_mes_anterior_promedio": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_precio_hacienda"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_precio_hacienda": {
+			          "Target": {
+			            "Entity": "vw_precio_hacienda"
+			          }
+			        },
+			        "medida.precio_base_var__Q1_mes_anterior_promedio": {
+			          "Target": {
+			            "Entity": "medida.precio_base_var__Q1_mes_anterior_promedio"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_precio_hacienda"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_var__Q1_mes_anterior_promedio"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_precio_haciendas_have_precio_base_var__Q1_mes_anterior_promedio"
+			        }
+			      ]
+			    },
+			    "producto_has_medida_precio_base_var__Q1_mes_anterior_promedio": {
+			      "Binding": {
+			        "ConceptualEntity": "Productos"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "producto": {
+			          "Target": {
+			            "Entity": "producto"
+			          }
+			        },
+			        "medida.precio_base_var__Q1_mes_anterior_promedio": {
+			          "Target": {
+			            "Entity": "medida.precio_base_var__Q1_mes_anterior_promedio"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "producto"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_var__Q1_mes_anterior_promedio"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "productos_have_precio_base_var__Q1_mes_anterior_promedio"
 			        }
 			      ]
 			    },
@@ -6038,6 +6148,171 @@ cultureInfo es-AR
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "productos_have_precio_base_var__6M"
+			        }
+			      ]
+			    },
+			    "vw_precio_hacienda_has_medida_precio_base_var__Q2_mes_anterior_promedio": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_precio_hacienda"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_precio_hacienda": {
+			          "Target": {
+			            "Entity": "vw_precio_hacienda"
+			          }
+			        },
+			        "medida.precio_base_var__Q2_mes_anterior_promedio": {
+			          "Target": {
+			            "Entity": "medida.precio_base_var__Q2_mes_anterior_promedio"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_precio_hacienda"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_var__Q2_mes_anterior_promedio"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_precio_haciendas_have_precio_base_var__Q2_mes_anterior_promedio"
+			        }
+			      ]
+			    },
+			    "producto_has_medida_precio_base_var__Q2_mes_anterior_promedio": {
+			      "Binding": {
+			        "ConceptualEntity": "Productos"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "producto": {
+			          "Target": {
+			            "Entity": "producto"
+			          }
+			        },
+			        "medida.precio_base_var__Q2_mes_anterior_promedio": {
+			          "Target": {
+			            "Entity": "medida.precio_base_var__Q2_mes_anterior_promedio"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "producto"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_var__Q2_mes_anterior_promedio"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "productos_have_precio_base_var__Q2_mes_anterior_promedio"
+			        }
+			      ]
+			    },
+			    "vw_precio_hacienda_has_medida_precio_base_var__quincena_anterior_promedio": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_precio_hacienda"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_precio_hacienda": {
+			          "Target": {
+			            "Entity": "vw_precio_hacienda"
+			          }
+			        },
+			        "medida.precio_base_var__quincena_anterior_promedio": {
+			          "Target": {
+			            "Entity": "medida.precio_base_var__quincena_anterior_promedio"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_precio_hacienda"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_var__quincena_anterior_promedio"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_precio_haciendas_have_precio_base_var__quincena_anterior_promedio"
+			        }
+			      ]
+			    },
+			    "producto_has_medida_precio_base_var__quincena_anterior_promedio": {
+			      "Binding": {
+			        "ConceptualEntity": "Productos"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "producto": {
+			          "Target": {
+			            "Entity": "producto"
+			          }
+			        },
+			        "medida.precio_base_var__quincena_anterior_promedio": {
+			          "Target": {
+			            "Entity": "medida.precio_base_var__quincena_anterior_promedio"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "producto"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_var__quincena_anterior_promedio"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "productos_have_precio_base_var__quincena_anterior_promedio"
+			        }
+			      ]
+			    },
+			    "calendario_has_medida_precio_base_var__quincena_anterior_promedio": {
+			      "Binding": {
+			        "ConceptualEntity": "Calendario"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "calendario": {
+			          "Target": {
+			            "Entity": "calendario"
+			          }
+			        },
+			        "medida.precio_base_var__quincena_anterior_promedio": {
+			          "Target": {
+			            "Entity": "medida.precio_base_var__quincena_anterior_promedio"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "calendario"
+			            },
+			            "Object": {
+			              "Role": "medida.precio_base_var__quincena_anterior_promedio"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "calendarios_have_precio_base_var__quincena_anterior_promedio"
 			        }
 			      ]
 			    },
@@ -7622,52 +7897,6 @@ cultureInfo es-AR
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "productos_have_precio_base_3M_anterior"
-			        }
-			      ]
-			    },
-			    "CG_variacione_has_CG_variacione": {
-			      "Binding": {
-			        "ConceptualEntity": "CG Variaciones"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "CG_variacione": {
-			          "Target": {
-			            "Entity": "CG_variacione"
-			          }
-			        },
-			        "CG_variacione.CG_variacione": {
-			          "Target": {
-			            "Entity": "CG_variacione.CG_variacione"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "CG_variacione"
-			            },
-			            "Object": {
-			              "Role": "CG_variacione.CG_variacione"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "CG_variaciones_have_CG_variaciones"
-			        },
-			        {
-			          "Name": {
-			            "Subject": {
-			              "Role": "CG_variacione"
-			            },
-			            "Name": {
-			              "Role": "CG_variacione.CG_variacione"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "CG_variaciones_are_names_IDs_of_CG_variaciones"
 			        }
 			      ]
 			    },
@@ -9516,39 +9745,6 @@ cultureInfo es-AR
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "calendarios_have_nombre_me"
-			        }
-			      ]
-			    },
-			    "producto_has_calendario": {
-			      "Binding": {
-			        "ConceptualEntity": "Productos"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "producto": {
-			          "Target": {
-			            "Entity": "producto"
-			          }
-			        },
-			        "calendario": {
-			          "Target": {
-			            "Entity": "calendario"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "producto"
-			            },
-			            "Object": {
-			              "Role": "calendario"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "productos_have_calendarios"
 			        }
 			      ]
 			    }

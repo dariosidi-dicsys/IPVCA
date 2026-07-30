@@ -1,0 +1,95 @@
+table Bridge_ProductoCategoria
+	lineageTag: 01e880a3-8c4b-40a1-b5db-2b597d4bdc3e
+
+	column NombreProducto
+		lineageTag: 2c9258d6-6b5c-4120-9196-48d7f29f670f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [NombreProducto]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tipo
+		lineageTag: 461bd113-9047-4b6b-b059-e1031276ef89
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Tipo]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fuente
+		isHidden
+		lineageTag: b018e2ff-e1e1-4015-ae75-c84bb6029756
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Fuente]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Categoria
+		lineageTag: 435ada1f-7448-48f4-8fc0-d17073de40d6
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Categoria]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Moneda
+		lineageTag: 6f23a828-2296-4077-a8f8-b0917e34cf93
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Moneda]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Bridge_ProductoCategoria = calculated
+		mode: import
+		source =
+				DATATABLE(
+				    "NombreProducto", STRING,
+				    "Tipo", STRING,
+				    "Fuente", STRING,
+				    "Categoria", STRING,
+				    "Moneda", STRING,
+				    {
+				        {"Novillo Exportación", "Gancho", "CCDH", "M 440-460", BLANK()},
+				        {"Novillo Exportación", "Gancho", "CCDH", "M 460-490", BLANK()},
+				        {"Novillo Exportación", "Gancho", "CCDH", "M 490+", BLANK()},
+				        {"Novillo Exportación", "Gancho", "CCDH", "C 440-460", BLANK()},
+				        {"Novillo Exportación", "Gancho", "CCDH", "C 460-490", BLANK()},
+				        {"Novillo Exportación", "Gancho", "CCDH", "C 490+", BLANK()},
+				        {"Novillo Exportación", "Gancho", "CCDH", "Overo Negro", BLANK()},
+				        {"Novillito -300/390", "Gancho", "MDO Agroganadero", "Novillito -300/390 (-350)", BLANK()},
+				        {"Novillito 391/430", "Gancho", "MDO Agroganadero", "Novillito 391/430", "Pesos"},
+				        {"Vaquillona (270-390)", "Gancho", "MDO Agroganadero", "Vaquillona -350 (270-390)*", BLANK()},
+				        {"Vaca Conserva", "Gancho", "CCDH", "Vaca Conserva", BLANK()},
+				        {"Novillo Exportación", "Pie", "CCDH", "M 440-460", BLANK()},
+				        {"Novillo Exportación", "Pie", "CCDH", "M 460-490", BLANK()},
+				        {"Novillo Exportación", "Pie", "CCDH", "M 490+", BLANK()},
+				        {"Novillo Exportación", "Pie", "CCDH", "C 440-460", BLANK()},
+				        {"Novillo Exportación", "Pie", "CCDH", "C 460-490", BLANK()},
+				        {"Novillo Exportación", "Pie", "CCDH", "C 490+", BLANK()},
+				        {"Novillo Exportación", "Pie", "CCDH", "Overo Negro", BLANK()},
+				        {"Novillito -300/390", "Pie", "MDO Agroganadero", "Novillito -300/390 (-350)", BLANK()},
+				        {"Novillito 391/430", "Pie", "MDO Agroganadero", "Novillito 391/430", "Pesos"},
+				        {"Vaquillona (270-390)", "Pie", "MDO Agroganadero", "Vaquillona -350 (270-390)*", BLANK()},
+				        {"Consumo Liviano", "Pie", "MDO Agroganadero", "Novillito -300/390 (-350)", BLANK()},
+				        {"Consumo Liviano", "Pie", "MDO Agroganadero", "Novillito 391/430", "Pesos"},
+				        {"Consumo Liviano", "Pie", "MDO Agroganadero", "Vaquillona -350 (270-390)*", BLANK()},
+				        {"Vaca Conserva", "Pie", "CCDH", "Vaca Conserva", BLANK()},
+				        {"Ternera Cruza", "Pie", "CCDH", "Ternera Cruza (160 - 180 g)", BLANK()},
+				        {"Ternero AA", "Pie", "CCDH", "Ternero Mestizo INVERNADA (160 - 180 kg)", BLANK()},
+				        {"Vaca Manuf", "Pie", "CCDH", "Vaca Manuf", BLANK()},
+				        {"Vaca con cría", "Pie", "MDO Agroganadero", "Vaca c/cría usada (Julio)", BLANK()},
+				        {"Novillos +520", "Pie", "MDO Agroganadero", "NOVILLOS + 520", "Pesos"},
+				        {"Novillos 431/460", "Pie", "MDO Agroganadero", "NOVILLOS 431/460", "Pesos"},
+				        {"Novillos 461/490", "Pie", "MDO Agroganadero", "NOVILLOS 461/490", "Pesos"},
+				        {"Novillos 491/520", "Pie", "MDO Agroganadero", "NOVILLOS 491/520", "Pesos"},
+				        {"Novillos +520", "Pie en Dólares", "MDO Agroganadero", "NOVILLOS + 520", "Dolares"},
+				        {"Novillos 431/460", "Pie en Dólares", "MDO Agroganadero", "NOVILLOS 431/460", "Dolares"},
+				        {"Novillos 461/490", "Pie en Dólares", "MDO Agroganadero", "NOVILLOS 461/490", "Dolares"},
+				        {"Novillos 491/520", "Pie en Dólares", "MDO Agroganadero", "NOVILLOS 491/520", "Dolares"},
+				        {"Novillito 391/430", "Pie en Dólares", "MDO Agroganadero", "Novillito 391/430", "Dolares"}
+				    }
+				)
+

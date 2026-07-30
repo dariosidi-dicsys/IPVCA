@@ -1,0 +1,73 @@
+table vw_engorde_corral
+	lineageTag: 4453d3b2-7948-4c92-9179-591c8a4251f0
+
+	column fecha
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 663a7c6f-43c0-4f41-9cf2-a3f4794bcbbc
+		summarizeBy: none
+		sourceColumn: fecha
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column anio
+		dataType: int64
+		formatString: 0
+		lineageTag: 18f66dd2-9423-427b-8107-ca4db1027ba7
+		summarizeBy: sum
+		sourceColumn: anio
+
+		annotation SummarizationSetBy = Automatic
+
+	column fuente
+		dataType: string
+		lineageTag: e6dc8c24-888b-40da-8fc2-b52e8ba3de69
+		summarizeBy: none
+		sourceColumn: fuente
+
+		annotation SummarizationSetBy = Automatic
+
+	column categoria
+		dataType: string
+		lineageTag: 3b45a3ae-f086-4ca0-a6d8-8bcb4d4763a4
+		summarizeBy: none
+		sourceColumn: categoria
+
+		annotation SummarizationSetBy = Automatic
+
+	column tipo
+		dataType: string
+		lineageTag: 94ae2d90-3270-4d0a-b7b2-f9156ba824de
+		summarizeBy: none
+		sourceColumn: tipo
+
+		annotation SummarizationSetBy = Automatic
+
+	column valor
+		dataType: int64
+		lineageTag: 47f66d42-3d27-45ed-a827-0ab61d712510
+		summarizeBy: sum
+		sourceColumn: valor
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition vw_engorde_corral = m
+		mode: import
+		source =
+				let
+				    Origen = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"services-ipcva_Database" = Origen{[Name="services-ipcva",Kind="Database"]}[Data],
+				    ipcva_trusted_data_Schema = #"services-ipcva_Database"{[Name="ipcva_trusted_data",Kind="Schema"]}[Data],
+				    vw_engorde_corral_View = ipcva_trusted_data_Schema{[Name="vw_engorde_corral",Kind="View"]}[Data],
+				    #"Tipo cambiado" = Table.TransformColumnTypes(vw_engorde_corral_View,{{"fecha", type date}, {"valor", Int64.Type}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

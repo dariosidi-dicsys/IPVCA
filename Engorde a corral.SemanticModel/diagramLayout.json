@@ -1,0 +1,60 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 1257.3333740234375
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 976.66666539510106,
+            "y": 1882.9329427083335
+          },
+          "nodeIndex": "Medidas",
+          "nodeLineageTag": "f4cf3e11-e925-48f1-95fd-13eb3056c30f",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 635.99999999999989,
+            "y": 1429.5996093750002
+          },
+          "nodeIndex": "Calendario",
+          "nodeLineageTag": "84f8dfd7-87f7-414c-9254-47a3cca4edf0",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 203.33333333333348,
+            "y": 1867.9329427083335
+          },
+          "nodeIndex": "vw_engorde_corral",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 3
+        }
+      ],
+      "name": "Todas las tablas",
+      "zoomValue": 60,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas las tablas",
+  "defaultDiagram": "Todas las tablas"
+}

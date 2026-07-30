@@ -1,0 +1,4314 @@
+cultureInfo es-AR
+
+	linguisticMetadata =
+			{
+			  "Version": "4.1.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "calendario": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Calendario"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "calendario": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "calendario.nombre_me": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Calendario",
+			          "ConceptualProperty": "NombreMes"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "nombre me": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "NombreMes": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "Mes": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "calendario.trimestre": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Calendario",
+			          "ConceptualProperty": "Trimestre"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "trimestre": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "calendario.anio_me": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Calendario",
+			          "ConceptualProperty": "AnioMes"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "anio me": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "AnioMes": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "calendario.date": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Calendario",
+			          "ConceptualProperty": "Date"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "date": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "moment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "medida.diferencia_1_año_anterior": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Diferencia 1 Año Anterior"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "diferencia 1 año anterior": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Dif 1 Año Ant": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Dif 1 A": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medida.valor_1_año_anterior": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Valor 1 Año Anterior"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "valor 1 año anterior": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "medida.var__6_meses_anterior": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Var % 6 Meses Anterior"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "var % 6 meses anterior": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "var percentage 6 mese anterior": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "var pct 6 mese anterior": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.605
+			          }
+			        },
+			        {
+			          "Var % 6 Meses Ant": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Var % 6 M": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medida.diferencia_6_meses_anterior": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Diferencia 6 Meses Anterior"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "diferencia 6 meses anterior": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Dif 6 Meses Ant": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Dif 6 M": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medida.valor_6_meses_anterior": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Valor 6 Meses Anterior"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "valor 6 meses anterior": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "calendario.año": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Calendario",
+			          "ConceptualProperty": "Año"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "año": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "calendario.mes_numero": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Calendario",
+			          "ConceptualProperty": "MesNumero"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "mes numero": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "me numero": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.78
+			          }
+			        },
+			        {
+			          "MesNumero": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "medida.column": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Column"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "column": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "pilaster": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "pier": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "pillar": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "post": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "support": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "stake": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "pole": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "buttress": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "underpinning": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "contribution": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        }
+			      ]
+			    },
+			    "medida": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "medida": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "calendario.semestre": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Calendario",
+			          "ConceptualProperty": "Semestre"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "semestre": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "calendario.nro_semana": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Calendario",
+			          "ConceptualProperty": "NroSemana"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "nro semana": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "NroSemana": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "calendario.anio_semana": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Calendario",
+			          "ConceptualProperty": "AnioSemana"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "anio semana": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "AnioSemana": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "calendario.mes_anio": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Calendario",
+			          "ConceptualProperty": "MesAnio"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "mes anio": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "me anio": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.78
+			          }
+			        },
+			        {
+			          "MesAnio": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "calendario.nombre_mes_corto": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Calendario",
+			          "ConceptualProperty": "NombreMesCorto"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "nombre mes corto": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "nombre me corto": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.78
+			          }
+			        },
+			        {
+			          "NombreMesCorto": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "calendario.anio_trimestre": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Calendario",
+			          "ConceptualProperty": "AnioTrimestre"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "anio trimestre": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "AnioTrimestre": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "calendario.nro_trimestre": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Calendario",
+			          "ConceptualProperty": "NroTrimestre"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "nro trimestre": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "NroTrimestre": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "calendario.dia": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Calendario",
+			          "ConceptualProperty": "Dia"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "dia": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "calendario.dia_semana": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Calendario",
+			          "ConceptualProperty": "DiaSemana"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "dia semana": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "DiaSemana": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "calendario.nro_dia_semana": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Calendario",
+			          "ConceptualProperty": "NroDiaSemana"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "nro dia semana": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "NroDiaSemana": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "medida.ultima_fecha_datos": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Ultima_Fecha_Datos"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "ultima fecha datos": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Ultima_Fecha_Datos": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "medida.var__mes_anterior": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Var % Mes Anterior"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "var % mes anterior": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "var percentage me anterior": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.617
+			          }
+			        },
+			        {
+			          "var pct me anterior": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.599
+			          }
+			        },
+			        {
+			          "Var % Mes Ant": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Var % 1M": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medida.diferencia_mes_anterior": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Diferencia Mes Anterior"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "diferencia mes anterior": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Dif Mes Ant": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Dif 1M": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medida.valor_mes_anterior": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Valor Mes Anterior"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "valor mes anterior": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "medida.valor_matriz_con_indice": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Valor_Matriz_Con_Indice"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "valor matriz con indice": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Valor_Matriz_Con_Indice": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_engorde_corral"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "vw engorde corral": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "vw_engorde_corral": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral.fecha": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_engorde_corral",
+			          "ConceptualProperty": "fecha"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "fecha": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "date": {
+			            "State": "Generated",
+			            "Weight": 0.7
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "vw_engorde_corral.anio": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_engorde_corral",
+			          "ConceptualProperty": "anio"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "anio": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral.fuente": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_engorde_corral",
+			          "ConceptualProperty": "fuente"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "fuente": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral.categoria": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_engorde_corral",
+			          "ConceptualProperty": "categoria"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "categoria": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Animal": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medida.valor_con_indice": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Valor_Con_Indice"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "valor con indice": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Valor_Con_Indice": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "medida.indice_reposicion": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Indice_Reposicion"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "indice reposicion": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Indice_Reposicion": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "medida.valor_egresos": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Valor_Egresos"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "valor egresos": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Valor_Egresos": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "medida.valor_ingresos": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Valor_Ingresos"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "valor ingresos": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Valor_Ingresos": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "medida.valor_1_mes_anterior_novillo_egresos": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Valor 1 mes anterior Novillo Egresos"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "valor 1 mes anterior novillo egresos": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "medida.valor": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Valor"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "valor": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "courage": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "bravery": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "heroism": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "fearlessness": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "boldness": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "gallantry": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "lionheartedness": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "pluck": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "spirit": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "nerve": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ]
+			    },
+			    "medida.var__anual_novillo_egresos": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Var % Anual Novillo Egresos"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "var % anual novillo egresos": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "var percentage anual novillo egreso": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "var pct anual novillo egreso": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.605
+			          }
+			        }
+			      ]
+			    },
+			    "medida.diferencia_anual_novillo_egresos": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Diferencia Anual Novillo Egresos"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "diferencia anual novillo egresos": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "medida.var__semestral_novillo_egresos": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Var % Semestral Novillo Egresos"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "var % semestral novillo egresos": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "var percentage semestral novillo egreso": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "var pct semestral novillo egreso": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.605
+			          }
+			        }
+			      ]
+			    },
+			    "medida.diferencia_semestral_novillo_egresos": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Diferencia Semestral Novillo Egresos"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "diferencia semestral novillo egresos": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "medida.var__mensual_novillo_egresos": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Var % Mensual Novillo Egresos"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "var % mensual novillo egresos": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "var percentage mensual novillo egreso": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "var pct mensual novillo egreso": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.605
+			          }
+			        }
+			      ]
+			    },
+			    "medida.diferencia_mensual_novillo_egresos": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Diferencia Mensual Novillo Egresos"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "diferencia mensual novillo egresos": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "medida.valor_novillo_egresos": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Valor Novillo Egresos"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "valor novillo egresos": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "medida.entity__fecha_novillo_egresos": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "_Fecha Novillo Egresos"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "_fecha novillo egresos": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "date": {
+			            "State": "Generated",
+			            "Weight": 0.7
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "medida.var__1_año_anterior": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Var % 1 Año Anterior"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "var % 1 año anterior": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "var percentage 1 año anterior": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "var pct 1 año anterior": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.605
+			          }
+			        },
+			        {
+			          "Var % 1 Año Ant": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Var % 1 A": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral.tipo": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_engorde_corral",
+			          "ConceptualProperty": "tipo"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "tipo": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral.valor": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_engorde_corral",
+			          "ConceptualProperty": "valor"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "valor": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "courage": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "bravery": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "heroism": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "fearlessness": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "boldness": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "gallantry": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "lionheartedness": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "pluck": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "spirit": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "nerve": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ]
+			    },
+			    "medida.indice_1_anio_antes": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Indice 1 Anio Antes"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "indice 1 anio antes": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "medida.indice_6_meses_antes": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Indice 6 Meses Antes"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "indice 6 meses antes": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "medida.indice_mes_anterior": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Indice Mes Anterior"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "indice mes anterior": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "medida.indice": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Indice"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "indice": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Índice Rep": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medida.dif_1_anio_antes_indice": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Dif 1 Anio Antes Indice"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "dif 1 anio antes indice": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Ind Dif 1 A": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medida.dif_6_meses_antes_indice": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Dif 6 Meses Antes Indice"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "dif 6 meses antes indice": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Ind Dif 6 M": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medida.dif_mes_anterior_indice": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Dif Mes Anterior Indice"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "dif mes anterior indice": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Ind Dif": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medida.var__mes_anterior_indice": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Var % Mes Anterior Indice"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "var % mes anterior indice": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "var percentage me anterior indice": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.624
+			          }
+			        },
+			        {
+			          "var pct me anterior indice": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.605
+			          }
+			        },
+			        {
+			          "Ind Var % M": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medida.var__6_meses_antes_indice": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Var % 6 Meses Antes Indice"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "var % 6 meses antes indice": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Ind Var % 6 M": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medida.var__1_anio_antes_indice": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Var % 1 Anio Antes Indice"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "var % 1 anio antes indice": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Ind Var % 1 A": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medida.valor_composicion": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Valor Composicion"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "valor composicion": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Valor": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medida.valor_composicion_1_anio_antes": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Valor Composicion 1 Anio Antes"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "valor composicion 1 anio antes": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "medida.valor_composicion_6_meses_antes": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Valor Composicion 6 Meses Antes"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "valor composicion 6 meses antes": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "medida.valor_composicion_mes_anterior": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Valor Composicion Mes Anterior"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "valor composicion mes anterior": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "medida.dif_valor_composicion_mes_anterior": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Dif Valor Composicion Mes Anterior"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "dif valor composicion mes anterior": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Dif Val 1 Mes": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medida.dif_valor_composicion_6_meses_antes": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Dif Valor Composicion 6 Meses Antes"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "dif valor composicion 6 meses antes": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Dif Val 6 M": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medida.dif_valor_composicion_1_anio_antes": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Dif Valor Composicion 1 Anio Antes"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "dif valor composicion 1 anio antes": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "medida.var__valor_composicion_6_meses_antes": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Var % Valor Composicion 6 Meses Antes"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "var % valor composicion 6 meses antes": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Var % Val 6 M": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medida.var__valor_composicion_mes_anterior": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Var % Valor Composicion Mes Anterior"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "var % valor composicion mes anterior": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Var % Valor": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medida.var__valor_composicion_1_anio_antes": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Var % Valor Composicion 1 Anio Antes"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "var % valor composicion 1 anio antes": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral.animal": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_engorde_corral",
+			          "ConceptualProperty": "animal"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Animal": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    }
+			  },
+			  "Relationships": {
+			    "vw_engorde_corral_has_calendario": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "calendario": {
+			          "Target": {
+			            "Entity": "calendario"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "calendario"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_calendarios"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "calendario"
+			            },
+			            "Object": {
+			              "Role": "vw_engorde_corral"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "calendarios_have_vw_engorde_corrals"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_var__valor_composicion_1_anio_antes": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.var__valor_composicion_1_anio_antes": {
+			          "Target": {
+			            "Entity": "medida.var__valor_composicion_1_anio_antes"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.var__valor_composicion_1_anio_antes"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_var__valor_composicion_1_anio_antes"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_var__valor_composicion_mes_anterior": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.var__valor_composicion_mes_anterior": {
+			          "Target": {
+			            "Entity": "medida.var__valor_composicion_mes_anterior"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.var__valor_composicion_mes_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_var__valor_composicion_mes_anterior"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_var__valor_composicion_6_meses_antes": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.var__valor_composicion_6_meses_antes": {
+			          "Target": {
+			            "Entity": "medida.var__valor_composicion_6_meses_antes"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.var__valor_composicion_6_meses_antes"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_var__valor_composicion_6_meses_antes"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_dif_valor_composicion_1_anio_antes": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.dif_valor_composicion_1_anio_antes": {
+			          "Target": {
+			            "Entity": "medida.dif_valor_composicion_1_anio_antes"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.dif_valor_composicion_1_anio_antes"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_dif_valor_composicion_1_anio_antes"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_dif_valor_composicion_6_meses_antes": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.dif_valor_composicion_6_meses_antes": {
+			          "Target": {
+			            "Entity": "medida.dif_valor_composicion_6_meses_antes"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.dif_valor_composicion_6_meses_antes"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_dif_valor_composicion_6_meses_antes"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_dif_valor_composicion_mes_anterior": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.dif_valor_composicion_mes_anterior": {
+			          "Target": {
+			            "Entity": "medida.dif_valor_composicion_mes_anterior"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.dif_valor_composicion_mes_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_dif_valor_composicion_mes_anterior"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_valor_composicion_mes_anterior": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.valor_composicion_mes_anterior": {
+			          "Target": {
+			            "Entity": "medida.valor_composicion_mes_anterior"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.valor_composicion_mes_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_valor_composicion_mes_anterior"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_valor_composicion_6_meses_antes": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.valor_composicion_6_meses_antes": {
+			          "Target": {
+			            "Entity": "medida.valor_composicion_6_meses_antes"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.valor_composicion_6_meses_antes"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_valor_composicion_6_meses_antes"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_valor_composicion_1_anio_antes": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.valor_composicion_1_anio_antes": {
+			          "Target": {
+			            "Entity": "medida.valor_composicion_1_anio_antes"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.valor_composicion_1_anio_antes"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_valor_composicion_1_anio_antes"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_valor_composicion": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.valor_composicion": {
+			          "Target": {
+			            "Entity": "medida.valor_composicion"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.valor_composicion"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_valor_composicion"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_var__1_anio_antes_indice": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.var__1_anio_antes_indice": {
+			          "Target": {
+			            "Entity": "medida.var__1_anio_antes_indice"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.var__1_anio_antes_indice"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_var__1_anio_antes_indice"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_var__6_meses_antes_indice": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.var__6_meses_antes_indice": {
+			          "Target": {
+			            "Entity": "medida.var__6_meses_antes_indice"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.var__6_meses_antes_indice"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_var__6_meses_antes_indice"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_var__mes_anterior_indice": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.var__mes_anterior_indice": {
+			          "Target": {
+			            "Entity": "medida.var__mes_anterior_indice"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.var__mes_anterior_indice"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_var__mes_anterior_indice"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_dif_mes_anterior_indice": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.dif_mes_anterior_indice": {
+			          "Target": {
+			            "Entity": "medida.dif_mes_anterior_indice"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.dif_mes_anterior_indice"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_dif_mes_anterior_indice"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_dif_6_meses_antes_indice": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.dif_6_meses_antes_indice": {
+			          "Target": {
+			            "Entity": "medida.dif_6_meses_antes_indice"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.dif_6_meses_antes_indice"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_dif_6_meses_antes_indice"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_dif_1_anio_antes_indice": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.dif_1_anio_antes_indice": {
+			          "Target": {
+			            "Entity": "medida.dif_1_anio_antes_indice"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.dif_1_anio_antes_indice"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_dif_1_anio_antes_indice"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_indice": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.indice": {
+			          "Target": {
+			            "Entity": "medida.indice"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.indice"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_indice"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_indice_mes_anterior": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.indice_mes_anterior": {
+			          "Target": {
+			            "Entity": "medida.indice_mes_anterior"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.indice_mes_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_indice_mes_anterior"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_indice_6_meses_antes": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.indice_6_meses_antes": {
+			          "Target": {
+			            "Entity": "medida.indice_6_meses_antes"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.indice_6_meses_antes"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_indice_6_meses_antes"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_indice_1_anio_antes": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.indice_1_anio_antes": {
+			          "Target": {
+			            "Entity": "medida.indice_1_anio_antes"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.indice_1_anio_antes"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_indice_1_anio_antes"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_valor": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "vw_engorde_corral.valor": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral.valor"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "vw_engorde_corral.valor"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_valor"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_tipo": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "vw_engorde_corral.tipo": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral.tipo"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "vw_engorde_corral.tipo"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_tipos"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_var__1_año_anterior": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.var__1_año_anterior": {
+			          "Target": {
+			            "Entity": "medida.var__1_año_anterior"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.var__1_año_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_var__1_año_anterior"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_valor_novillo_egresos": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.valor_novillo_egresos": {
+			          "Target": {
+			            "Entity": "medida.valor_novillo_egresos"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.valor_novillo_egresos"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_valor_novillo_egresos"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_diferencia_mensual_novillo_egresos": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.diferencia_mensual_novillo_egresos": {
+			          "Target": {
+			            "Entity": "medida.diferencia_mensual_novillo_egresos"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.diferencia_mensual_novillo_egresos"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_diferencia_mensual_novillo_egresos"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_var__mensual_novillo_egresos": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.var__mensual_novillo_egresos": {
+			          "Target": {
+			            "Entity": "medida.var__mensual_novillo_egresos"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.var__mensual_novillo_egresos"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_var__mensual_novillo_egresos"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_diferencia_semestral_novillo_egresos": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.diferencia_semestral_novillo_egresos": {
+			          "Target": {
+			            "Entity": "medida.diferencia_semestral_novillo_egresos"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.diferencia_semestral_novillo_egresos"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_diferencia_semestral_novillo_egresos"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_var__semestral_novillo_egresos": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.var__semestral_novillo_egresos": {
+			          "Target": {
+			            "Entity": "medida.var__semestral_novillo_egresos"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.var__semestral_novillo_egresos"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_var__semestral_novillo_egresos"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_diferencia_anual_novillo_egresos": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.diferencia_anual_novillo_egresos": {
+			          "Target": {
+			            "Entity": "medida.diferencia_anual_novillo_egresos"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.diferencia_anual_novillo_egresos"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_diferencia_anual_novillo_egresos"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_var__anual_novillo_egresos": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.var__anual_novillo_egresos": {
+			          "Target": {
+			            "Entity": "medida.var__anual_novillo_egresos"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.var__anual_novillo_egresos"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_var__anual_novillo_egresos"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_valor": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.valor": {
+			          "Target": {
+			            "Entity": "medida.valor"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.valor"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_valor1"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_valor_1_mes_anterior_novillo_egresos": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.valor_1_mes_anterior_novillo_egresos": {
+			          "Target": {
+			            "Entity": "medida.valor_1_mes_anterior_novillo_egresos"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.valor_1_mes_anterior_novillo_egresos"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_valor_1_mes_anterior_novillo_egresos"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_valor_ingresos": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.valor_ingresos": {
+			          "Target": {
+			            "Entity": "medida.valor_ingresos"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.valor_ingresos"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_valor_ingresos"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_valor_egresos": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.valor_egresos": {
+			          "Target": {
+			            "Entity": "medida.valor_egresos"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.valor_egresos"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_valor_egresos"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_indice_reposicion": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.indice_reposicion": {
+			          "Target": {
+			            "Entity": "medida.indice_reposicion"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.indice_reposicion"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_indice_reposicion"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_valor_con_indice": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.valor_con_indice": {
+			          "Target": {
+			            "Entity": "medida.valor_con_indice"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.valor_con_indice"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_valor_con_indice"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_categoria": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "vw_engorde_corral.categoria": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral.categoria"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "vw_engorde_corral.categoria"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_categorias"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_fuente": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "vw_engorde_corral.fuente": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral.fuente"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "vw_engorde_corral.fuente"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_fuentes"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_anio": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "vw_engorde_corral.anio": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral.anio"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "vw_engorde_corral.anio"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_anios"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_fecha": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "vw_engorde_corral.fecha": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral.fecha"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "vw_engorde_corral.fecha"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_fechas"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_valor_matriz_con_indice": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.valor_matriz_con_indice": {
+			          "Target": {
+			            "Entity": "medida.valor_matriz_con_indice"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.valor_matriz_con_indice"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_valor_matriz_con_indice"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_valor_mes_anterior": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.valor_mes_anterior": {
+			          "Target": {
+			            "Entity": "medida.valor_mes_anterior"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.valor_mes_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_valor_mes_anterior"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_diferencia_mes_anterior": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.diferencia_mes_anterior": {
+			          "Target": {
+			            "Entity": "medida.diferencia_mes_anterior"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.diferencia_mes_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_diferencia_mes_anterior"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_var__mes_anterior": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.var__mes_anterior": {
+			          "Target": {
+			            "Entity": "medida.var__mes_anterior"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.var__mes_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_var__mes_anterior"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_ultima_fecha_datos": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.ultima_fecha_datos": {
+			          "Target": {
+			            "Entity": "medida.ultima_fecha_datos"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.ultima_fecha_datos"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_ultima_fecha_datos"
+			        }
+			      ]
+			    },
+			    "calendario_has_nro_dia_semana": {
+			      "Binding": {
+			        "ConceptualEntity": "Calendario"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "calendario": {
+			          "Target": {
+			            "Entity": "calendario"
+			          }
+			        },
+			        "calendario.nro_dia_semana": {
+			          "Target": {
+			            "Entity": "calendario.nro_dia_semana"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "calendario"
+			            },
+			            "Object": {
+			              "Role": "calendario.nro_dia_semana"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "calendarios_have_nro_dia_semanas"
+			        }
+			      ]
+			    },
+			    "calendario_has_dia_semana": {
+			      "Binding": {
+			        "ConceptualEntity": "Calendario"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "calendario": {
+			          "Target": {
+			            "Entity": "calendario"
+			          }
+			        },
+			        "calendario.dia_semana": {
+			          "Target": {
+			            "Entity": "calendario.dia_semana"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "calendario"
+			            },
+			            "Object": {
+			              "Role": "calendario.dia_semana"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "calendarios_have_dia_semanas"
+			        }
+			      ]
+			    },
+			    "calendario_has_dia": {
+			      "Binding": {
+			        "ConceptualEntity": "Calendario"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "calendario": {
+			          "Target": {
+			            "Entity": "calendario"
+			          }
+			        },
+			        "calendario.dia": {
+			          "Target": {
+			            "Entity": "calendario.dia"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "calendario"
+			            },
+			            "Object": {
+			              "Role": "calendario.dia"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "calendarios_have_dias"
+			        }
+			      ]
+			    },
+			    "calendario_has_nro_trimestre": {
+			      "Binding": {
+			        "ConceptualEntity": "Calendario"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "calendario": {
+			          "Target": {
+			            "Entity": "calendario"
+			          }
+			        },
+			        "calendario.nro_trimestre": {
+			          "Target": {
+			            "Entity": "calendario.nro_trimestre"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "calendario"
+			            },
+			            "Object": {
+			              "Role": "calendario.nro_trimestre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "calendarios_have_nro_trimestres"
+			        }
+			      ]
+			    },
+			    "calendario_has_anio_trimestre": {
+			      "Binding": {
+			        "ConceptualEntity": "Calendario"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "calendario": {
+			          "Target": {
+			            "Entity": "calendario"
+			          }
+			        },
+			        "calendario.anio_trimestre": {
+			          "Target": {
+			            "Entity": "calendario.anio_trimestre"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "calendario"
+			            },
+			            "Object": {
+			              "Role": "calendario.anio_trimestre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "calendarios_have_anio_trimestres"
+			        }
+			      ]
+			    },
+			    "calendario_has_nombre_mes_corto": {
+			      "Binding": {
+			        "ConceptualEntity": "Calendario"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "calendario": {
+			          "Target": {
+			            "Entity": "calendario"
+			          }
+			        },
+			        "calendario.nombre_mes_corto": {
+			          "Target": {
+			            "Entity": "calendario.nombre_mes_corto"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "calendario"
+			            },
+			            "Object": {
+			              "Role": "calendario.nombre_mes_corto"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "calendarios_have_nombre_mes_cortos"
+			        }
+			      ]
+			    },
+			    "calendario_has_mes_anio": {
+			      "Binding": {
+			        "ConceptualEntity": "Calendario"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "calendario": {
+			          "Target": {
+			            "Entity": "calendario"
+			          }
+			        },
+			        "calendario.mes_anio": {
+			          "Target": {
+			            "Entity": "calendario.mes_anio"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "calendario"
+			            },
+			            "Object": {
+			              "Role": "calendario.mes_anio"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "calendarios_have_mes_anios"
+			        }
+			      ]
+			    },
+			    "calendario_has_anio_semana": {
+			      "Binding": {
+			        "ConceptualEntity": "Calendario"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "calendario": {
+			          "Target": {
+			            "Entity": "calendario"
+			          }
+			        },
+			        "calendario.anio_semana": {
+			          "Target": {
+			            "Entity": "calendario.anio_semana"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "calendario"
+			            },
+			            "Object": {
+			              "Role": "calendario.anio_semana"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "calendarios_have_anio_semanas"
+			        }
+			      ]
+			    },
+			    "calendario_has_nro_semana": {
+			      "Binding": {
+			        "ConceptualEntity": "Calendario"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "calendario": {
+			          "Target": {
+			            "Entity": "calendario"
+			          }
+			        },
+			        "calendario.nro_semana": {
+			          "Target": {
+			            "Entity": "calendario.nro_semana"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "calendario"
+			            },
+			            "Object": {
+			              "Role": "calendario.nro_semana"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "calendarios_have_nro_semanas"
+			        }
+			      ]
+			    },
+			    "calendario_has_semestre": {
+			      "Binding": {
+			        "ConceptualEntity": "Calendario"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "calendario": {
+			          "Target": {
+			            "Entity": "calendario"
+			          }
+			        },
+			        "calendario.semestre": {
+			          "Target": {
+			            "Entity": "calendario.semestre"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "calendario"
+			            },
+			            "Object": {
+			              "Role": "calendario.semestre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "calendarios_have_semestres"
+			        }
+			      ]
+			    },
+			    "medida_has_column": {
+			      "Binding": {
+			        "ConceptualEntity": "Medidas"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "medida": {
+			          "Target": {
+			            "Entity": "medida"
+			          }
+			        },
+			        "medida.column": {
+			          "Target": {
+			            "Entity": "medida.column"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "medida"
+			            },
+			            "Object": {
+			              "Role": "medida.column"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "medidas_have_columns"
+			        }
+			      ]
+			    },
+			    "calendario_has_mes_numero": {
+			      "Binding": {
+			        "ConceptualEntity": "Calendario"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "calendario": {
+			          "Target": {
+			            "Entity": "calendario"
+			          }
+			        },
+			        "calendario.mes_numero": {
+			          "Target": {
+			            "Entity": "calendario.mes_numero"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "calendario"
+			            },
+			            "Object": {
+			              "Role": "calendario.mes_numero"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "calendarios_have_mes_numeros"
+			        }
+			      ]
+			    },
+			    "calendario_has_año": {
+			      "Binding": {
+			        "ConceptualEntity": "Calendario"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "calendario": {
+			          "Target": {
+			            "Entity": "calendario"
+			          }
+			        },
+			        "calendario.año": {
+			          "Target": {
+			            "Entity": "calendario.año"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "calendario"
+			            },
+			            "Object": {
+			              "Role": "calendario.año"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "calendarios_have_años"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_valor_6_meses_anterior": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.valor_6_meses_anterior": {
+			          "Target": {
+			            "Entity": "medida.valor_6_meses_anterior"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.valor_6_meses_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_valor_6_meses_anterior"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_diferencia_6_meses_anterior": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.diferencia_6_meses_anterior": {
+			          "Target": {
+			            "Entity": "medida.diferencia_6_meses_anterior"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.diferencia_6_meses_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_diferencia_6_meses_anterior"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_var__6_meses_anterior": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.var__6_meses_anterior": {
+			          "Target": {
+			            "Entity": "medida.var__6_meses_anterior"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.var__6_meses_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_var__6_meses_anterior"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_valor_1_año_anterior": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.valor_1_año_anterior": {
+			          "Target": {
+			            "Entity": "medida.valor_1_año_anterior"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.valor_1_año_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_valor_1_año_anterior"
+			        }
+			      ]
+			    },
+			    "vw_engorde_corral_has_medida_diferencia_1_año_anterior": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_engorde_corral"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_engorde_corral": {
+			          "Target": {
+			            "Entity": "vw_engorde_corral"
+			          }
+			        },
+			        "medida.diferencia_1_año_anterior": {
+			          "Target": {
+			            "Entity": "medida.diferencia_1_año_anterior"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_engorde_corral"
+			            },
+			            "Object": {
+			              "Role": "medida.diferencia_1_año_anterior"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_engorde_corrals_have_diferencia_1_año_anterior"
+			        }
+			      ]
+			    },
+			    "calendario_has_date": {
+			      "Binding": {
+			        "ConceptualEntity": "Calendario"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "calendario": {
+			          "Target": {
+			            "Entity": "calendario"
+			          }
+			        },
+			        "calendario.date": {
+			          "Target": {
+			            "Entity": "calendario.date"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "calendario"
+			            },
+			            "Object": {
+			              "Role": "calendario.date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "calendarios_have_dates"
+			        }
+			      ]
+			    },
+			    "calendario_has_anio_me": {
+			      "Binding": {
+			        "ConceptualEntity": "Calendario"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "calendario": {
+			          "Target": {
+			            "Entity": "calendario"
+			          }
+			        },
+			        "calendario.anio_me": {
+			          "Target": {
+			            "Entity": "calendario.anio_me"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "calendario"
+			            },
+			            "Object": {
+			              "Role": "calendario.anio_me"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "calendarios_have_anio_me"
+			        }
+			      ]
+			    },
+			    "calendario_has_trimestre": {
+			      "Binding": {
+			        "ConceptualEntity": "Calendario"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "calendario": {
+			          "Target": {
+			            "Entity": "calendario"
+			          }
+			        },
+			        "calendario.trimestre": {
+			          "Target": {
+			            "Entity": "calendario.trimestre"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "calendario"
+			            },
+			            "Object": {
+			              "Role": "calendario.trimestre"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "calendarios_have_trimestres"
+			        }
+			      ]
+			    },
+			    "calendario_has_nombre_me": {
+			      "Binding": {
+			        "ConceptualEntity": "Calendario"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "calendario": {
+			          "Target": {
+			            "Entity": "calendario"
+			          }
+			        },
+			        "calendario.nombre_me": {
+			          "Target": {
+			            "Entity": "calendario.nombre_me"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "calendario"
+			            },
+			            "Object": {
+			              "Role": "calendario.nombre_me"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "calendarios_have_nombre_me"
+			        }
+			      ]
+			    }
+			  },
+			  "Agents": {
+			    "Internal": {
+			      "Version": "1.1.0"
+			    }
+			  }
+			}
+		contentType: json
+

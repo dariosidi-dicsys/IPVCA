@@ -1,0 +1,767 @@
+table Medidas
+	lineageTag: f4cf3e11-e925-48f1-95fd-13eb3056c30f
+
+	measure Ultima_Fecha_Datos = ```
+			
+			VAR _maxFecha = 
+			    CALCULATE(
+			        MAX('vw_engorde_corral'[fecha]),
+			        REMOVEFILTERS('vw_engorde_corral'),
+			        REMOVEFILTERS('Calendario')
+			    )
+			VAR _mes = FORMAT(_maxFecha, "mmmm")
+			VAR _anio = FORMAT(_maxFecha, "yyyy")
+			
+			-- Tomamos la primera letra, la pasamos a Mayúscula y pegamos el resto
+			RETURN
+			    UPPER(LEFT(_mes, 1)) & RIGHT(_mes, LEN(_mes) - 1) & " " & _anio
+			```
+		lineageTag: 23db5140-c4f8-4b7a-b31b-c7d565904b3b
+
+	/// [Auxiliar] Ultima fecha con dato: Egresos / Novillo / Categoria Animal.
+	measure '_Fecha Novillo Egresos' =
+			
+			CALCULATE(
+			    MAX(vw_engorde_corral[fecha]),
+			    REMOVEFILTERS(vw_engorde_corral[fuente]),
+			    REMOVEFILTERS(vw_engorde_corral[categoria]),
+			    REMOVEFILTERS(vw_engorde_corral[tipo]),
+			    vw_engorde_corral[fuente] = "Egresos",
+			        vw_engorde_corral[categoria] = "Novillo",
+			        vw_engorde_corral[tipo] = "Categoria Animal"
+			)
+		formatString: dd/mm/yyyy
+		isHidden
+		displayFolder: Egresos - Categoria Animal\_Auxiliares
+		lineageTag: d29e51f0-9c01-4929-a604-018092a5e587
+
+	/// Ultimo valor disponible: Egresos / Novillo / Categoria Animal.
+	measure 'Valor Novillo Egresos' =
+			VAR FechaMax = [_Fecha Novillo Egresos]
+			RETURN
+			CALCULATE(
+			    AVERAGE(vw_engorde_corral[valor]),
+			    REMOVEFILTERS(vw_engorde_corral[fuente]),
+			    REMOVEFILTERS(vw_engorde_corral[categoria]),
+			    REMOVEFILTERS(vw_engorde_corral[tipo]),
+			    vw_engorde_corral[fuente] = "Egresos",
+			    vw_engorde_corral[categoria] = "Novillo",
+			    vw_engorde_corral[tipo] = "Categoria Animal",
+			    vw_engorde_corral[fecha] = FechaMax
+			)
+		formatString: #,##0.00
+		displayFolder: Egresos - Categoria Animal
+		lineageTag: 107aea9b-5a9b-4107-9013-d8927e3849ce
+
+	/// Diferencia mensual de Egresos / Novillo (Categoria Animal).
+	measure 'Diferencia Mensual Novillo Egresos' =
+			
+			VAR UltimaFecha = [_Fecha Novillo Egresos]
+			VAR FechaRef = EDATE(UltimaFecha, -1)
+			VAR AnioRef = YEAR(FechaRef)
+			VAR MesRef = MONTH(FechaRef)
+			VAR PrimerDiaMesRef = DATE(AnioRef, MesRef, 1)
+			VAR UltimoDiaMesRef = EOMONTH(PrimerDiaMesRef, 0)
+			VAR UltimaFechaRef =
+			    CALCULATE(
+			        MAX(vw_engorde_corral[fecha]),
+			        REMOVEFILTERS(vw_engorde_corral[fuente]),
+			        REMOVEFILTERS(vw_engorde_corral[categoria]),
+			        REMOVEFILTERS(vw_engorde_corral[tipo]),
+			        ALL(vw_engorde_corral[fecha]),
+			        ALL(vw_engorde_corral[anio]),
+			        REMOVEFILTERS('Calendario'),
+			        vw_engorde_corral[fuente] = "Egresos",
+			        vw_engorde_corral[categoria] = "Novillo",
+			        vw_engorde_corral[tipo] = "Categoria Animal",
+			        vw_engorde_corral[fecha] >= PrimerDiaMesRef,
+			        vw_engorde_corral[fecha] <= UltimoDiaMesRef
+			    )
+			VAR ValorRef =
+			    CALCULATE(
+			        AVERAGE(vw_engorde_corral[valor]),
+			        REMOVEFILTERS(vw_engorde_corral[fuente]),
+			        REMOVEFILTERS(vw_engorde_corral[categoria]),
+			        REMOVEFILTERS(vw_engorde_corral[tipo]),
+			        ALL(vw_engorde_corral[fecha]),
+			        ALL(vw_engorde_corral[anio]),
+			        REMOVEFILTERS('Calendario'),
+			        vw_engorde_corral[fuente] = "Egresos",
+			        vw_engorde_corral[categoria] = "Novillo",
+			        vw_engorde_corral[tipo] = "Categoria Animal",
+			        vw_engorde_corral[fecha] = UltimaFechaRef
+			    )
+			VAR ValorActual = [Valor Novillo Egresos]
+			VAR Diferencia = ValorActual - ValorRef
+			RETURN
+			    IF(
+			        ISBLANK(ValorRef) || ISBLANK(ValorActual),
+			        BLANK(),
+			        Diferencia
+			    )
+		formatString: #,##0.00
+		displayFolder: Egresos - Categoria Animal
+		lineageTag: 21a2574b-7309-4d9d-bc6d-e7c0b729edcf
+
+	/// Variacion % mensual de Egresos / Novillo (Categoria Animal).
+	measure 'Var % Mensual Novillo Egresos' =
+			
+			VAR UltimaFecha = [_Fecha Novillo Egresos]
+			VAR FechaRef = EDATE(UltimaFecha, -1)
+			VAR AnioRef = YEAR(FechaRef)
+			VAR MesRef = MONTH(FechaRef)
+			VAR PrimerDiaMesRef = DATE(AnioRef, MesRef, 1)
+			VAR UltimoDiaMesRef = EOMONTH(PrimerDiaMesRef, 0)
+			VAR UltimaFechaRef =
+			    CALCULATE(
+			        MAX(vw_engorde_corral[fecha]),
+			        REMOVEFILTERS(vw_engorde_corral[fuente]),
+			        REMOVEFILTERS(vw_engorde_corral[categoria]),
+			        REMOVEFILTERS(vw_engorde_corral[tipo]),
+			        ALL(vw_engorde_corral[fecha]),
+			        ALL(vw_engorde_corral[anio]),
+			        REMOVEFILTERS('Calendario'),
+			        vw_engorde_corral[fuente] = "Egresos",
+			        vw_engorde_corral[categoria] = "Novillo",
+			        vw_engorde_corral[tipo] = "Categoria Animal",
+			        vw_engorde_corral[fecha] >= PrimerDiaMesRef,
+			        vw_engorde_corral[fecha] <= UltimoDiaMesRef
+			    )
+			VAR ValorRef =
+			    CALCULATE(
+			        AVERAGE(vw_engorde_corral[valor]),
+			        REMOVEFILTERS(vw_engorde_corral[fuente]),
+			        REMOVEFILTERS(vw_engorde_corral[categoria]),
+			        REMOVEFILTERS(vw_engorde_corral[tipo]),
+			        ALL(vw_engorde_corral[fecha]),
+			        ALL(vw_engorde_corral[anio]),
+			        REMOVEFILTERS('Calendario'),
+			        vw_engorde_corral[fuente] = "Egresos",
+			        vw_engorde_corral[categoria] = "Novillo",
+			        vw_engorde_corral[tipo] = "Categoria Animal",
+			        vw_engorde_corral[fecha] = UltimaFechaRef
+			    )
+			VAR ValorActual = [Valor Novillo Egresos]
+			VAR Diferencia = ValorActual - ValorRef
+			RETURN
+			    IF(
+			        ISBLANK(ValorRef) || ISBLANK(ValorActual),
+			        BLANK(),
+			        DIVIDE(Diferencia, ValorRef)
+			    )
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: Egresos - Categoria Animal
+		lineageTag: 85fe9497-8624-4b79-acd8-ac57c298cf47
+
+	/// Diferencia semestral de Egresos / Novillo (Categoria Animal).
+	measure 'Diferencia Semestral Novillo Egresos' =
+			
+			VAR UltimaFecha = [_Fecha Novillo Egresos]
+			VAR FechaRef = EDATE(UltimaFecha, -6)
+			VAR AnioRef = YEAR(FechaRef)
+			VAR MesRef = MONTH(FechaRef)
+			VAR PrimerDiaMesRef = DATE(AnioRef, MesRef, 1)
+			VAR UltimoDiaMesRef = EOMONTH(PrimerDiaMesRef, 0)
+			VAR UltimaFechaRef =
+			    CALCULATE(
+			        MAX(vw_engorde_corral[fecha]),
+			        REMOVEFILTERS(vw_engorde_corral[fuente]),
+			        REMOVEFILTERS(vw_engorde_corral[categoria]),
+			        REMOVEFILTERS(vw_engorde_corral[tipo]),
+			        ALL(vw_engorde_corral[fecha]),
+			        ALL(vw_engorde_corral[anio]),
+			        REMOVEFILTERS('Calendario'),
+			        vw_engorde_corral[fuente] = "Egresos",
+			        vw_engorde_corral[categoria] = "Novillo",
+			        vw_engorde_corral[tipo] = "Categoria Animal",
+			        vw_engorde_corral[fecha] >= PrimerDiaMesRef,
+			        vw_engorde_corral[fecha] <= UltimoDiaMesRef
+			    )
+			VAR ValorRef =
+			    CALCULATE(
+			        AVERAGE(vw_engorde_corral[valor]),
+			        REMOVEFILTERS(vw_engorde_corral[fuente]),
+			        REMOVEFILTERS(vw_engorde_corral[categoria]),
+			        REMOVEFILTERS(vw_engorde_corral[tipo]),
+			        ALL(vw_engorde_corral[fecha]),
+			        ALL(vw_engorde_corral[anio]),
+			        REMOVEFILTERS('Calendario'),
+			        vw_engorde_corral[fuente] = "Egresos",
+			        vw_engorde_corral[categoria] = "Novillo",
+			        vw_engorde_corral[tipo] = "Categoria Animal",
+			        vw_engorde_corral[fecha] = UltimaFechaRef
+			    )
+			VAR ValorActual = [Valor Novillo Egresos]
+			VAR Diferencia = ValorActual - ValorRef
+			RETURN
+			    IF(
+			        ISBLANK(ValorRef) || ISBLANK(ValorActual),
+			        BLANK(),
+			        Diferencia
+			    )
+		formatString: #,##0.00
+		displayFolder: Egresos - Categoria Animal
+		lineageTag: 9e869851-ced4-418e-8d40-8a5b0c0cf83d
+
+	/// Variacion % semestral de Egresos / Novillo (Categoria Animal).
+	measure 'Var % Semestral Novillo Egresos' =
+			
+			VAR UltimaFecha = [_Fecha Novillo Egresos]
+			VAR FechaRef = EDATE(UltimaFecha, -6)
+			VAR AnioRef = YEAR(FechaRef)
+			VAR MesRef = MONTH(FechaRef)
+			VAR PrimerDiaMesRef = DATE(AnioRef, MesRef, 1)
+			VAR UltimoDiaMesRef = EOMONTH(PrimerDiaMesRef, 0)
+			VAR UltimaFechaRef =
+			    CALCULATE(
+			        MAX(vw_engorde_corral[fecha]),
+			        REMOVEFILTERS(vw_engorde_corral[fuente]),
+			        REMOVEFILTERS(vw_engorde_corral[categoria]),
+			        REMOVEFILTERS(vw_engorde_corral[tipo]),
+			        ALL(vw_engorde_corral[fecha]),
+			        ALL(vw_engorde_corral[anio]),
+			        REMOVEFILTERS('Calendario'),
+			        vw_engorde_corral[fuente] = "Egresos",
+			        vw_engorde_corral[categoria] = "Novillo",
+			        vw_engorde_corral[tipo] = "Categoria Animal",
+			        vw_engorde_corral[fecha] >= PrimerDiaMesRef,
+			        vw_engorde_corral[fecha] <= UltimoDiaMesRef
+			    )
+			VAR ValorRef =
+			    CALCULATE(
+			        AVERAGE(vw_engorde_corral[valor]),
+			        REMOVEFILTERS(vw_engorde_corral[fuente]),
+			        REMOVEFILTERS(vw_engorde_corral[categoria]),
+			        REMOVEFILTERS(vw_engorde_corral[tipo]),
+			        ALL(vw_engorde_corral[fecha]),
+			        ALL(vw_engorde_corral[anio]),
+			        REMOVEFILTERS('Calendario'),
+			        vw_engorde_corral[fuente] = "Egresos",
+			        vw_engorde_corral[categoria] = "Novillo",
+			        vw_engorde_corral[tipo] = "Categoria Animal",
+			        vw_engorde_corral[fecha] = UltimaFechaRef
+			    )
+			VAR ValorActual = [Valor Novillo Egresos]
+			VAR Diferencia = ValorActual - ValorRef
+			RETURN
+			    IF(
+			        ISBLANK(ValorRef) || ISBLANK(ValorActual),
+			        BLANK(),
+			        DIVIDE(Diferencia, ValorRef)
+			    )
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: Egresos - Categoria Animal
+		lineageTag: 78cad4e2-4337-47ea-bb1f-a691f9467b67
+
+	/// Diferencia anual de Egresos / Novillo (Categoria Animal).
+	measure 'Diferencia Anual Novillo Egresos' =
+			
+			VAR UltimaFecha = [_Fecha Novillo Egresos]
+			VAR FechaRef = EDATE(UltimaFecha, -12)
+			VAR AnioRef = YEAR(FechaRef)
+			VAR MesRef = MONTH(FechaRef)
+			VAR PrimerDiaMesRef = DATE(AnioRef, MesRef, 1)
+			VAR UltimoDiaMesRef = EOMONTH(PrimerDiaMesRef, 0)
+			VAR UltimaFechaRef =
+			    CALCULATE(
+			        MAX(vw_engorde_corral[fecha]),
+			        REMOVEFILTERS(vw_engorde_corral[fuente]),
+			        REMOVEFILTERS(vw_engorde_corral[categoria]),
+			        REMOVEFILTERS(vw_engorde_corral[tipo]),
+			        ALL(vw_engorde_corral[fecha]),
+			        ALL(vw_engorde_corral[anio]),
+			        REMOVEFILTERS('Calendario'),
+			        vw_engorde_corral[fuente] = "Egresos",
+			        vw_engorde_corral[categoria] = "Novillo",
+			        vw_engorde_corral[tipo] = "Categoria Animal",
+			        vw_engorde_corral[fecha] >= PrimerDiaMesRef,
+			        vw_engorde_corral[fecha] <= UltimoDiaMesRef
+			    )
+			VAR ValorRef =
+			    CALCULATE(
+			        AVERAGE(vw_engorde_corral[valor]),
+			        REMOVEFILTERS(vw_engorde_corral[fuente]),
+			        REMOVEFILTERS(vw_engorde_corral[categoria]),
+			        REMOVEFILTERS(vw_engorde_corral[tipo]),
+			        ALL(vw_engorde_corral[fecha]),
+			        ALL(vw_engorde_corral[anio]),
+			        REMOVEFILTERS('Calendario'),
+			        vw_engorde_corral[fuente] = "Egresos",
+			        vw_engorde_corral[categoria] = "Novillo",
+			        vw_engorde_corral[tipo] = "Categoria Animal",
+			        vw_engorde_corral[fecha] = UltimaFechaRef
+			    )
+			VAR ValorActual = [Valor Novillo Egresos]
+			VAR Diferencia = ValorActual - ValorRef
+			RETURN
+			    IF(
+			        ISBLANK(ValorRef) || ISBLANK(ValorActual),
+			        BLANK(),
+			        Diferencia
+			    )
+		formatString: #,##0.00
+		displayFolder: Egresos - Categoria Animal
+		lineageTag: 2a912062-dfd1-410d-9faf-cb34666ef8ff
+
+	/// Variacion % anual de Egresos / Novillo (Categoria Animal).
+	measure 'Var % Anual Novillo Egresos' =
+			
+			VAR UltimaFecha = [_Fecha Novillo Egresos]
+			VAR FechaRef = EDATE(UltimaFecha, -12)
+			VAR AnioRef = YEAR(FechaRef)
+			VAR MesRef = MONTH(FechaRef)
+			VAR PrimerDiaMesRef = DATE(AnioRef, MesRef, 1)
+			VAR UltimoDiaMesRef = EOMONTH(PrimerDiaMesRef, 0)
+			VAR UltimaFechaRef =
+			    CALCULATE(
+			        MAX(vw_engorde_corral[fecha]),
+			        REMOVEFILTERS(vw_engorde_corral[fuente]),
+			        REMOVEFILTERS(vw_engorde_corral[categoria]),
+			        REMOVEFILTERS(vw_engorde_corral[tipo]),
+			        ALL(vw_engorde_corral[fecha]),
+			        ALL(vw_engorde_corral[anio]),
+			        REMOVEFILTERS('Calendario'),
+			        vw_engorde_corral[fuente] = "Egresos",
+			        vw_engorde_corral[categoria] = "Novillo",
+			        vw_engorde_corral[tipo] = "Categoria Animal",
+			        vw_engorde_corral[fecha] >= PrimerDiaMesRef,
+			        vw_engorde_corral[fecha] <= UltimoDiaMesRef
+			    )
+			VAR ValorRef =
+			    CALCULATE(
+			        AVERAGE(vw_engorde_corral[valor]),
+			        REMOVEFILTERS(vw_engorde_corral[fuente]),
+			        REMOVEFILTERS(vw_engorde_corral[categoria]),
+			        REMOVEFILTERS(vw_engorde_corral[tipo]),
+			        ALL(vw_engorde_corral[fecha]),
+			        ALL(vw_engorde_corral[anio]),
+			        REMOVEFILTERS('Calendario'),
+			        vw_engorde_corral[fuente] = "Egresos",
+			        vw_engorde_corral[categoria] = "Novillo",
+			        vw_engorde_corral[tipo] = "Categoria Animal",
+			        vw_engorde_corral[fecha] = UltimaFechaRef
+			    )
+			VAR ValorActual = [Valor Novillo Egresos]
+			VAR Diferencia = ValorActual - ValorRef
+			RETURN
+			    IF(
+			        ISBLANK(ValorRef) || ISBLANK(ValorActual),
+			        BLANK(),
+			        DIVIDE(Diferencia, ValorRef)
+			    )
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: Egresos - Categoria Animal
+		lineageTag: 126f53c0-f69d-454c-b843-918472b4ce82
+
+	measure Valor = SUM(vw_engorde_corral[valor])
+		formatString: #,0
+		lineageTag: b2f882d2-a89d-4a82-a5ac-2df9101bc99b
+
+	/// Valor de Egresos / Novillo / Categoria Animal correspondiente al mes calendario anterior al ultimo dato disponible.
+	measure 'Valor 1 mes anterior Novillo Egresos' =
+			VAR UltimaFecha = [_Fecha Novillo Egresos]
+			VAR FechaRef = EDATE(UltimaFecha, -1)
+			VAR AnioRef = YEAR(FechaRef)
+			VAR MesRef = MONTH(FechaRef)
+			VAR PrimerDiaMesRef = DATE(AnioRef, MesRef, 1)
+			VAR UltimoDiaMesRef = EOMONTH(PrimerDiaMesRef, 0)
+			VAR UltimaFechaRef =
+			    CALCULATE(
+			        MAX(vw_engorde_corral[fecha]),
+			        REMOVEFILTERS(vw_engorde_corral[fuente]),
+			        REMOVEFILTERS(vw_engorde_corral[categoria]),
+			        REMOVEFILTERS(vw_engorde_corral[tipo]),
+			        ALL(vw_engorde_corral[fecha]),
+			        ALL(vw_engorde_corral[anio]),
+			        REMOVEFILTERS('Calendario'),
+			        vw_engorde_corral[fuente] = "Egresos",
+			        vw_engorde_corral[categoria] = "Novillo",
+			        vw_engorde_corral[tipo] = "Categoria Animal",
+			        vw_engorde_corral[fecha] >= PrimerDiaMesRef,
+			        vw_engorde_corral[fecha] <= UltimoDiaMesRef
+			    )
+			RETURN
+			    CALCULATE(
+			        AVERAGE(vw_engorde_corral[valor]),
+			        REMOVEFILTERS(vw_engorde_corral[fuente]),
+			        REMOVEFILTERS(vw_engorde_corral[categoria]),
+			        REMOVEFILTERS(vw_engorde_corral[tipo]),
+			        ALL(vw_engorde_corral[fecha]),
+			        ALL(vw_engorde_corral[anio]),
+			        REMOVEFILTERS('Calendario'),
+			        vw_engorde_corral[fuente] = "Egresos",
+			        vw_engorde_corral[categoria] = "Novillo",
+			        vw_engorde_corral[tipo] = "Categoria Animal",
+			        vw_engorde_corral[fecha] = UltimaFechaRef
+			    )
+		formatString: #,##0.00
+		displayFolder: Egresos - Categoria Animal
+		lineageTag: 966a115e-7346-43e3-bb86-72a6d4e03098
+
+	measure Valor_Ingresos =
+			
+			CALCULATE(
+			    SUM(vw_engorde_corral[valor]),
+			    vw_engorde_corral[tipo] = "Composición",
+			    vw_engorde_corral[categoria] = "Ingresos"
+			)
+		formatString: 0
+		lineageTag: cb220cd2-3aff-4f0e-972c-d3d0abfedc9d
+
+	measure Valor_Egresos =
+			
+			CALCULATE(
+			    SUM(vw_engorde_corral[valor]),
+			    vw_engorde_corral[tipo] = "Composición",
+			    vw_engorde_corral[categoria] = "Egresos"
+			)
+		formatString: 0
+		lineageTag: 79f8f66c-e785-4074-ba56-91f58e0b9631
+
+	measure Indice_Reposicion =
+			
+			DIVIDE(
+			    [Valor_Ingresos],
+			    [Valor_Egresos]
+			)
+		lineageTag: 0ceab34b-97de-4bc9-8d8c-1c1c742b6c10
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Valor_Con_Indice = ```
+			
+			SWITCH(
+			    TRUE(),
+			    -- Si la categoría actual en la fila es "Ingresos"
+			    SELECTEDVALUE(vw_engorde_corral[categoria]) = "Ingresos", [Valor_Ingresos],
+			    
+			    -- Si la categoría actual en la fila es "Egresos"
+			    SELECTEDVALUE(vw_engorde_corral[categoria]) = "Egresos", [Valor_Egresos],
+			    
+			    -- Si la fila es el "Índice" (calculado al nivel general de la matriz de filas)
+			    ISBLANK(SELECTEDVALUE(vw_engorde_corral[categoria])), [Indice_Reposicion],
+			    
+			    -- Por defecto, la suma normal para los niveles superiores (meses, años)
+			    CALCULATE(
+			        SUM(vw_engorde_corral[valor]),
+			        vw_engorde_corral[tipo] = "Composición"
+			    )
+			)
+			```
+		lineageTag: 5ada4a02-9782-4cad-8c28-9dbef2851378
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Valor_Matriz_Con_Indice = ```
+			
+			VAR _CategoriaActual = SELECTEDVALUE(vw_engorde_corral[categoria])
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    -- Si es la fila de Egresos
+			    _CategoriaActual = "Egresos", [Valor_Egresos],
+			    
+			    -- Si es la fila de Ingresos
+			    _CategoriaActual = "Ingresos", [Valor_Ingresos],
+			    
+			    -- Si estamos en el nivel del mes (cuando la categoría está en blanco en el total del grupo)
+			    -- Aquí forzamos el cálculo del índice para que actúe como una tercera fila de cierre
+			    ISBLANK(_CategoriaActual), [Indice_Reposicion],
+			    
+			    BLANK()
+			)
+			```
+		lineageTag: 6e2667c2-b4e7-465c-92df-20181537f184
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Valor del mes calendario anterior al mes filtrado (via slicers de Año/Semestre/Mes sobre la tabla Calendario).
+	measure 'Valor Mes Anterior' =
+			VAR FechaMax = MAX ( Calendario[Date] )
+			VAR FechaRef = EDATE ( FechaMax, -1 )
+			VAR AnioRef = YEAR ( FechaRef )
+			VAR MesRef = MONTH ( FechaRef )
+			RETURN
+			    CALCULATE (
+			        [Valor],
+			        REMOVEFILTERS ( Calendario ),
+			        Calendario[Año] = AnioRef,
+			        Calendario[MesNumero] = MesRef
+			    )
+		formatString: #,##0
+		displayFolder: Existencia
+		lineageTag: 6bd3fbbf-318e-4c88-8bc2-a10aa7f96a8e
+
+	/// Diferencia entre Valor y Valor Mes Anterior.
+	measure 'Diferencia Mes Anterior' = [Valor] - [Valor Mes Anterior]
+		formatString: #,##0
+		displayFolder: Existencia
+		lineageTag: 9a87ba81-d4b2-4199-aaf3-01ed584dcefa
+
+	/// Variacion % entre Valor y Valor Mes Anterior.
+	measure 'Var % Mes Anterior' = DIVIDE ( [Valor] - [Valor Mes Anterior], [Valor Mes Anterior] )
+		formatString: 0.00%
+		displayFolder: Existencia
+		lineageTag: 400b2c6a-b9e1-4aa2-8662-356155119036
+
+	/// Valor de 6 meses calendario antes del mes filtrado (via slicers de Año/Semestre/Mes sobre la tabla Calendario).
+	measure 'Valor 6 Meses Anterior' =
+			VAR FechaMax = MAX ( Calendario[Date] )
+			VAR FechaRef = EDATE ( FechaMax, -6 )
+			VAR AnioRef = YEAR ( FechaRef )
+			VAR MesRef = MONTH ( FechaRef )
+			RETURN
+			    CALCULATE (
+			        [Valor],
+			        REMOVEFILTERS ( Calendario ),
+			        Calendario[Año] = AnioRef,
+			        Calendario[MesNumero] = MesRef
+			    )
+		formatString: #,##0
+		displayFolder: Existencia
+		lineageTag: 24a098d9-70a8-4cab-8241-6ae141a88e65
+
+	/// Diferencia entre Valor y Valor 6 Meses Anterior.
+	measure 'Diferencia 6 Meses Anterior' = [Valor] - [Valor 6 Meses Anterior]
+		formatString: #,##0
+		displayFolder: Existencia
+		lineageTag: 85814126-6a7b-4712-afc5-b6c8fcc4ca05
+
+	/// Variacion % entre Valor y Valor 6 Meses Anterior.
+	measure 'Var % 6 Meses Anterior' = DIVIDE ( [Valor] - [Valor 6 Meses Anterior], [Valor 6 Meses Anterior] )
+		formatString: 0.00%
+		displayFolder: Existencia
+		lineageTag: ac94d122-13e0-4a87-ae5d-ba7d4f7bb9eb
+
+	/// Valor de 12 meses calendario antes del mes filtrado (via slicers de Año/Semestre/Mes sobre la tabla Calendario).
+	measure 'Valor 1 Año Anterior' =
+			VAR FechaMax = MAX ( Calendario[Date] )
+			VAR FechaRef = EDATE ( FechaMax, -12 )
+			VAR AnioRef = YEAR ( FechaRef )
+			VAR MesRef = MONTH ( FechaRef )
+			RETURN
+			    CALCULATE (
+			        [Valor],
+			        REMOVEFILTERS ( Calendario ),
+			        Calendario[Año] = AnioRef,
+			        Calendario[MesNumero] = MesRef
+			    )
+		formatString: #,##0
+		displayFolder: Existencia
+		lineageTag: 7a91c0dd-9091-452e-87b4-f239006de92c
+
+	/// Diferencia entre Valor y Valor 1 Año Anterior.
+	measure 'Diferencia 1 Año Anterior' = [Valor] - [Valor 1 Año Anterior]
+		formatString: #,##0
+		displayFolder: Existencia
+		lineageTag: aa4d5827-2d9d-49dd-b710-e3d992d74be1
+
+	/// Variacion % entre Valor y Valor 1 Año Anterior.
+	measure 'Var % 1 Año Anterior' = DIVIDE ( [Valor] - [Valor 1 Año Anterior], [Valor 1 Año Anterior] )
+		formatString: 0.00%
+		displayFolder: Existencia
+		lineageTag: 104c3fcc-35d6-40ea-91b0-6999d8fdd428
+
+	measure Indice = ```
+			
+			IF(
+			    -- Si la categoría NO está en el contexto actual (es decir, nivel mes o total)
+			    NOT ISINSCOPE('vw_engorde_corral'[categoria]),
+			    
+			    VAR TotalIngresos = 
+			        CALCULATE(
+			            SUM('vw_engorde_corral'[valor]),
+			            'vw_engorde_corral'[fuente] = "Composición Feedlot",
+			            'vw_engorde_corral'[categoria] = "Ingresos",
+			            REMOVEFILTERS('vw_engorde_corral'[categoria])
+			        )
+			    VAR TotalEgresos = 
+			        CALCULATE(
+			            SUM('vw_engorde_corral'[valor]),
+			            'vw_engorde_corral'[fuente] = "Composición Feedlot",
+			            'vw_engorde_corral'[categoria] = "Egresos",
+			            REMOVEFILTERS('vw_engorde_corral'[categoria])
+			        )
+			    RETURN
+			        DIVIDE(TotalIngresos, TotalEgresos),
+			        
+			    -- Si la categoría está expandida (filas de Ingresos/Egresos), devuelve BLANCO
+			    BLANK()
+			)
+			```
+		lineageTag: aee75512-249a-4f6c-8493-aaf89807367a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Indice Mes Anterior' =
+			
+			CALCULATE(
+			    [Indice],
+			    DATEADD('Calendario'[Date], -1, MONTH)
+			)
+		lineageTag: 4cf871e4-1b96-44ea-8d8f-828e82fe8ed1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Indice 6 Meses Antes' =
+			
+			CALCULATE(
+			    [Indice],
+			    DATEADD('Calendario'[Date], -6, MONTH)
+			)
+		lineageTag: 3de358c2-0565-4720-89db-0f28883c671e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Indice 1 Anio Antes' =
+			
+			CALCULATE(
+			    [Indice],
+			    DATEADD('Calendario'[Date], -1, YEAR)
+			)
+		lineageTag: 583ed90a-b8ba-49e1-b742-1a4b276e600a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dif Mes Anterior Indice' = [Indice] - [Indice Mes Anterior]
+		lineageTag: 5cb25522-c364-4182-b0b3-d48bd427b012
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dif 6 Meses Antes Indice' = [Indice] - [Indice 6 Meses Antes]
+		lineageTag: e4d57693-6a22-42b3-931c-d15c3cc2ac68
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dif 1 Anio Antes Indice' = [Indice] - [Indice 1 Anio Antes]
+		lineageTag: 2378ac69-5c4a-42e6-b868-b31efe2e9cbd
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Var % Mes Anterior Indice' =
+			
+			DIVIDE(
+			    [Indice] - [Indice Mes Anterior],
+			    [Indice Mes Anterior]
+			)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: d75e48e2-cfdf-4126-9a86-50d01e421fad
+
+	measure 'Var % 6 Meses Antes Indice' =
+			
+			DIVIDE(
+			    [Indice] - [Indice 6 Meses Antes],
+			    [Indice 6 Meses Antes]
+			)
+		lineageTag: 1ffd7cbf-23f4-4113-83c3-5285b421c3fc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Var % 1 Anio Antes Indice' =
+			
+			DIVIDE(
+			    [Indice] - [Indice 1 Anio Antes],
+			    [Indice 1 Anio Antes]
+			)
+		lineageTag: f3a3d07d-2702-455a-9c12-9ae32e733b7b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Valor Composicion' = ```
+			
+			IF(
+			    -- Si la categoría está en el contexto (es decir, el usuario desplegó el mes para ver el detalle)
+			    ISINSCOPE('vw_engorde_corral'[categoria]),
+			    
+			    -- Entonces muestra la suma normal de los valores absolutos
+			    SUM('vw_engorde_corral'[valor]),
+			    
+			    -- Si el mes está colapsado, devuelve blanco para evitar sumar Ingresos + Egresos
+			    BLANK()
+			)
+			```
+		formatString: #,0
+		lineageTag: 9da4a07c-34d9-4b30-bdc1-562d5c2ad6f4
+
+	measure 'Valor Composicion Mes Anterior' =
+			
+			CALCULATE(
+			    [Valor Composicion],
+			    DATEADD('Calendario'[Date], -1, MONTH)
+			)
+		formatString: 0
+		lineageTag: 09437c7b-74fb-425a-a38c-8f7ee396e96b
+
+	measure 'Valor Composicion 6 Meses Antes' =
+			
+			CALCULATE(
+			    [Valor Composicion],
+			    DATEADD('Calendario'[Date], -6, MONTH)
+			)
+		formatString: 0
+		lineageTag: e681d46b-d34e-44ab-a7ad-6f6f48b07519
+
+	measure 'Valor Composicion 1 Anio Antes' =
+			
+			CALCULATE(
+			    [Valor Composicion],
+			    DATEADD('Calendario'[Date], -1, YEAR)
+			)
+		formatString: 0
+		lineageTag: 351da97e-fcf1-4c58-8332-0698b2d10234
+
+	measure 'Dif Valor Composicion Mes Anterior' = [Valor Composicion] - [Valor Composicion Mes Anterior]
+		formatString: #,0
+		lineageTag: f3337222-9cd2-408c-b64a-e5290d58b600
+
+	measure 'Dif Valor Composicion 6 Meses Antes' = [Valor Composicion] - [Valor Composicion 6 Meses Antes]
+		formatString: #,0
+		lineageTag: 2d04c09e-f252-4613-a0e2-4e0c4f90b58b
+
+	measure 'Dif Valor Composicion 1 Anio Antes' = [Valor Composicion] - [Valor Composicion 1 Anio Antes]
+		formatString: #,0
+		lineageTag: fa551e4e-fd40-4cce-95e9-62cf8f0972d6
+
+	measure 'Var % Valor Composicion 6 Meses Antes' =
+			
+			DIVIDE(
+			    [Valor Composicion] - [Valor Composicion 6 Meses Antes],
+			    [Valor Composicion 6 Meses Antes]
+			)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: b523e47c-c313-4ca4-b5fa-08d25f6228f8
+
+	measure 'Var % Valor Composicion Mes Anterior' =
+			
+			DIVIDE(
+			    [Valor Composicion] - [Valor Composicion Mes Anterior],
+			    [Valor Composicion Mes Anterior]
+			)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: bf1244f0-cc8f-4d53-b4bc-939f126508f6
+
+	measure 'Var % Valor Composicion 1 Anio Antes' =
+			
+			DIVIDE(
+			    [Valor Composicion] - [Valor Composicion 1 Anio Antes],
+			    [Valor Composicion 1 Anio Antes]
+			)
+		lineageTag: b2e328d6-c0ae-4bbb-99fa-49728b4618cb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Column
+		formatString: 0
+		lineageTag: 06fe462a-37e9-41a2-95ba-d88759169861
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Medidas = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = e85d586a03184fcfbf75c5bdb850e0e8
+

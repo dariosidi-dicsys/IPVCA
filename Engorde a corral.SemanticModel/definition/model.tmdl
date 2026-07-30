@@ -1,0 +1,21 @@
+model Model
+	culture: es-AR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: es-AR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["vw_engorde_corral"]
+
+annotation PBI_ProTooling = ["MCP-PBIModeling","TMDLView_Desktop","DevMode"]
+
+ref table Medidas
+ref table vw_engorde_corral
+ref table Calendario
+
+ref cultureInfo es-AR
+

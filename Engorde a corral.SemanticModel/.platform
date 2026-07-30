@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Engorde a corral"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "13ba3230-e0a1-46ad-900a-dd498ad02ee3"
+  }
+}

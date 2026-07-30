@@ -1,0 +1,24 @@
+model Model
+	culture: es-AR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: es-AR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["vw_precio_hacienda"]
+
+annotation PBI_ProTooling = ["MCP-PBIModeling","TMDLView_Desktop","DevMode"]
+
+ref table Medidas
+ref table vw_precio_hacienda
+ref table Calendario
+ref table Bridge_ProductoCategoria
+ref table Bridge
+ref table Productos
+
+ref cultureInfo es-AR
+

@@ -1,0 +1,4 @@
+relationship vw_precio_hacienda_fecha_Calendario_Date
+	fromColumn: vw_engorde_corral.fecha
+	toColumn: Calendario.Date
+

@@ -1,0 +1,169 @@
+table Calendario
+	lineageTag: 84f8dfd7-87f7-414c-9254-47a3cca4edf0
+	dataCategory: Time
+
+	column Date
+		isUnique
+		formatString: General Date
+		lineageTag: d7e6f889-6b47-4938-8dac-020420dc65b6
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Año
+		formatString: 0
+		lineageTag: 16f2988a-0c93-41d7-a322-f7de9887b06e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Año]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MesNumero
+		formatString: 0
+		lineageTag: a332a5fe-a9f5-4de4-ae0f-3ea26d6e06e6
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [MesNumero]
+
+		annotation SummarizationSetBy = Automatic
+
+	column NombreMes
+		lineageTag: 9759aec9-ccaa-4061-b44f-3a396baf1d24
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [NombreMes]
+		sortByColumn: MesNumero
+
+		annotation SummarizationSetBy = Automatic
+
+	column NombreMesCorto
+		lineageTag: fa10e3df-0b86-41bf-9738-163ee038cab2
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [NombreMesCorto]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MesAnio
+		lineageTag: 35a01989-8537-4e68-ba2f-4f031071f5a4
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [MesAnio]
+
+		annotation SummarizationSetBy = Automatic
+
+	column AnioMes
+		formatString: 0
+		lineageTag: a944b578-5d34-438f-aa23-ae9d21c28a3c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [AnioMes]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Trimestre
+		lineageTag: b665b7dc-8ecf-486e-9b7c-3ebb3a873a1c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Trimestre]
+
+		annotation SummarizationSetBy = Automatic
+
+	column NroTrimestre
+		formatString: 0
+		lineageTag: 87ce68fc-7654-43db-87ef-fc5533665625
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [NroTrimestre]
+
+		annotation SummarizationSetBy = Automatic
+
+	column AnioTrimestre
+		formatString: 0
+		lineageTag: b4f4239b-cc36-481c-89be-d0639e8d16d9
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [AnioTrimestre]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Semestre
+		lineageTag: 295c8fb7-5f94-458e-9e3e-169bec213329
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Semestre]
+
+		annotation SummarizationSetBy = Automatic
+
+	column NroSemana
+		formatString: 0
+		lineageTag: db677de7-929b-4749-8018-808067485479
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [NroSemana]
+
+		annotation SummarizationSetBy = Automatic
+
+	column AnioSemana
+		formatString: 0
+		lineageTag: a40e8233-7bfb-437f-aa89-d86d5c4fd630
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [AnioSemana]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dia
+		formatString: 0
+		lineageTag: 1bbe05a8-2f62-4d5a-a846-011f87b37375
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Dia]
+
+		annotation SummarizationSetBy = Automatic
+
+	column DiaSemana
+		lineageTag: fe116bab-885b-4bc8-8e05-bc2a84c08ca2
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [DiaSemana]
+
+		annotation SummarizationSetBy = Automatic
+
+	column NroDiaSemana
+		formatString: 0
+		lineageTag: a0cfe8e7-f761-451f-bbc6-69f433d4d347
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [NroDiaSemana]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Calendario = calculated
+		mode: import
+		source =
+				ADDCOLUMNS(
+				    CALENDAR(
+				        MIN(vw_engorde_corral[fecha]),
+				        MAX(vw_engorde_corral[fecha])
+				    ),
+				    "Año", YEAR([Date]),
+				    "MesNumero", MONTH([Date]),
+				    "NombreMes", FORMAT([Date], "MMMM"),
+				    "NombreMesCorto", FORMAT([Date], "MMM"),
+				    "MesAnio", FORMAT([Date], "MMM-YYYY"),
+				    "AnioMes", YEAR([Date]) * 100 + MONTH([Date]),
+				    "Trimestre", "T" & FORMAT([Date], "Q"),
+				    "NroTrimestre", INT((MONTH([Date]) + 2) / 3),
+				    "AnioTrimestre", YEAR([Date]) * 10 + INT((MONTH([Date]) + 2) / 3),
+				    "Semestre", IF(MONTH([Date]) <= 6, "S1", "S2"),
+				    "NroSemana", WEEKNUM([Date], 2),
+				    "AnioSemana", YEAR([Date]) * 100 + WEEKNUM([Date], 2),
+				    "Dia", DAY([Date]),
+				    "DiaSemana", FORMAT([Date], "DDDD"),
+				    "NroDiaSemana", WEEKDAY([Date], 2)
+				)
+

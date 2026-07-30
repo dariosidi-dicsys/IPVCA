@@ -1,0 +1,1196 @@
+createOrReplace
+
+	model Model
+		culture: es-AR
+		defaultPowerBIDataSourceVersion: powerBI_V3
+		sourceQueryCulture: es-AR
+		dataAccessOptions
+			legacyRedirects
+			returnErrorValuesAsNull
+
+		table Precios_internacionales
+			lineageTag: ef8c6685-1258-4569-b90a-255e601861a7
+
+			/// Total de cabezas faenadas
+			measure 'Total Cabezas' = SUM('public faena'[cantidad_cabezas])
+				formatString: #,##0
+				displayFolder: Volumen
+				lineageTag: 4b90fba9-6a1b-4458-a7b7-8c1268ccabd4
+
+			/// Total de toneladas en res
+			measure 'Total Toneladas' = SUM('public faena'[toneladas_res])
+				formatString: #,##0.0
+				displayFolder: Volumen
+				lineageTag: e7a40d68-d391-44cd-8bb1-dc0a0ddfdf5e
+
+			/// Peso promedio por res en kilogramos
+			measure 'Peso Promedio Res (kg)' = DIVIDE(SUM('public faena'[toneladas_res]) * 1000, SUM('public faena'[cantidad_cabezas]), 0)
+				formatString: #,##0.0
+				displayFolder: Promedios
+				lineageTag: be501819-8c8c-4f98-b10d-633ad0ba227b
+
+			/// Variación porcentual de cabezas año vs año anterior
+			measure 'Variación Cabezas YoY %' =
+					VAR _actual = [Total Cabezas]
+					VAR _anterior = [Cabezas Año Anterior]
+					RETURN
+					DIVIDE(_actual - _anterior, _anterior, BLANK())
+				formatString: 0.0%
+				displayFolder: Comparativos
+				lineageTag: d435ff06-832f-4089-84b5-728f0fd816d7
+
+			/// Variación porcentual de toneladas año vs año anterior
+			measure 'Variación Toneladas YoY %' =
+					VAR _actual = [Total Toneladas]
+					VAR _anterior = [Toneladas Año Anterior]
+					RETURN
+					DIVIDE(_actual - _anterior, _anterior, BLANK())
+				formatString: 0.0%
+				displayFolder: Comparativos
+				lineageTag: af3cf1e3-3776-43d7-a7e7-c9a8e0e52204
+
+			/// Porcentaje de cabezas hembra sobre el total
+			measure '% Cabezas Hembra' =
+					DIVIDE(
+					    CALCULATE(SUM('public faena'[cantidad_cabezas]), 'public faena'[sexo] = "Hembra"),
+					    [Total Cabezas],
+					    0
+					)
+				formatString: 0.0%
+				displayFolder: Composición
+				lineageTag: 6e250836-fe06-4d5a-a48a-e71bd0e443a0
+
+			/// Porcentaje de cabezas macho sobre el total
+			measure '% Cabezas Macho' =
+					DIVIDE(
+					    CALCULATE(SUM('public faena'[cantidad_cabezas]), 'public faena'[sexo] = "Macho"),
+					    [Total Cabezas],
+					    0
+					)
+				formatString: 0.0%
+				displayFolder: Composición
+				lineageTag: de3ac751-8cb3-4687-adf8-c8a4a9eec518
+
+			/// Rendimiento promedio en kg por cabeza
+			measure 'Rendimiento Res (kg/ton)' =
+					DIVIDE(
+					    SUM('public faena'[toneladas_res]) * 1000,
+					    SUM('public faena'[cantidad_cabezas]),
+					    0
+					)
+				formatString: #,##0.00
+				displayFolder: Promedios
+				lineageTag: 4579ede4-9088-4ff5-8b54-623f7726cfd8
+
+			/// Total cabezas del año anterior al seleccionado
+			measure 'Cabezas Año Anterior' =
+					CALCULATE(
+					    SUM('public faena'[cantidad_cabezas]),
+					    FILTER(
+					        ALL('public faena'[anio]),
+					        'public faena'[anio] = FORMAT(VALUE(SELECTEDVALUE('public faena'[anio], "0")) - 1, "####")
+					    )
+					)
+				formatString: #,##0
+				displayFolder: Comparativos
+				lineageTag: b6355b67-a356-481d-a7ab-a9ff92dad239
+
+			/// Total toneladas del año anterior al seleccionado
+			measure 'Toneladas Año Anterior' =
+					CALCULATE(
+					    SUM('public faena'[toneladas_res]),
+					    FILTER(
+					        ALL('public faena'[anio]),
+					        'public faena'[anio] = FORMAT(VALUE(SELECTEDVALUE('public faena'[anio], "0")) - 1, "####")
+					    )
+					)
+				formatString: #,##0.0
+				displayFolder: Comparativos
+				lineageTag: db5a42d5-4230-4efa-bf1d-fea7e06b1021
+
+			/// Porcentaje de participación de cada categoría sobre el total de cabezas
+			measure '% Participación Categoría' =
+					DIVIDE(
+					    SUM('public faena'[cantidad_cabezas]),
+					    CALCULATE(SUM('public faena'[cantidad_cabezas]), ALL('public faena'[categoria])),
+					    0
+					)
+				formatString: 0.0%
+				displayFolder: Composición
+				lineageTag: d1d785c0-4575-439b-a8b7-4f014c219e6e
+
+			/// Porcentaje de participación de cada categoría sobre el total de toneladas
+			measure '% Participación Categoría Ton' =
+					DIVIDE(
+					    SUM('public faena'[toneladas_res]),
+					    CALCULATE(SUM('public faena'[toneladas_res]), ALL('public faena'[categoria])),
+					    0
+					)
+				formatString: 0.0%
+				displayFolder: Composición
+				lineageTag: fb98faa7-a88c-49ca-ac97-8740fbe5e507
+
+			/// Promedio mensual de cabezas faenadas
+			measure 'Cabezas Promedio Mensual' =
+					AVERAGEX(
+					    SUMMARIZE(
+					        'public faena',
+					        'public faena'[anio],
+					        'public faena'[mes],
+					        "_cab", SUM('public faena'[cantidad_cabezas])
+					    ),
+					    [_cab]
+					)
+				formatString: #,##0.0
+				displayFolder: Promedios
+				lineageTag: 16f5751e-bdf9-46f3-b7e2-4a64447b033e
+
+			/// Cabezas acumuladas en el año hasta el mes seleccionado
+			measure 'Cabezas Acumulado YTD' =
+					VAR _anioSel = SELECTEDVALUE('public faena'[anio])
+					VAR _mesSel = SELECTEDVALUE(Calendario[MesNumero])
+					RETURN
+					IF(
+					    NOT ISBLANK(_anioSel) && NOT ISBLANK(_mesSel),
+					    CALCULATE(
+					        SUM('public faena'[cantidad_cabezas]),
+					        'public faena'[anio] = _anioSel,
+					        Calendario[MesNumero] <= _mesSel
+					    ),
+					    SUM('public faena'[cantidad_cabezas])
+					)
+				formatString: #,##0
+				displayFolder: Acumulados
+				lineageTag: a98a0e65-4323-4f00-86dd-dc5bd54ae2a0
+
+			/// Toneladas acumuladas en el año hasta el mes seleccionado
+			measure 'Toneladas Acumulado YTD' =
+					VAR _anioSel = SELECTEDVALUE('public faena'[anio])
+					VAR _mesSel = SELECTEDVALUE(Calendario[MesNumero])
+					RETURN
+					IF(
+					    NOT ISBLANK(_anioSel) && NOT ISBLANK(_mesSel),
+					    CALCULATE(
+					        SUM('public faena'[toneladas_res]),
+					        'public faena'[anio] = _anioSel,
+					        Calendario[MesNumero] <= _mesSel
+					    ),
+					    SUM('public faena'[toneladas_res])
+					)
+				formatString: #,##0.0
+				displayFolder: Acumulados
+				lineageTag: 98c19745-72bd-4cf2-8dfd-c3b914b2d3d3
+
+			/// Posición del mes según volumen de cabezas faenadas (1 = mayor)
+			measure 'Ranking Mes por Cabezas' =
+					IF(
+					    HASONEVALUE('public faena'[mes]),
+					    RANKX(
+					        ALLSELECTED('public faena'[mes]),
+					        CALCULATE(SUM('public faena'[cantidad_cabezas])),
+					        ,
+					        DESC,
+					        DENSE
+					    ),
+					    BLANK()
+					)
+				formatString: #,##0
+				displayFolder: Rankings
+				lineageTag: a8620875-3a73-4dfa-bcca-d201436ba0c1
+
+			/// Posición de la categoría según volumen de cabezas faenadas (1 = mayor)
+			measure 'Ranking Categoría por Cabezas' =
+					IF(
+					    HASONEVALUE('public faena'[categoria]),
+					    RANKX(
+					        ALLSELECTED('public faena'[categoria]),
+					        CALCULATE(SUM('public faena'[cantidad_cabezas])),
+					        ,
+					        DESC,
+					        DENSE
+					    ),
+					    BLANK()
+					)
+				formatString: #,##0
+				displayFolder: Rankings
+				lineageTag: c46f158b-c180-4d05-9326-41cd092ccf71
+
+			/// Diferencia entre cabezas actuales y el promedio histórico mensual
+			measure 'Cabezas vs Promedio Histórico' =
+					VAR _actual = SUM('public faena'[cantidad_cabezas])
+					VAR _promedio = CALCULATE(
+					    AVERAGEX(
+					        SUMMARIZE(
+					            ALL('public faena'),
+					            'public faena'[anio],
+					            'public faena'[mes],
+					            "_cab", SUM('public faena'[cantidad_cabezas])
+					        ),
+					        [_cab]
+					    )
+					)
+					RETURN _actual - _promedio
+				formatString: #,##0.0
+				displayFolder: Comparativos
+				lineageTag: a9aa47df-e17d-4246-8a57-e28095e5d153
+
+			/// Máximo de cabezas registrado en un solo mes dentro del contexto
+			measure 'Máximo Cabezas en Mes' =
+					MAXX(
+					    SUMMARIZE(
+					        'public faena',
+					        'public faena'[anio],
+					        'public faena'[mes],
+					        "_cab", SUM('public faena'[cantidad_cabezas])
+					    ),
+					    [_cab]
+					)
+				formatString: #,##0
+				displayFolder: Rankings
+				lineageTag: 4ddb26ed-290b-4acf-8617-0ba3d9f14ea1
+
+			/// Mínimo de cabezas registrado en un solo mes dentro del contexto
+			measure 'Mínimo Cabezas en Mes' =
+					MINX(
+					    SUMMARIZE(
+					        'public faena',
+					        'public faena'[anio],
+					        'public faena'[mes],
+					        "_cab", SUM('public faena'[cantidad_cabezas])
+					    ),
+					    [_cab]
+					)
+				formatString: #,##0
+				displayFolder: Rankings
+				lineageTag: 55c32dc6-6178-43d2-bd8c-dbad074aefc2
+
+			/// Total de cabezas de categorías hembra (Vaca + Vaquillona)
+			measure 'Cabezas Hembra Total' =
+					CALCULATE(
+					    SUM('public faena'[cantidad_cabezas]),
+					    'public faena'[sexo] = "Hembra"
+					)
+				formatString: #,##0
+				displayFolder: Categorías
+				lineageTag: 75f14838-fb7f-4511-b2fa-e231e3ce9f29
+
+			/// Total de cabezas de categorías macho (Novillo + Novillito + Toro + MEJ)
+			measure 'Cabezas Macho Total' =
+					CALCULATE(
+					    SUM('public faena'[cantidad_cabezas]),
+					    'public faena'[sexo] = "Macho"
+					)
+				formatString: #,##0
+				displayFolder: Categorías
+				lineageTag: 277c157d-e283-4f68-a9e1-c2f58ca61515
+
+			/// Ratio de cabezas hembra por cada cabeza macho
+			measure 'Relación Hembra/Macho' =
+					DIVIDE(
+					    CALCULATE(SUM('public faena'[cantidad_cabezas]), 'public faena'[sexo] = "Hembra"),
+					    CALCULATE(SUM('public faena'[cantidad_cabezas]), 'public faena'[sexo] = "Macho")
+					)
+				formatString: 0.00
+				displayFolder: Categorías
+				lineageTag: 057b4ea2-376e-412c-a990-b0bee18bb332
+
+			/// Participación porcentual de la categoría MEJ sobre el total de cabezas
+			measure '% MEJ sobre Total' =
+					DIVIDE(
+					    CALCULATE(SUM('public faena'[cantidad_cabezas]), 'public faena'[categoria] = "MEJ"),
+					    SUM('public faena'[cantidad_cabezas])
+					)
+				formatString: 0.0%
+				displayFolder: Categorías
+				lineageTag: 17d6e95b-a1a6-4209-822e-aefebeb76dac
+
+			/// Total de toneladas de categorías hembra
+			measure 'Toneladas Hembra Total' =
+					CALCULATE(
+					    SUM('public faena'[toneladas_res]),
+					    'public faena'[sexo] = "Hembra"
+					)
+				formatString: #,##0.0
+				displayFolder: Categorías
+				lineageTag: 3527e875-41a9-4310-bae1-0ea8a7179324
+
+			/// Total de toneladas de categorías macho
+			measure 'Toneladas Macho Total' =
+					CALCULATE(
+					    SUM('public faena'[toneladas_res]),
+					    'public faena'[sexo] = "Macho"
+					)
+				formatString: #,##0.0
+				displayFolder: Categorías
+				lineageTag: 0f9fb55a-d57e-4f00-b6c7-a73eda73bd12
+
+			/// Peso promedio en kg de las categorías hembra
+			measure 'Peso Promedio Hembra (kg)' =
+					CALCULATE(
+					    AVERAGE('public faena'[peso_res]),
+					    'public faena'[sexo] = "Hembra"
+					)
+				formatString: #,##0.0
+				displayFolder: Categorías
+				lineageTag: eae2de5e-300c-46cc-8bdc-c49dfe0166f2
+
+			/// Peso promedio en kg de las categorías macho
+			measure 'Peso Promedio Macho (kg)' =
+					CALCULATE(
+					    AVERAGE('public faena'[peso_res]),
+					    'public faena'[sexo] = "Macho"
+					)
+				formatString: #,##0.0
+				displayFolder: Categorías
+				lineageTag: be2f5a86-6985-4ca9-9232-26b34214238d
+
+			/// Peso promedio en kg por dentición en el contexto de filtro
+			measure 'Peso Promedio por Dentición' = AVERAGE('public faena'[peso_res])
+				formatString: #,##0.0
+				displayFolder: Dentición
+				lineageTag: 4d569a5d-a24c-48bf-8c96-facbbf6f80c9
+
+			/// Cabezas faenadas con dentición 2 dientes
+			measure 'Cabezas 2 Dientes' = CALCULATE(SUM('public faena'[cantidad_cabezas]), 'public faena'[dentición] = "2 dientes")
+				formatString: #,##0
+				displayFolder: Dentición
+				lineageTag: 0b4e2641-a461-4e95-94cd-466b6a1883f3
+
+			/// Cabezas faenadas con dentición 4 dientes
+			measure 'Cabezas 4 Dientes' = CALCULATE(SUM('public faena'[cantidad_cabezas]), 'public faena'[dentición] = "4 dientes")
+				formatString: #,##0
+				displayFolder: Dentición
+				lineageTag: 0b42934e-d499-49ee-80ee-c499a86bbaa9
+
+			/// Cabezas faenadas con dentición 6 dientes
+			measure 'Cabezas 6 Dientes' = CALCULATE(SUM('public faena'[cantidad_cabezas]), 'public faena'[dentición] = "6 dientes")
+				formatString: #,##0
+				displayFolder: Dentición
+				lineageTag: 432af1f4-9497-4939-89c5-edc4e95d55eb
+
+			/// Cabezas faenadas con dentición 8 dientes
+			measure 'Cabezas 8 Dientes' = CALCULATE(SUM('public faena'[cantidad_cabezas]), 'public faena'[dentición] = "8 dientes")
+				formatString: #,##0
+				displayFolder: Dentición
+				lineageTag: df26368d-db6f-4044-ac79-541d2775d9d4
+
+			/// Cabezas faenadas con dentición más de 8 dientes
+			measure 'Cabezas Más de 8 Dientes' = CALCULATE(SUM('public faena'[cantidad_cabezas]), 'public faena'[dentición] = "Más de 8 dientes")
+				formatString: #,##0
+				displayFolder: Dentición
+				lineageTag: 2fdda075-6c8f-4835-8b29-c8031de663db
+
+			/// Variación neta de cabezas macho vs año anterior
+			measure 'Variación Cabezas Macho' =
+					VAR _actual = CALCULATE(SUM('public faena'[cantidad_cabezas]), 'public faena'[sexo] = "Macho")
+					VAR _anterior = CALCULATE(
+					    SUM('public faena'[cantidad_cabezas]),
+					    'public faena'[sexo] = "Macho",
+					    FILTER(ALL('public faena'[anio]), 'public faena'[anio] = FORMAT(VALUE(SELECTEDVALUE('public faena'[anio])) - 1, "####"))
+					)
+					RETURN _actual - _anterior
+				formatString: #,##0
+				displayFolder: Variaciones
+				lineageTag: 96605e3f-6074-46ab-98b6-aa09bc23f879
+
+			/// Variación porcentual de cabezas macho vs año anterior
+			measure 'Variación Cabezas Macho %' =
+					VAR _actual = CALCULATE(SUM('public faena'[cantidad_cabezas]), 'public faena'[sexo] = "Macho")
+					VAR _anterior = CALCULATE(
+					    SUM('public faena'[cantidad_cabezas]),
+					    'public faena'[sexo] = "Macho",
+					    FILTER(ALL('public faena'[anio]), 'public faena'[anio] = FORMAT(VALUE(SELECTEDVALUE('public faena'[anio])) - 1, "####"))
+					)
+					RETURN DIVIDE(_actual - _anterior, _anterior)
+				formatString: 0.0%
+				displayFolder: Variaciones
+				lineageTag: 9aaa2577-4254-4bf4-9c2d-0a5060b0055d
+
+			/// Variación neta de cabezas hembra vs año anterior
+			measure 'Variación Cabezas Hembra' =
+					VAR _actual = CALCULATE(SUM('public faena'[cantidad_cabezas]), 'public faena'[sexo] = "Hembra")
+					VAR _anterior = CALCULATE(
+					    SUM('public faena'[cantidad_cabezas]),
+					    'public faena'[sexo] = "Hembra",
+					    FILTER(ALL('public faena'[anio]), 'public faena'[anio] = FORMAT(VALUE(SELECTEDVALUE('public faena'[anio])) - 1, "####"))
+					)
+					RETURN _actual - _anterior
+				formatString: #,##0
+				displayFolder: Variaciones
+				lineageTag: 8d2e60e0-e526-4ee0-9af3-4003d16a7b1d
+
+			/// Variación porcentual de cabezas hembra vs año anterior
+			measure 'Variación Cabezas Hembra %' =
+					VAR _actual = CALCULATE(SUM('public faena'[cantidad_cabezas]), 'public faena'[sexo] = "Hembra")
+					VAR _anterior = CALCULATE(
+					    SUM('public faena'[cantidad_cabezas]),
+					    'public faena'[sexo] = "Hembra",
+					    FILTER(ALL('public faena'[anio]), 'public faena'[anio] = FORMAT(VALUE(SELECTEDVALUE('public faena'[anio])) - 1, "####"))
+					)
+					RETURN DIVIDE(_actual - _anterior, _anterior)
+				formatString: 0.0%
+				displayFolder: Variaciones
+				lineageTag: 6d0d5f7d-ea4f-4f89-8f20-6dbca4415c1a
+
+			/// Variación neta de cabezas por dentición vs año anterior
+			measure 'Variación Cabezas Dentición' =
+					VAR _actual = SUM('public faena'[cantidad_cabezas])
+					VAR _anterior = CALCULATE(
+					    SUM('public faena'[cantidad_cabezas]),
+					    FILTER(ALL('public faena'[anio]), 'public faena'[anio] = FORMAT(VALUE(SELECTEDVALUE('public faena'[anio])) - 1, "####"))
+					)
+					RETURN _actual - _anterior
+				formatString: #,##0
+				displayFolder: Variaciones
+				lineageTag: 2126406c-ddfe-4003-8823-08530643589d
+
+			/// Variación porcentual de cabezas por dentición vs año anterior
+			measure 'Variación Cabezas Dentición %' =
+					VAR _actual = SUM('public faena'[cantidad_cabezas])
+					VAR _anterior = CALCULATE(
+					    SUM('public faena'[cantidad_cabezas]),
+					    FILTER(ALL('public faena'[anio]), 'public faena'[anio] = FORMAT(VALUE(SELECTEDVALUE('public faena'[anio])) - 1, "####"))
+					)
+					RETURN DIVIDE(_actual - _anterior, _anterior)
+				formatString: 0.0%
+				displayFolder: Variaciones
+				lineageTag: b486e646-f71a-4d5a-be83-ada4c5958a30
+
+			measure Test =
+					
+					COUNTROWS('Precios_internacionales')
+				formatString: 0
+				lineageTag: 52de5c48-018f-4674-9692-2cad1e29dc15
+
+			measure Ultima_Fecha_Datos = ```
+					
+					VAR _maxFecha = 
+					    CALCULATE(
+					        MAX('Precios_internacionales'[Fecha]),
+					        REMOVEFILTERS('Precios_internacionales'),
+					        REMOVEFILTERS('Calendario')
+					    )
+					VAR _mes = FORMAT(_maxFecha, "mmmm")
+					VAR _anio = FORMAT(_maxFecha, "yyyy")
+					
+					-- Tomamos la primera letra, la pasamos a Mayúscula y pegamos el resto
+					RETURN
+					    UPPER(LEFT(_mes, 1)) & RIGHT(_mes, LEN(_mes) - 1) & " " & _anio
+					```
+				lineageTag: 72854a8e-5e35-41b2-a48a-f89e4c49b11b
+
+			column anio
+				dataType: int64
+				formatString: 0
+				lineageTag: a9c9380e-b3d3-448b-b387-b5a14fa298aa
+				summarizeBy: sum
+				sourceColumn: anio
+
+				annotation SummarizationSetBy = Automatic
+
+			column categoria
+				dataType: string
+				lineageTag: 7676488b-a70c-4390-bee7-08106685b360
+				summarizeBy: none
+				sourceColumn: categoria
+
+				annotation SummarizationSetBy = Automatic
+
+			column fecha
+				dataType: dateTime
+				formatString: Long Date
+				lineageTag: 5e35a33d-21d3-4e9b-ad2f-73bf2a82348a
+				summarizeBy: none
+				sourceColumn: fecha
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation UnderlyingDateTimeDataType = Date
+
+			column dia_semana
+				dataType: string
+				lineageTag: 90b2e5b0-a3de-4950-a923-95ae7caa2b96
+				summarizeBy: none
+				sourceColumn: dia_semana
+
+				annotation SummarizationSetBy = Automatic
+
+			column fuente
+				dataType: string
+				lineageTag: 7757f42a-c916-4b96-8bbe-d94b155026dd
+				summarizeBy: none
+				sourceColumn: fuente
+
+				annotation SummarizationSetBy = Automatic
+
+			column pais
+				dataType: string
+				lineageTag: f9bc46e9-6ae2-467a-965f-ee4fb6a21a39
+				summarizeBy: none
+				sourceColumn: pais
+
+				annotation SummarizationSetBy = Automatic
+
+			column precio
+				dataType: double
+				lineageTag: 7abc90ae-1686-4844-921c-316e8828a86b
+				summarizeBy: sum
+				sourceColumn: precio
+
+				annotation SummarizationSetBy = Automatic
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			column animal
+				dataType: string
+				lineageTag: 3c3282b3-934c-41ff-ac4c-969f00875fbd
+				summarizeBy: none
+				sourceColumn: animal
+
+				annotation SummarizationSetBy = Automatic
+
+			column orden_pais
+				dataType: int64
+				formatString: 0
+				lineageTag: 3671b431-5982-4142-aeb4-f489a74cbfd2
+				summarizeBy: sum
+				sourceColumn: orden_pais
+
+				annotation SummarizationSetBy = Automatic
+
+			column orden_categoria
+				dataType: int64
+				formatString: 0
+				lineageTag: d22e95e9-68db-44c5-b989-b739979f7f3a
+				summarizeBy: sum
+				sourceColumn: orden_categoria
+
+				annotation SummarizationSetBy = Automatic
+
+			partition Precios_internacionales = m
+				mode: import
+				source =
+						let
+						    Origen = PostgreSQL.Database("localhost:5050", "app_database"),
+						    public_precios_internacionales = Origen{[Schema="public",Item="precios_internacionales"]}[Data]
+						in
+						    public_precios_internacionales
+
+			annotation PBI_ResultType = Table
+
+			annotation PBI_NavigationStepName = Navegación
+
+		table Calendario
+			lineageTag: 00aa60c9-2645-44f2-8d78-729df0b520bc
+
+			column NombreMes
+				lineageTag: 22156a48-afbc-4c24-975e-1702dec60e60
+				summarizeBy: none
+				isNameInferred
+				sourceColumn: [NombreMes]
+
+				annotation SummarizationSetBy = Automatic
+
+			column Trimestre
+				lineageTag: 30d051aa-bfff-425a-901a-b2add2eda4f1
+				summarizeBy: none
+				isNameInferred
+				sourceColumn: [Trimestre]
+
+				annotation SummarizationSetBy = Automatic
+
+			column AnioMes
+				formatString: 0
+				lineageTag: 2ed24001-b930-44a5-928e-199c9a3da73c
+				summarizeBy: sum
+				isNameInferred
+				sourceColumn: [AnioMes]
+
+				annotation SummarizationSetBy = Automatic
+
+			column Date
+				formatString: Short Date
+				lineageTag: bcbf87f8-2a4a-4db4-9c50-7d28f4e9a247
+				summarizeBy: none
+				isNameInferred
+				sourceColumn: [Date]
+
+				variation Variación
+					isDefault
+					relationship: 92755659-d850-4f7a-a11c-e3dcd2c0d4b3
+					defaultHierarchy: LocalDateTable_6c12e4c9-b299-4369-b200-184d46ac11e7.'Jerarquía de fechas'
+
+				annotation SummarizationSetBy = Automatic
+
+			column Año
+				formatString: 0
+				lineageTag: b59ef305-ee63-4ec5-b42a-4d9fc5282d70
+				summarizeBy: sum
+				isNameInferred
+				sourceColumn: [Año]
+
+				annotation SummarizationSetBy = Automatic
+
+			column MesNumero
+				formatString: 0
+				lineageTag: 5d46451c-f13c-453b-9d97-17ba5cff55c5
+				summarizeBy: sum
+				isNameInferred
+				sourceColumn: [MesNumero]
+
+				annotation SummarizationSetBy = Automatic
+
+			column Semestre
+				lineageTag: 0e894260-1a90-49c1-ab95-42a92140b283
+				summarizeBy: none
+				isNameInferred
+				sourceColumn: [Semestre]
+
+				annotation SummarizationSetBy = Automatic
+
+			column NroSemana
+				formatString: 0
+				lineageTag: dc7856ab-2abc-4f97-b082-f2c059c0982c
+				summarizeBy: sum
+				isNameInferred
+				sourceColumn: [NroSemana]
+
+				annotation SummarizationSetBy = Automatic
+
+			column AnioSemana
+				formatString: 0
+				lineageTag: 241c1ca3-79bd-456c-ba31-0badf0200b4f
+				summarizeBy: sum
+				isNameInferred
+				sourceColumn: [AnioSemana]
+
+				annotation SummarizationSetBy = Automatic
+
+			column MesAnio
+				lineageTag: 5741dbff-7f2e-44b0-ab0e-669a0f2d656b
+				summarizeBy: none
+				isNameInferred
+				sourceColumn: [MesAnio]
+
+				annotation SummarizationSetBy = Automatic
+
+			partition Calendario = calculated
+				mode: import
+				source =
+						ADDCOLUMNS(
+						    CALENDAR(
+						        MIN('Precios_internacionales'[Fecha]),
+						        MAX('Precios_internacionales'[Fecha])
+						    ),
+						    "Año", YEAR([Date]),
+						    "MesNumero", MONTH([Date]),
+						    "NombreMes", FORMAT([Date], "MMMM"),
+						    "AnioMes", YEAR([Date]) * 100 + MONTH([Date]),
+						    "Trimestre", "T" & FORMAT([Date], "Q"),
+						    "Semestre", IF(MONTH([Date]) <= 6, "S1", "S2"),
+						    "NroSemana", WEEKNUM([Date], 2),
+						    "AnioSemana", YEAR([Date]) * 100 + WEEKNUM([Date], 2),
+						    "MesAnio", FORMAT([Date], "MMM-YYYY")
+						)
+
+		table Medidas
+			lineageTag: f4cf3e11-e925-48f1-95fd-13eb3056c30f
+
+			measure 'Total Peso Res' = sum('public faena'[peso_res])
+				formatString: 0
+				lineageTag: cc4a8a09-02ac-48dc-8fb7-3f392099a09d
+
+			measure Produccion_Año_Anterior =
+					
+					CALCULATE(
+					    [Produccion_Final_Suma],
+					    SAMEPERIODLASTYEAR('Calendario'[Date])
+					)
+				lineageTag: ec1a1897-a573-46e1-9e81-71c44f1531e0
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			measure Produccion_mes_anterior = ```
+					
+					CALCULATE (
+					    [Produccion_Denticion_Categoria],
+					    DATEADD ( Calendario[Date], -1, MONTH ),
+					    REMOVEFILTERS ( Calendario[Año] )
+					)
+					
+					```
+				formatString: 0
+				lineageTag: c231d12b-e745-4e61-87ef-382dc5a2be53
+
+			measure Produccion_ultimo_periodo =
+					
+					[Total Cabezas] * [Total Peso Res]
+					/*var max_fecha= MAX('public faena'[anio_mes])
+					RETURN
+					CALCULATE(SUM('public faena'[cantidad_cabezas]),FILTER('public faena','public faena'[anio_mes]=max_fecha))*/
+				formatString: 0
+				lineageTag: 60974f50-ec4f-4f6f-b300-2f52ca13a5eb
+
+			measure Produccion_Denticion_Categoria =
+					
+					VAR _totalCabezasCategoria =
+					    CALCULATE(
+					        [Total Cabezas],
+					        ALLSELECTED('public faena'[dentición])
+					    )
+					VAR _pesoPromedioPonderado =
+					    DIVIDE(
+					        SUMX(
+					            VALUES('public faena'[dentición]),
+					            [Total Cabezas] * CALCULATE(MAX('public faena'[peso_res]))
+					        ),
+					        [Total Cabezas]
+					    )
+					VAR _resultado = DIVIDE(_totalCabezasCategoria * _pesoPromedioPonderado, 1000)
+					RETURN
+					    _resultado
+				lineageTag: 2f9b6a90-e534-449f-9832-d9fc50a35815
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			measure Diferencia_produccion_1_mes_anterior = [Produccion_Denticion_Categoria] - [Produccion_mes_anterior]
+				formatString: #,0
+				lineageTag: 123a21c4-3a55-42c2-9c56-14cc1653029f
+
+			measure Produccion_3_mes_anterior = ```
+					
+					CALCULATE (
+					    [Produccion_Denticion_Categoria],
+					    DATEADD ( Calendario[Date], -3, MONTH ),
+					    REMOVEFILTERS ( Calendario[Año] )
+					)
+					
+					```
+				lineageTag: 86826b6d-add0-40e7-9817-663cb91b67de
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			measure Diferencia_produccion_3_meses_anterior = [Produccion_Denticion_Categoria]-[Produccion_3_mes_anterior]
+				formatString: #,0
+				lineageTag: 8c648e16-c08f-40c4-a15f-28ca8399f701
+
+			measure Produccion_6_mes_anterior =
+					
+					CALCULATE (
+					    [Produccion_Denticion_Categoria],
+					    DATEADD ( Calendario[Date], -6, MONTH ),
+					    REMOVEFILTERS ( Calendario[Año] )
+					)
+				lineageTag: d587f4e5-1687-4ac5-937a-2cab4365ad96
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			measure Diferencia_produccion_6_meses_anterior = [Produccion_Denticion_Categoria]-[Produccion_6_mes_anterior]
+				formatString: #,0
+				lineageTag: e23b54d7-ba5d-49ce-a459-c960978f421f
+
+			measure Produccion_12_mes_anterior =
+					
+					CALCULATE (
+					    [Produccion_Denticion_Categoria],
+					    DATEADD ( Calendario[Date], -12, MONTH ),
+					    REMOVEFILTERS ( Calendario[Año] )
+					)
+				lineageTag: fb6ed6b1-b3b4-49c7-a661-b98ca16204d2
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			measure Diferencia_produccion_12_meses_anterior = [Produccion_Denticion_Categoria]-[Produccion_12_mes_anterior]
+				formatString: #,0.00
+				lineageTag: 648a8abb-9c19-42d7-96ea-29b70f934380
+
+			measure Variacion_%_1_anterior =
+					
+					DIVIDE(
+					    [Produccion_Denticion_Categoria] - [Produccion_mes_anterior],
+					    [Produccion_mes_anterior]
+					)
+				formatString: 0.00\ %;-0.00\ %;0.00\ %
+				lineageTag: e730bd5c-af23-4881-b8d5-3597c0c675d9
+
+			measure Variacion_%_3_meses =
+					
+					DIVIDE(
+					    [Produccion_Denticion_Categoria] - [Produccion_3_mes_anterior],
+					    [Produccion_3_mes_anterior]
+					)
+				formatString: 0.00\ %;-0.00\ %;0.00\ %
+				lineageTag: dae7ea70-9e33-49c8-84de-99e62d5d44bc
+
+			measure Variacion_%_6_meses =
+					
+					DIVIDE(
+					    [Produccion_Denticion_Categoria] - [Produccion_6_mes_anterior],
+					    [Produccion_6_mes_anterior]
+					)
+				formatString: 0.00\ %;-0.00\ %;0.00\ %
+				lineageTag: dcedb5c6-cec1-42b0-8742-d637dfd28baf
+
+			measure Variacion_%_12_meses =
+					
+					DIVIDE(
+					    [Produccion_Denticion_Categoria] - [Produccion_12_mes_anterior],
+					    [Produccion_12_mes_anterior]
+					)
+				formatString: 0.00\ %;-0.00\ %;0.00\ %
+				lineageTag: 771da9fe-79ec-4ad8-8a1b-1ddc93004e44
+
+			measure Produccion_Denticion_Categoria_ver = ```
+					
+					VAR _totalCabezasCategoria =
+					    CALCULATE(
+					        [Total Cabezas],
+					        ALLSELECTED('public faena'[dentición])
+					    )
+					
+					VAR _pesoPromedioPonderado =
+					    DIVIDE(
+					        CALCULATE(
+					            SUMX(
+					                VALUES('public faena'[dentición]),
+					                VAR _cabezas = CALCULATE([Total Cabezas])
+					                VAR _peso = CALCULATE(AVERAGE('public faena'[peso_res]))
+					                RETURN _cabezas * _peso
+					            ),
+					            ALLSELECTED('public faena'[dentición])
+					        ),
+					        _totalCabezasCategoria
+					    )
+					
+					VAR _resultado = 
+					    DIVIDE(
+					        _totalCabezasCategoria * _pesoPromedioPonderado,
+					        1000
+					    )
+					
+					RETURN
+					    _resultado
+					```
+				lineageTag: 9456363c-b2eb-4f7d-a940-e40f3d3fe61b
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			measure Debug_Pesos =
+					
+					SUMX(
+					    VALUES('public faena'[dentición]),
+					    CALCULATE(
+					        [Total Cabezas] * AVERAGE('public faena'[peso_res])
+					    )
+					)
+				lineageTag: 8ace3cef-2efb-4f3f-a053-158f9826f1bd
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			measure Medida
+				lineageTag: 7cb093f3-516c-4ec6-884a-9203d6e15558
+
+				annotation 43dbc3e8-3a1c-4b6f-9923-b49ff7d6691c = True
+
+			measure 'Average Peso Res' = AVERAGE('public faena'[peso_res])
+				lineageTag: f0bb789f-1b1d-4ee1-be5e-68992d7de9a0
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			measure Debug_Denticion_Detalle =
+					
+					CALCULATE(
+					    SUMX(
+					        VALUES('public faena'[dentición]),
+					        VAR _cabezas = CALCULATE([Total Cabezas])
+					        VAR _peso = CALCULATE(AVERAGE('public faena'[peso_res]))
+					        RETURN _cabezas * _peso
+					    ),
+					    ALLSELECTED('public faena'[dentición])
+					)
+				lineageTag: 689c77d5-b7fc-479c-b364-49cd9569317c
+
+				annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+			measure Debug_Categorias =
+					
+					CONCATENATEX(
+					    SUMMARIZE(
+					        'public faena',
+					        'public faena'[dentición],
+					        'public faena'[categoria]
+					    ),
+					    'public faena'[dentición] & " - " & 'public faena'[categoria],
+					    " | "
+					)
+				lineageTag: cf0fa284-d182-43b0-8111-386c9f59c86f
+
+			column Column
+				formatString: 0
+				lineageTag: 06fe462a-37e9-41a2-95ba-d88759169861
+				summarizeBy: sum
+				isNameInferred
+				sourceColumn: [Column]
+
+				annotation SummarizationSetBy = Automatic
+
+			partition Medidas = calculated
+				mode: import
+				source = Row("Column", BLANK())
+
+			annotation PBI_Id = e85d586a03184fcfbf75c5bdb850e0e8
+
+		table DateTableTemplate_7e3797fe-fec6-4f89-9245-314c17a42430
+			isHidden
+			isPrivate
+			lineageTag: 9f2a49d8-0aec-478a-990f-4c8ccf72de0f
+
+			column Date
+				dataType: dateTime
+				isHidden
+				formatString: General Date
+				lineageTag: 10b62cc3-c894-40a3-8419-4233b54cd578
+				dataCategory: PaddedDateTableDates
+				summarizeBy: none
+				isNameInferred
+				sourceColumn: [Date]
+
+				annotation SummarizationSetBy = User
+
+			column Año = YEAR([Date])
+				dataType: int64
+				isHidden
+				formatString: 0
+				lineageTag: 032d6de6-d12b-417a-b769-1cca764a9fd9
+				dataCategory: Years
+				summarizeBy: none
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = Year
+
+			column NroMes = MONTH([Date])
+				dataType: int64
+				isHidden
+				formatString: 0
+				lineageTag: f7385aae-8b23-41c7-9bdf-41ec3d977a62
+				dataCategory: MonthOfYear
+				summarizeBy: none
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = MonthNumber
+
+			column Mes = FORMAT([Date], "MMMM")
+				dataType: string
+				isHidden
+				lineageTag: 2ef1fa7a-1927-4d59-babe-d9f26de73ab7
+				dataCategory: Months
+				summarizeBy: none
+				sortByColumn: NroMes
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = Month
+
+			column NroTrimestre = INT(([NroMes] + 2) / 3)
+				dataType: int64
+				isHidden
+				formatString: 0
+				lineageTag: b59c30a8-cdb2-4963-b5cc-80ed07880e71
+				dataCategory: QuarterOfYear
+				summarizeBy: none
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = QuarterNumber
+
+			column Trimestre = "Qtr " & [NroTrimestre]
+				dataType: string
+				isHidden
+				lineageTag: a9c07836-7430-4fc5-9bc6-b2a4dc1ec71c
+				dataCategory: Quarters
+				summarizeBy: none
+				sortByColumn: NroTrimestre
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = Quarter
+
+			column Día = DAY([Date])
+				dataType: int64
+				isHidden
+				formatString: 0
+				lineageTag: abbf1665-626f-42e3-9d45-495f462fe7fb
+				dataCategory: DayOfMonth
+				summarizeBy: none
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = Day
+
+			hierarchy 'Jerarquía de fechas'
+				lineageTag: 135dd37a-f20e-4801-8e58-2764dd2fd6b8
+
+				level Año
+					lineageTag: 0c5a3b05-a1b0-4945-8607-a766d372cf1e
+					column: Año
+
+				level Trimestre
+					lineageTag: 4b81e742-27cc-43e6-9935-ddee68577dfb
+					column: Trimestre
+
+				level Mes
+					lineageTag: 5b1a49ec-49ba-40c9-8bb0-5ed3b8d1a0b1
+					column: Mes
+
+				level Día
+					lineageTag: 442f030b-dc64-4b07-993c-91bb1acccc75
+					column: Día
+
+				annotation TemplateId = DateHierarchy
+
+			partition DateTableTemplate_7e3797fe-fec6-4f89-9245-314c17a42430 = calculated
+				mode: import
+				source = Calendar(Date(2015,1,1), Date(2015,1,1))
+
+			annotation __PBI_TemplateDateTable = true
+
+			annotation DefaultItem = DateHierarchy
+
+		table LocalDateTable_6c12e4c9-b299-4369-b200-184d46ac11e7
+			isHidden
+			showAsVariationsOnly
+			lineageTag: 075ab81c-8822-4796-9ef2-7306967903f3
+
+			column Date
+				dataType: dateTime
+				isHidden
+				formatString: General Date
+				lineageTag: 1ae4bbf3-2737-4666-9e66-038a3d626708
+				dataCategory: PaddedDateTableDates
+				summarizeBy: none
+				isNameInferred
+				sourceColumn: [Date]
+
+				annotation SummarizationSetBy = User
+
+			column Año = YEAR([Date])
+				dataType: int64
+				isHidden
+				formatString: 0
+				lineageTag: 22017c6f-650e-4b9d-9157-edd75b59d115
+				dataCategory: Years
+				summarizeBy: none
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = Year
+
+			column NroMes = MONTH([Date])
+				dataType: int64
+				isHidden
+				formatString: 0
+				lineageTag: f34de4a8-ddbc-4f2a-aec1-ab7f87a67c56
+				dataCategory: MonthOfYear
+				summarizeBy: none
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = MonthNumber
+
+			column Mes = FORMAT([Date], "MMMM")
+				dataType: string
+				isHidden
+				lineageTag: 206fd0a7-5629-47ad-87a3-a605a8dd1359
+				dataCategory: Months
+				summarizeBy: none
+				sortByColumn: NroMes
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = Month
+
+			column NroTrimestre = INT(([NroMes] + 2) / 3)
+				dataType: int64
+				isHidden
+				formatString: 0
+				lineageTag: 0a362d49-25f1-432f-9822-f12bb611cc86
+				dataCategory: QuarterOfYear
+				summarizeBy: none
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = QuarterNumber
+
+			column Trimestre = "Qtr " & [NroTrimestre]
+				dataType: string
+				isHidden
+				lineageTag: c0d7f8fb-c077-49ba-9b1a-7d4ec6babea8
+				dataCategory: Quarters
+				summarizeBy: none
+				sortByColumn: NroTrimestre
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = Quarter
+
+			column Día = DAY([Date])
+				dataType: int64
+				isHidden
+				formatString: 0
+				lineageTag: 36bd65c9-1907-4a2f-8776-3e4a9a4fab9e
+				dataCategory: DayOfMonth
+				summarizeBy: none
+
+				annotation SummarizationSetBy = User
+
+				annotation TemplateId = Day
+
+			hierarchy 'Jerarquía de fechas'
+				lineageTag: 453d2ef4-9819-4206-ae58-202a155cc279
+
+				level Año
+					lineageTag: 4ba6faff-89b5-405b-8751-102d1b82e6b7
+					column: Año
+
+				level Trimestre
+					lineageTag: b18efc26-eca4-4cb0-8c26-b9e2718c4f81
+					column: Trimestre
+
+				level Mes
+					lineageTag: fc953265-04a3-4343-b3d6-60db9dda33d4
+					column: Mes
+
+				level Día
+					lineageTag: de04a1b5-d87e-4ef1-898a-625a05bdeada
+					column: Día
+
+				annotation TemplateId = DateHierarchy
+
+			partition LocalDateTable_6c12e4c9-b299-4369-b200-184d46ac11e7 = calculated
+				mode: import
+				source = Calendar(Date(Year(MIN('Calendario'[Date])), 1, 1), Date(Year(MAX('Calendario'[Date])), 12, 31))
+
+			annotation __PBI_LocalDateTable = true
+
+		relationship 92755659-d850-4f7a-a11c-e3dcd2c0d4b3
+			joinOnDateBehavior: datePartOnly
+			fromColumn: Calendario.Date
+			toColumn: LocalDateTable_6c12e4c9-b299-4369-b200-184d46ac11e7.Date
+
+		relationship 7d6a5285-dc00-8d1c-7197-7ac7dff7c3d6
+			fromColumn: Precios_internacionales.fecha
+			toColumn: Calendario.Date
+
+		cultureInfo es-AR
+
+			linguisticMetadata = {"Version":"4.1.0","Language":"en-US","Entities":{"precios_internacionale":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales"}},"State":"Generated","Terms":[{"precios internacionale":{"State":"Generated"}},{"precio internacionale":{"Type":"Noun","State":"Generated","Weight":0.78}},{"Precios_internacionales":{"Type":"Noun","State":"Generated","Weight":0.99}}]},"precios_internacionale.anio":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"anio"}},"State":"Generated","Terms":[{"anio":{"State":"Generated"}}]},"precios_internacionale.categoria":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"categoria"}},"State":"Generated","Terms":[{"categoria":{"State":"Generated"}}]},"precios_internacionale.total_cabezas":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Total Cabezas"}},"State":"Generated","Terms":[{"total cabezas":{"State":"Generated"}},{"aggregate cabeza":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.582}},{"overall cabeza":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.582}}]},"precios_internacionale.total_toneladas":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Total Toneladas"}},"State":"Generated","Terms":[{"total toneladas":{"State":"Generated"}},{"aggregate tonelada":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.582}},{"overall tonelada":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.582}}]},"precios_internacionale.peso_promedio_res":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Peso Promedio Res (kg)"}},"State":"Generated","Terms":[{"peso promedio res":{"State":"Generated"}},{"peso promedio res (kg)":{"State":"Generated"}}],"Units":["kilogram","kg"]},"precios_internacionale.variación_cabezas_YoY_":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Variación Cabezas YoY %"}},"State":"Generated","Terms":[{"variación cabezas YoY %":{"State":"Generated"}},{"variación cabeza yoy percentage":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.771}},{"variación cabeza yoy pct":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.748}}]},"precios_internacionale.variación_toneladas_YoY_":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Variación Toneladas YoY %"}},"State":"Generated","Terms":[{"variación toneladas YoY %":{"State":"Generated"}},{"variación tonelada yoy percentage":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.771}},{"variación tonelada yoy pct":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.748}}]},"precios_internacionale.cabezas_hembra":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"% Cabezas Hembra"}},"State":"Generated","Terms":[{"% cabezas hembra":{"State":"Generated"}},{"percentage cabeza hembra":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.609}},{"pct cabeza hembra":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.591}}]},"precios_internacionale.cabezas_macho":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"% Cabezas Macho"}},"State":"Generated","Terms":[{"% cabezas macho":{"State":"Generated"}},{"percentage cabeza macho":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.609}},{"pct cabeza macho":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.591}}]},"precios_internacionale.rendimiento_res_kg_ton":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Rendimiento Res (kg/ton)"}},"State":"Generated","Terms":[{"rendimiento res (kg/ton)":{"State":"Generated"}},{"rendimiento res":{"State":"Generated","Weight":0.75}},{"rendimiento res (kg":{"State":"Generated","Weight":0.97}},{"rendimiento res ( kg ton )":{"State":"Generated","Weight":0.97}},{"ton)":{"State":"Generated","Weight":0.97}}]},"precios_internacionale.cabezas_año_anterior":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Cabezas Año Anterior"}},"State":"Generated","Terms":[{"cabezas año anterior":{"State":"Generated"}}]},"precios_internacionale.toneladas_año_anterior":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Toneladas Año Anterior"}},"State":"Generated","Terms":[{"toneladas año anterior":{"State":"Generated"}}]},"precios_internacionale.participación_categoría":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"% Participación Categoría"}},"State":"Generated","Terms":[{"% participación categoría":{"State":"Generated"}},{"percentage participación categoría":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.609}},{"pct participación categoría":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.591}}]},"precios_internacionale.participación_categoría_ton":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"% Participación Categoría Ton"}},"State":"Generated","Terms":[{"% participación categoría ton":{"State":"Generated"}},{"percentage participación categoría ton":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.617}},{"pct participación categoría ton":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.599}},{"% participación categoría load":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.499}},{"% participación categoría lot":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.499}},{"% participación categoría mass":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.499}},{"% participación categoría mountain":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.499}},{"% participación categoría heap":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.499}},{"% participación categoría stack":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.499}},{"% participación categoría bushel":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.499}},{"% participación categoría ocean":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.499}}]},"precios_internacionale.cabezas_promedio_mensual":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Cabezas Promedio Mensual"}},"State":"Generated","Terms":[{"cabezas promedio mensual":{"State":"Generated"}}]},"precios_internacionale.cabezas_acumulado_YTD":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Cabezas Acumulado YTD"}},"State":"Generated","Terms":[{"cabezas acumulado YTD":{"State":"Generated"}},{"cabeza acumulado year to date":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.623}}]},"precios_internacionale.toneladas_acumulado_YTD":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Toneladas Acumulado YTD"}},"State":"Generated","Terms":[{"toneladas acumulado YTD":{"State":"Generated"}},{"tonelada acumulado year to date":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.623}}]},"precios_internacionale.ranking_mes_por_cabezas":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Ranking Mes por Cabezas"}},"State":"Generated","Terms":[{"ranking mes por cabezas":{"State":"Generated"}}]},"precios_internacionale.ranking_categoría_por_cabezas":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Ranking Categoría por Cabezas"}},"State":"Generated","Terms":[{"ranking categoría por cabezas":{"State":"Generated"}}]},"precios_internacionale.cabezas_vs_promedio_histórico":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Cabezas vs Promedio Histórico"}},"State":"Generated","Terms":[{"cabezas vs promedio histórico":{"State":"Generated"}}]},"precios_internacionale.máximo_cabezas_en_mes":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Máximo Cabezas en Mes"}},"State":"Generated","Terms":[{"máximo cabezas en mes":{"State":"Generated"}}]},"precios_internacionale.mínimo_cabezas_en_mes":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Mínimo Cabezas en Mes"}},"State":"Generated","Terms":[{"mínimo cabezas en mes":{"State":"Generated"}}]},"precios_internacionale.cabezas_hembra_total":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Cabezas Hembra Total"}},"State":"Generated","Terms":[{"cabezas hembra total":{"State":"Generated"}},{"cabeza hembra aggregate":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.739}},{"cabeza hembra overall":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.739}}]},"precios_internacionale.cabezas_macho_total":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Cabezas Macho Total"}},"State":"Generated","Terms":[{"cabezas macho total":{"State":"Generated"}},{"cabeza macho aggregate":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.739}},{"cabeza macho overall":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.739}}]},"precios_internacionale.relación_hembra_macho":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Relación Hembra/Macho"}},"State":"Generated","Terms":[{"relación hembra/macho":{"State":"Generated"}},{"relación hembra":{"State":"Generated","Weight":0.97}},{"relación hembra macho":{"State":"Generated","Weight":0.97}},{"macho":{"State":"Generated","Weight":0.97}},{"masculine":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.476}},{"brave":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.476}},{"chauvinist":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.476}}]},"precios_internacionale.MEJ_sobre_total":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"% MEJ sobre Total"}},"State":"Generated","Terms":[{"% MEJ sobre total":{"State":"Generated"}},{"% mej sobre aggregate":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.748}},{"% mej sobre overall":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.748}},{"percentage mej sobre total":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.617}},{"pct mej sobre total":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.599}}]},"precios_internacionale.toneladas_hembra_total":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Toneladas Hembra Total"}},"State":"Generated","Terms":[{"toneladas hembra total":{"State":"Generated"}},{"tonelada hembra aggregate":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.739}},{"tonelada hembra overall":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.739}}]},"precios_internacionale.toneladas_macho_total":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Toneladas Macho Total"}},"State":"Generated","Terms":[{"toneladas macho total":{"State":"Generated"}},{"tonelada macho aggregate":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.739}},{"tonelada macho overall":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.739}}]},"precios_internacionale.peso_promedio_hembra":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Peso Promedio Hembra (kg)"}},"State":"Generated","Terms":[{"peso promedio hembra":{"State":"Generated"}},{"peso promedio hembra (kg)":{"State":"Generated"}}],"Units":["kilogram","kg"]},"precios_internacionale.peso_promedio_macho":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Peso Promedio Macho (kg)"}},"State":"Generated","Terms":[{"peso promedio macho":{"State":"Generated"}},{"peso promedio macho (kg)":{"State":"Generated"}}],"Units":["kilogram","kg"]},"calendario":{"Definition":{"Binding":{"ConceptualEntity":"Calendario"}},"State":"Generated","Terms":[{"calendario":{"State":"Generated"}}]},"calendario.nombre_me":{"Definition":{"Binding":{"ConceptualEntity":"Calendario","ConceptualProperty":"NombreMes"}},"State":"Generated","Terms":[{"nombre me":{"State":"Generated"}},{"NombreMes":{"Type":"Noun","State":"Generated","Weight":0.99}}]},"calendario.trimestre":{"Definition":{"Binding":{"ConceptualEntity":"Calendario","ConceptualProperty":"Trimestre"}},"State":"Generated","Terms":[{"trimestre":{"State":"Generated"}}]},"calendario.anio_me":{"Definition":{"Binding":{"ConceptualEntity":"Calendario","ConceptualProperty":"AnioMes"}},"State":"Generated","Terms":[{"anio me":{"State":"Generated"}},{"AnioMes":{"Type":"Noun","State":"Generated","Weight":0.99}}]},"precios_internacionale.peso_promedio_por_dentición":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Peso Promedio por Dentición"}},"State":"Generated","Terms":[{"peso promedio por dentición":{"State":"Generated"}}]},"precios_internacionale.cabezas_2_dientes":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Cabezas 2 Dientes"}},"State":"Generated","Terms":[{"cabezas 2 dientes":{"State":"Generated"}}]},"precios_internacionale.cabezas_4_dientes":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Cabezas 4 Dientes"}},"State":"Generated","Terms":[{"cabezas 4 dientes":{"State":"Generated"}}]},"precios_internacionale.cabezas_6_dientes":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Cabezas 6 Dientes"}},"State":"Generated","Terms":[{"cabezas 6 dientes":{"State":"Generated"}}]},"precios_internacionale.cabezas_8_dientes":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Cabezas 8 Dientes"}},"State":"Generated","Terms":[{"cabezas 8 dientes":{"State":"Generated"}}]},"precios_internacionale.cabezas_más_de_8_dientes":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Cabezas Más de 8 Dientes"}},"State":"Generated","Terms":[{"cabezas más de 8 dientes":{"State":"Generated"}}]},"precios_internacionale.variación_cabezas_macho":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Variación Cabezas Macho"}},"State":"Generated","Terms":[{"variación cabezas macho":{"State":"Generated"}}]},"precios_internacionale.variación_cabezas_macho_":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Variación Cabezas Macho %"}},"State":"Generated","Terms":[{"variación cabezas macho %":{"State":"Generated"}},{"variación cabeza macho percentage":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.771}},{"variación cabeza macho pct":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.748}}]},"precios_internacionale.variación_cabezas_hembra":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Variación Cabezas Hembra"}},"State":"Generated","Terms":[{"variación cabezas hembra":{"State":"Generated"}}]},"precios_internacionale.variación_cabezas_hembra_":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Variación Cabezas Hembra %"}},"State":"Generated","Terms":[{"variación cabezas hembra %":{"State":"Generated"}},{"variación cabeza hembra percentage":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.771}},{"variación cabeza hembra pct":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.748}}]},"precios_internacionale.variación_cabezas_dentición":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Variación Cabezas Dentición"}},"State":"Generated","Terms":[{"variación cabezas dentición":{"State":"Generated"}}]},"precios_internacionale.variación_cabezas_dentición_":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Variación Cabezas Dentición %"}},"State":"Generated","Terms":[{"variación cabezas dentición %":{"State":"Generated"}},{"variación cabeza dentición percentage":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.771}},{"variación cabeza dentición pct":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.748}}]},"medida.diferencia_produccion_1_mes_anterior":{"Definition":{"Binding":{"ConceptualEntity":"Medidas","ConceptualProperty":"Diferencia_produccion_1_mes_anterior"}},"State":"Generated","Terms":[{"diferencia produccion 1 mes anterior":{"State":"Generated"}},{"Diferencia_produccion_1_mes_anterior":{"Type":"Noun","State":"Generated","Weight":0.99}}]},"medida.produccion_mes_anterior":{"Definition":{"Binding":{"ConceptualEntity":"Medidas","ConceptualProperty":"Produccion_mes_anterior"}},"State":"Generated","Terms":[{"produccion mes anterior":{"State":"Generated"}},{"Produccion_mes_anterior":{"Type":"Noun","State":"Generated","Weight":0.99}}]},"medida.produccion_ultimo_periodo":{"Definition":{"Binding":{"ConceptualEntity":"Medidas","ConceptualProperty":"Produccion_ultimo_periodo"}},"State":"Generated","Terms":[{"produccion ultimo periodo":{"State":"Generated"}},{"Produccion_ultimo_periodo":{"Type":"Noun","State":"Generated","Weight":0.99}}]},"medida.diferencia_produccion_3_meses_anterior":{"Definition":{"Binding":{"ConceptualEntity":"Medidas","ConceptualProperty":"Diferencia_produccion_3_meses_anterior"}},"State":"Generated","Terms":[{"diferencia produccion 3 meses anterior":{"State":"Generated"}},{"Diferencia_produccion_3_meses_anterior":{"Type":"Noun","State":"Generated","Weight":0.99}}]},"precios_internacionale.test":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Test"}},"State":"Generated","Terms":[{"test":{"State":"Generated"}},{"examination":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.491}},{"exam":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.491}},{"assessment":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.491}},{"investigation":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.491}},{"analysis":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.491}},{"quiz":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.476}},{"trial":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.476}},{"check":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.476}},{"experiment":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.476}},{"assay":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.476}}]},"medida.variacion__1_anterior":{"Definition":{"Binding":{"ConceptualEntity":"Medidas","ConceptualProperty":"Variacion_%_1_anterior"}},"State":"Generated","Terms":[{"variacion_%_1_anterior":{"State":"Generated"}},{"variacion_ percentage _1_anterior":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.617}},{"variacion_ pct _1_anterior":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.599}}]},"medida.variacion__3_meses":{"Definition":{"Binding":{"ConceptualEntity":"Medidas","ConceptualProperty":"Variacion_%_3_meses"}},"State":"Generated","Terms":[{"variacion_%_3_meses":{"State":"Generated"}},{"variacion_ percentage _3_mese":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.617}},{"variacion_ pct _3_mese":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.599}}]},"medida.diferencia_produccion_6_meses_anterior":{"Definition":{"Binding":{"ConceptualEntity":"Medidas","ConceptualProperty":"Diferencia_produccion_6_meses_anterior"}},"State":"Generated","Terms":[{"diferencia produccion 6 meses anterior":{"State":"Generated"}},{"Diferencia_produccion_6_meses_anterior":{"Type":"Noun","State":"Generated","Weight":0.99}}]},"calendario.date":{"Definition":{"Binding":{"ConceptualEntity":"Calendario","ConceptualProperty":"Date"}},"State":"Generated","Terms":[{"date":{"State":"Generated"}},{"moment":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.736}},{"period":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.714}}],"SemanticType":"Time"},"calendario.date.jerarquía_de_fecha":{"Definition":{"Binding":{"ConceptualEntity":"Calendario","VariationSource":"Date","VariationSet":"Variación","Hierarchy":"Jerarquía de fechas"}},"State":"Generated","Terms":[{"jerarquía de fecha":{"State":"Generated"}}]},"calendario.date.año":{"Definition":{"Binding":{"ConceptualEntity":"Calendario","VariationSource":"Date","VariationSet":"Variación","Hierarchy":"Jerarquía de fechas","HierarchyLevel":"Año"}},"State":"Generated","Terms":[{"año":{"State":"Generated"}},{"date año":{"State":"Generated"}},{"moment año":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.6}},{"period año":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.582}}]},"calendario.date.trimestre":{"Definition":{"Binding":{"ConceptualEntity":"Calendario","VariationSource":"Date","VariationSet":"Variación","Hierarchy":"Jerarquía de fechas","HierarchyLevel":"Trimestre"}},"State":"Generated","Terms":[{"trimestre":{"State":"Generated"}},{"date trimestre":{"State":"Generated"}},{"moment trimestre":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.6}},{"period trimestre":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.582}}]},"calendario.date.me":{"Definition":{"Binding":{"ConceptualEntity":"Calendario","VariationSource":"Date","VariationSet":"Variación","Hierarchy":"Jerarquía de fechas","HierarchyLevel":"Mes"}},"State":"Generated","Terms":[{"me":{"State":"Generated"}},{"date me":{"State":"Generated"}},{"moment me":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.75}},{"period me":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.727}}]},"calendario.date.día":{"Definition":{"Binding":{"ConceptualEntity":"Calendario","VariationSource":"Date","VariationSet":"Variación","Hierarchy":"Jerarquía de fechas","HierarchyLevel":"Día"}},"State":"Generated","Terms":[{"día":{"State":"Generated"}},{"date día":{"State":"Generated"}},{"moment día":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.6}},{"period día":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.582}}]},"calendario.año":{"Definition":{"Binding":{"ConceptualEntity":"Calendario","ConceptualProperty":"Año"}},"State":"Generated","Terms":[{"año":{"State":"Generated"}}]},"calendario.mes_numero":{"Definition":{"Binding":{"ConceptualEntity":"Calendario","ConceptualProperty":"MesNumero"}},"State":"Generated","Terms":[{"mes numero":{"State":"Generated"}},{"me numero":{"Type":"Noun","State":"Generated","Weight":0.78}},{"MesNumero":{"Type":"Noun","State":"Generated","Weight":0.99}}]},"medida.variacion__6_meses":{"Definition":{"Binding":{"ConceptualEntity":"Medidas","ConceptualProperty":"Variacion_%_6_meses"}},"State":"Generated","Terms":[{"variacion_%_6_meses":{"State":"Generated"}},{"variacion_ percentage _6_mese":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.617}},{"variacion_ pct _6_mese":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.599}}]},"medida.variacion__12_meses":{"Definition":{"Binding":{"ConceptualEntity":"Medidas","ConceptualProperty":"Variacion_%_12_meses"}},"State":"Generated","Terms":[{"variacion_%_12_meses":{"State":"Generated"}},{"variacion_ percentage _12_mese":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.617}},{"variacion_ pct _12_mese":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.599}}]},"medida.total_peso_res":{"Definition":{"Binding":{"ConceptualEntity":"Medidas","ConceptualProperty":"Total Peso Res"}},"State":"Generated","Terms":[{"total peso res":{"State":"Generated"}},{"aggregate peso res":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.591}},{"overall peso res":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.591}}]},"medida.column":{"Definition":{"Binding":{"ConceptualEntity":"Medidas","ConceptualProperty":"Column"}},"State":"Generated","Terms":[{"column":{"State":"Generated"}},{"pilaster":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.491}},{"pier":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.491}},{"pillar":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.476}},{"post":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.476}},{"support":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.476}},{"stake":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.476}},{"pole":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.476}},{"buttress":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.476}},{"underpinning":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.476}},{"contribution":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.466}}]},"medida":{"Definition":{"Binding":{"ConceptualEntity":"Medidas"}},"State":"Generated","Terms":[{"medida":{"State":"Generated","Weight":0.87}}]},"precios_internacionale.ultima_fecha_datos":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"Ultima_Fecha_Datos"}},"State":"Generated","Terms":[{"ultima fecha datos":{"State":"Generated"}},{"Ultima_Fecha_Datos":{"Type":"Noun","State":"Generated","Weight":0.99}}]},"calendario.semestre":{"Definition":{"Binding":{"ConceptualEntity":"Calendario","ConceptualProperty":"Semestre"}},"State":"Generated","Terms":[{"semestre":{"State":"Generated"}}]},"medida.produccion_año_anterior":{"Definition":{"Binding":{"ConceptualEntity":"Medidas","ConceptualProperty":"Produccion_Año_Anterior"}},"State":"Generated","Terms":[{"produccion año anterior":{"State":"Generated"}},{"Produccion_Año_Anterior":{"Type":"Noun","State":"Generated","Weight":0.99}}]},"medida.produccion_denticion_categoria":{"Definition":{"Binding":{"ConceptualEntity":"Medidas","ConceptualProperty":"Produccion_Denticion_Categoria"}},"State":"Generated","Terms":[{"produccion denticion categoria":{"State":"Generated"}},{"Produccion_Denticion_Categoria":{"Type":"Noun","State":"Generated","Weight":0.99}}]},"medida.produccion_3_mes_anterior":{"Definition":{"Binding":{"ConceptualEntity":"Medidas","ConceptualProperty":"Produccion_3_mes_anterior"}},"State":"Generated","Terms":[{"produccion 3 mes anterior":{"State":"Generated"}},{"Produccion_3_mes_anterior":{"Type":"Noun","State":"Generated","Weight":0.99}}]},"medida.produccion_6_mes_anterior":{"Definition":{"Binding":{"ConceptualEntity":"Medidas","ConceptualProperty":"Produccion_6_mes_anterior"}},"State":"Generated","Terms":[{"produccion 6 mes anterior":{"State":"Generated"}},{"Produccion_6_mes_anterior":{"Type":"Noun","State":"Generated","Weight":0.99}}]},"medida.produccion_12_mes_anterior":{"Definition":{"Binding":{"ConceptualEntity":"Medidas","ConceptualProperty":"Produccion_12_mes_anterior"}},"State":"Generated","Terms":[{"produccion 12 mes anterior":{"State":"Generated"}},{"Produccion_12_mes_anterior":{"Type":"Noun","State":"Generated","Weight":0.99}}]},"medida.diferencia_produccion_12_meses_anterior":{"Definition":{"Binding":{"ConceptualEntity":"Medidas","ConceptualProperty":"Diferencia_produccion_12_meses_anterior"}},"State":"Generated","Terms":[{"diferencia produccion 12 meses anterior":{"State":"Generated"}},{"Diferencia_produccion_12_meses_anterior":{"Type":"Noun","State":"Generated","Weight":0.99}}]},"medida.produccion_denticion_categoria_ver":{"Definition":{"Binding":{"ConceptualEntity":"Medidas","ConceptualProperty":"Produccion_Denticion_Categoria_ver"}},"State":"Generated","Terms":[{"produccion denticion categoria ver":{"State":"Generated"}},{"Produccion_Denticion_Categoria_ver":{"Type":"Noun","State":"Generated","Weight":0.99}}]},"medida.debug_pesos":{"Definition":{"Binding":{"ConceptualEntity":"Medidas","ConceptualProperty":"Debug_Pesos"}},"State":"Generated","Terms":[{"debug pesos":{"State":"Generated"}},{"Debug_Pesos":{"Type":"Noun","State":"Generated","Weight":0.99}},{"pesos":{"State":"Generated","Weight":0.97}}]},"medida.medida":{"Definition":{"Binding":{"ConceptualEntity":"Medidas","ConceptualProperty":"Medida"}},"State":"Generated","Terms":[{"medida":{"State":"Generated"}}]},"medida.average_peso_res":{"Definition":{"Binding":{"ConceptualEntity":"Medidas","ConceptualProperty":"Average Peso Res"}},"State":"Generated","Terms":[{"average peso res":{"State":"Generated"}}]},"medida.debug_denticion_detalle":{"Definition":{"Binding":{"ConceptualEntity":"Medidas","ConceptualProperty":"Debug_Denticion_Detalle"}},"State":"Generated","Terms":[{"debug denticion detalle":{"State":"Generated"}},{"Debug_Denticion_Detalle":{"Type":"Noun","State":"Generated","Weight":0.99}}]},"medida.debug_categorias":{"Definition":{"Binding":{"ConceptualEntity":"Medidas","ConceptualProperty":"Debug_Categorias"}},"State":"Generated","Terms":[{"debug categorias":{"State":"Generated"}},{"Debug_Categorias":{"Type":"Noun","State":"Generated","Weight":0.99}}]},"precios_internacionale.fecha":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"fecha"}},"State":"Generated","Terms":[{"fecha":{"State":"Generated"}},{"date":{"State":"Generated","Weight":0.7}}],"SemanticType":"Time"},"precios_internacionale.dia_semana":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"dia_semana"}},"State":"Generated","Terms":[{"dia semana":{"State":"Generated"}},{"dia_semana":{"Type":"Noun","State":"Generated","Weight":0.99}}]},"precios_internacionale.fuente":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"fuente"}},"State":"Generated","Terms":[{"fuente":{"State":"Generated"}}]},"precios_internacionale.pais":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"pais"}},"State":"Generated","Terms":[{"pais":{"State":"Generated"}}]},"precios_internacionale.precio":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"precio"}},"State":"Generated","Terms":[{"precio":{"State":"Generated"}}]},"precios_internacionale.orden_categoria":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"orden_categoria"}},"State":"Generated","Terms":[{"orden categoria":{"State":"Generated"}},{"orden_categoria":{"Type":"Noun","State":"Generated","Weight":0.99}}]},"precios_internacionale.orden_pais":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"orden_pais"}},"State":"Generated","Terms":[{"orden pais":{"State":"Generated"}},{"orden_pais":{"Type":"Noun","State":"Generated","Weight":0.99}}]},"precios_internacionale.animal":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"animal"}},"State":"Generated","Terms":[{"animal":{"State":"Generated"}},{"physical":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.476}},{"creature":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.466}},{"beast":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.466}},{"mammal":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.466}},{"organism":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.466}},{"being":{"Type":"Noun","State":"Suggested","Source":{"Agent":"Thesaurus"},"Weight":0.452}}]},"calendario.nro_semana":{"Definition":{"Binding":{"ConceptualEntity":"Calendario","ConceptualProperty":"NroSemana"}},"State":"Generated","Terms":[{"nro semana":{"State":"Generated"}},{"NroSemana":{"Type":"Noun","State":"Generated","Weight":0.99}}]},"calendario.anio_semana":{"Definition":{"Binding":{"ConceptualEntity":"Calendario","ConceptualProperty":"AnioSemana"}},"State":"Generated","Terms":[{"anio semana":{"State":"Generated"}},{"AnioSemana":{"Type":"Noun","State":"Generated","Weight":0.99}}]},"calendario.mes_anio":{"Definition":{"Binding":{"ConceptualEntity":"Calendario","ConceptualProperty":"MesAnio"}},"State":"Generated","Terms":[{"mes anio":{"State":"Generated"}},{"me anio":{"Type":"Noun","State":"Generated","Weight":0.78}},{"MesAnio":{"Type":"Noun","State":"Generated","Weight":0.99}}]},"precios_internacionales.dentición":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"dentición"}},"State":"Generated","Terms":[{"Dentición":{"State":"Suggested","Source":{"Type":"External","Agent":"PowerBI.VisualColumnRename"},"Weight":0.9}}]},"precios_internacionales.sexo":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"sexo"}},"State":"Generated","Terms":[{"Sexo":{"State":"Suggested","Source":{"Type":"External","Agent":"PowerBI.VisualColumnRename"},"Weight":0.9}}]},"precios_internacionales.peso":{"Definition":{"Binding":{"ConceptualEntity":"Precios_internacionales","ConceptualProperty":"peso"}},"State":"Generated","Terms":[{"Peso":{"State":"Suggested","Source":{"Type":"External","Agent":"PowerBI.VisualColumnRename"},"Weight":0.9}}]}},"Relationships":{"calendario_date_me_has_calendario_date_día":{"Binding":{"ConceptualEntity":"Calendario"},"State":"Generated","Roles":{"calendario.date.me":{"Target":{"Entity":"calendario.date.me"}},"calendario.date.día":{"Target":{"Entity":"calendario.date.día"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"calendario.date.me"},"Object":{"Role":"calendario.date.día"}},"State":"Generated","Weight":0.99,"ID":"me_have_días"},{"Attribute":{"Subject":{"Role":"calendario.date.día"},"Object":{"Role":"calendario.date.me"}},"State":"Generated","Weight":0.99,"ID":"días_have_me"},{"Preposition":{"Subject":{"Role":"calendario.date.día"},"Prepositions":[{"in":{"State":"Generated"}}],"Object":{"Role":"calendario.date.me"}},"State":"Generated","Weight":0.99,"ID":"días_are_in_me"}]},"calendario_date_trimestre_has_calendario_date_me":{"Binding":{"ConceptualEntity":"Calendario"},"State":"Generated","Roles":{"calendario.date.trimestre":{"Target":{"Entity":"calendario.date.trimestre"}},"calendario.date.me":{"Target":{"Entity":"calendario.date.me"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"calendario.date.trimestre"},"Object":{"Role":"calendario.date.me"}},"State":"Generated","Weight":0.99,"ID":"trimestres_have_me"},{"Attribute":{"Subject":{"Role":"calendario.date.me"},"Object":{"Role":"calendario.date.trimestre"}},"State":"Generated","Weight":0.99,"ID":"me_have_trimestres"},{"Preposition":{"Subject":{"Role":"calendario.date.me"},"Prepositions":[{"in":{"State":"Generated"}}],"Object":{"Role":"calendario.date.trimestre"}},"State":"Generated","Weight":0.99,"ID":"me_are_in_trimestres"}]},"calendario_date_año_has_calendario_date_trimestre":{"Binding":{"ConceptualEntity":"Calendario"},"State":"Generated","Roles":{"calendario.date.año":{"Target":{"Entity":"calendario.date.año"}},"calendario.date.trimestre":{"Target":{"Entity":"calendario.date.trimestre"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"calendario.date.año"},"Object":{"Role":"calendario.date.trimestre"}},"State":"Generated","Weight":0.99,"ID":"años_have_trimestres"},{"Attribute":{"Subject":{"Role":"calendario.date.trimestre"},"Object":{"Role":"calendario.date.año"}},"State":"Generated","Weight":0.99,"ID":"trimestres_have_años"},{"Preposition":{"Subject":{"Role":"calendario.date.trimestre"},"Prepositions":[{"in":{"State":"Generated"}}],"Object":{"Role":"calendario.date.año"}},"State":"Generated","Weight":0.99,"ID":"trimestres_are_in_años"}]},"calendario_date_jerarquía_de_fecha_has_calendario_date_día":{"Binding":{"ConceptualEntity":"Calendario"},"State":"Generated","Roles":{"calendario.date.jerarquía_de_fecha":{"Target":{"Entity":"calendario.date.jerarquía_de_fecha"}},"calendario.date.día":{"Target":{"Entity":"calendario.date.día"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"calendario.date.jerarquía_de_fecha"},"Object":{"Role":"calendario.date.día"}},"State":"Generated","Weight":0.99,"ID":"jerarquía_de_fechas_have_días"}]},"calendario_date_jerarquía_de_fecha_has_calendario_date_me":{"Binding":{"ConceptualEntity":"Calendario"},"State":"Generated","Roles":{"calendario.date.jerarquía_de_fecha":{"Target":{"Entity":"calendario.date.jerarquía_de_fecha"}},"calendario.date.me":{"Target":{"Entity":"calendario.date.me"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"calendario.date.jerarquía_de_fecha"},"Object":{"Role":"calendario.date.me"}},"State":"Generated","Weight":0.99,"ID":"jerarquía_de_fechas_have_me"}]},"calendario_date_jerarquía_de_fecha_has_calendario_date_trimestre":{"Binding":{"ConceptualEntity":"Calendario"},"State":"Generated","Roles":{"calendario.date.jerarquía_de_fecha":{"Target":{"Entity":"calendario.date.jerarquía_de_fecha"}},"calendario.date.trimestre":{"Target":{"Entity":"calendario.date.trimestre"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"calendario.date.jerarquía_de_fecha"},"Object":{"Role":"calendario.date.trimestre"}},"State":"Generated","Weight":0.99,"ID":"jerarquía_de_fechas_have_trimestres"}]},"calendario_date_jerarquía_de_fecha_has_calendario_date_año":{"Binding":{"ConceptualEntity":"Calendario"},"State":"Generated","Roles":{"calendario.date.jerarquía_de_fecha":{"Target":{"Entity":"calendario.date.jerarquía_de_fecha"}},"calendario.date.año":{"Target":{"Entity":"calendario.date.año"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"calendario.date.jerarquía_de_fecha"},"Object":{"Role":"calendario.date.año"}},"State":"Generated","Weight":0.99,"ID":"jerarquía_de_fechas_have_años"}]},"calendario_date_has_jerarquía_de_fecha":{"Binding":{"ConceptualEntity":"Calendario"},"State":"Generated","Roles":{"calendario.date":{"Target":{"Entity":"calendario.date"}},"calendario.date.jerarquía_de_fecha":{"Target":{"Entity":"calendario.date.jerarquía_de_fecha"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"calendario.date"},"Object":{"Role":"calendario.date.jerarquía_de_fecha"}},"State":"Generated","Weight":0.99,"ID":"dates_have_jerarquía_de_fechas"}]},"precios_internacionale_has_calendario":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"calendario":{"Target":{"Entity":"calendario"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"calendario"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_calendarios"},{"Attribute":{"Subject":{"Role":"calendario"},"Object":{"Role":"precios_internacionale"}},"State":"Generated","Weight":0.99,"ID":"calendarios_have_precios_internacionales"}]},"calendario_has_mes_anio":{"Binding":{"ConceptualEntity":"Calendario"},"State":"Generated","Roles":{"calendario":{"Target":{"Entity":"calendario"}},"calendario.mes_anio":{"Target":{"Entity":"calendario.mes_anio"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"calendario"},"Object":{"Role":"calendario.mes_anio"}},"State":"Generated","Weight":0.99,"ID":"calendarios_have_mes_anios"}]},"calendario_has_anio_semana":{"Binding":{"ConceptualEntity":"Calendario"},"State":"Generated","Roles":{"calendario":{"Target":{"Entity":"calendario"}},"calendario.anio_semana":{"Target":{"Entity":"calendario.anio_semana"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"calendario"},"Object":{"Role":"calendario.anio_semana"}},"State":"Generated","Weight":0.99,"ID":"calendarios_have_anio_semanas"}]},"calendario_has_nro_semana":{"Binding":{"ConceptualEntity":"Calendario"},"State":"Generated","Roles":{"calendario":{"Target":{"Entity":"calendario"}},"calendario.nro_semana":{"Target":{"Entity":"calendario.nro_semana"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"calendario"},"Object":{"Role":"calendario.nro_semana"}},"State":"Generated","Weight":0.99,"ID":"calendarios_have_nro_semanas"}]},"precios_internacionale_has_animal":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.animal":{"Target":{"Entity":"precios_internacionale.animal"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.animal"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_animals"}]},"precios_internacionale_has_orden_pais":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.orden_pais":{"Target":{"Entity":"precios_internacionale.orden_pais"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.orden_pais"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_orden_paises"}]},"precios_internacionale_has_orden_categoria":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.orden_categoria":{"Target":{"Entity":"precios_internacionale.orden_categoria"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.orden_categoria"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_orden_categorias"}]},"precios_internacionale_has_precio":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.precio":{"Target":{"Entity":"precios_internacionale.precio"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.precio"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_precios"}]},"precios_internacionale_has_pais":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.pais":{"Target":{"Entity":"precios_internacionale.pais"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.pais"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_paises"}]},"precios_internacionale_has_fuente":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.fuente":{"Target":{"Entity":"precios_internacionale.fuente"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.fuente"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_fuentes"}]},"precios_internacionale_has_dia_semana":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.dia_semana":{"Target":{"Entity":"precios_internacionale.dia_semana"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.dia_semana"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_dia_semanas"}]},"precios_internacionale_has_fecha":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.fecha":{"Target":{"Entity":"precios_internacionale.fecha"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.fecha"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_fechas"}]},"medida_has_debug_categorias":{"Binding":{"ConceptualEntity":"Medidas"},"State":"Generated","Roles":{"medida":{"Target":{"Entity":"medida"}},"medida.debug_categorias":{"Target":{"Entity":"medida.debug_categorias"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"medida"},"Object":{"Role":"medida.debug_categorias"}},"State":"Generated","Weight":0.99,"ID":"medidas_have_debug_categorias"}]},"medida_has_debug_denticion_detalle":{"Binding":{"ConceptualEntity":"Medidas"},"State":"Generated","Roles":{"medida":{"Target":{"Entity":"medida"}},"medida.debug_denticion_detalle":{"Target":{"Entity":"medida.debug_denticion_detalle"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"medida"},"Object":{"Role":"medida.debug_denticion_detalle"}},"State":"Generated","Weight":0.99,"ID":"medidas_have_debug_denticion_detalle"}]},"medida_has_average_peso_res":{"Binding":{"ConceptualEntity":"Medidas"},"State":"Generated","Roles":{"medida":{"Target":{"Entity":"medida"}},"medida.average_peso_res":{"Target":{"Entity":"medida.average_peso_res"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"medida"},"Object":{"Role":"medida.average_peso_res"}},"State":"Generated","Weight":0.99,"ID":"medidas_have_average_peso_res"}]},"medida_has_medida":{"Binding":{"ConceptualEntity":"Medidas"},"State":"Generated","Roles":{"medida":{"Target":{"Entity":"medida"}},"medida.medida":{"Target":{"Entity":"medida.medida"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"medida"},"Object":{"Role":"medida.medida"}},"State":"Generated","Weight":0.99,"ID":"medidas_have_medida"}]},"medida_has_debug_pesos":{"Binding":{"ConceptualEntity":"Medidas"},"State":"Generated","Roles":{"medida":{"Target":{"Entity":"medida"}},"medida.debug_pesos":{"Target":{"Entity":"medida.debug_pesos"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"medida"},"Object":{"Role":"medida.debug_pesos"}},"State":"Generated","Weight":0.99,"ID":"medidas_have_debug_pesos"}]},"medida_has_produccion_denticion_categoria_ver":{"Binding":{"ConceptualEntity":"Medidas"},"State":"Generated","Roles":{"medida":{"Target":{"Entity":"medida"}},"medida.produccion_denticion_categoria_ver":{"Target":{"Entity":"medida.produccion_denticion_categoria_ver"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"medida"},"Object":{"Role":"medida.produccion_denticion_categoria_ver"}},"State":"Generated","Weight":0.99,"ID":"medidas_have_produccion_denticion_categoria_ver"}]},"medida_has_diferencia_produccion_12_meses_anterior":{"Binding":{"ConceptualEntity":"Medidas"},"State":"Generated","Roles":{"medida":{"Target":{"Entity":"medida"}},"medida.diferencia_produccion_12_meses_anterior":{"Target":{"Entity":"medida.diferencia_produccion_12_meses_anterior"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"medida"},"Object":{"Role":"medida.diferencia_produccion_12_meses_anterior"}},"State":"Generated","Weight":0.99,"ID":"medidas_have_diferencia_produccion_12_meses_anterior"}]},"medida_has_produccion_12_mes_anterior":{"Binding":{"ConceptualEntity":"Medidas"},"State":"Generated","Roles":{"medida":{"Target":{"Entity":"medida"}},"medida.produccion_12_mes_anterior":{"Target":{"Entity":"medida.produccion_12_mes_anterior"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"medida"},"Object":{"Role":"medida.produccion_12_mes_anterior"}},"State":"Generated","Weight":0.99,"ID":"medidas_have_produccion_12_mes_anterior"}]},"medida_has_produccion_6_mes_anterior":{"Binding":{"ConceptualEntity":"Medidas"},"State":"Generated","Roles":{"medida":{"Target":{"Entity":"medida"}},"medida.produccion_6_mes_anterior":{"Target":{"Entity":"medida.produccion_6_mes_anterior"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"medida"},"Object":{"Role":"medida.produccion_6_mes_anterior"}},"State":"Generated","Weight":0.99,"ID":"medidas_have_produccion_6_mes_anterior"}]},"medida_has_produccion_3_mes_anterior":{"Binding":{"ConceptualEntity":"Medidas"},"State":"Generated","Roles":{"medida":{"Target":{"Entity":"medida"}},"medida.produccion_3_mes_anterior":{"Target":{"Entity":"medida.produccion_3_mes_anterior"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"medida"},"Object":{"Role":"medida.produccion_3_mes_anterior"}},"State":"Generated","Weight":0.99,"ID":"medidas_have_produccion_3_mes_anterior"}]},"medida_has_produccion_denticion_categoria":{"Binding":{"ConceptualEntity":"Medidas"},"State":"Generated","Roles":{"medida":{"Target":{"Entity":"medida"}},"medida.produccion_denticion_categoria":{"Target":{"Entity":"medida.produccion_denticion_categoria"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"medida"},"Object":{"Role":"medida.produccion_denticion_categoria"}},"State":"Generated","Weight":0.99,"ID":"medidas_have_produccion_denticion_categoria"}]},"medida_has_produccion_año_anterior":{"Binding":{"ConceptualEntity":"Medidas"},"State":"Generated","Roles":{"medida":{"Target":{"Entity":"medida"}},"medida.produccion_año_anterior":{"Target":{"Entity":"medida.produccion_año_anterior"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"medida"},"Object":{"Role":"medida.produccion_año_anterior"}},"State":"Generated","Weight":0.99,"ID":"medidas_have_produccion_año_anterior"}]},"calendario_has_semestre":{"Binding":{"ConceptualEntity":"Calendario"},"State":"Generated","Roles":{"calendario":{"Target":{"Entity":"calendario"}},"calendario.semestre":{"Target":{"Entity":"calendario.semestre"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"calendario"},"Object":{"Role":"calendario.semestre"}},"State":"Generated","Weight":0.99,"ID":"calendarios_have_semestres"}]},"precios_internacionale_has_ultima_fecha_datos":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.ultima_fecha_datos":{"Target":{"Entity":"precios_internacionale.ultima_fecha_datos"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.ultima_fecha_datos"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_ultima_fecha_datos"}]},"medida_has_column":{"Binding":{"ConceptualEntity":"Medidas"},"State":"Generated","Roles":{"medida":{"Target":{"Entity":"medida"}},"medida.column":{"Target":{"Entity":"medida.column"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"medida"},"Object":{"Role":"medida.column"}},"State":"Generated","Weight":0.99,"ID":"medidas_have_columns"}]},"medida_has_total_peso_res":{"Binding":{"ConceptualEntity":"Medidas"},"State":"Generated","Roles":{"medida":{"Target":{"Entity":"medida"}},"medida.total_peso_res":{"Target":{"Entity":"medida.total_peso_res"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"medida"},"Object":{"Role":"medida.total_peso_res"}},"State":"Generated","Weight":0.99,"ID":"medidas_have_total_peso_res"}]},"medida_has_variacion__12_meses":{"Binding":{"ConceptualEntity":"Medidas"},"State":"Generated","Roles":{"medida":{"Target":{"Entity":"medida"}},"medida.variacion__12_meses":{"Target":{"Entity":"medida.variacion__12_meses"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"medida"},"Object":{"Role":"medida.variacion__12_meses"}},"State":"Generated","Weight":0.99,"ID":"medidas_have_variacion__12_meses"}]},"medida_has_variacion__6_meses":{"Binding":{"ConceptualEntity":"Medidas"},"State":"Generated","Roles":{"medida":{"Target":{"Entity":"medida"}},"medida.variacion__6_meses":{"Target":{"Entity":"medida.variacion__6_meses"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"medida"},"Object":{"Role":"medida.variacion__6_meses"}},"State":"Generated","Weight":0.99,"ID":"medidas_have_variacion__6_meses"}]},"calendario_has_mes_numero":{"Binding":{"ConceptualEntity":"Calendario"},"State":"Generated","Roles":{"calendario":{"Target":{"Entity":"calendario"}},"calendario.mes_numero":{"Target":{"Entity":"calendario.mes_numero"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"calendario"},"Object":{"Role":"calendario.mes_numero"}},"State":"Generated","Weight":0.99,"ID":"calendarios_have_mes_numeros"}]},"calendario_has_año":{"Binding":{"ConceptualEntity":"Calendario"},"State":"Generated","Roles":{"calendario":{"Target":{"Entity":"calendario"}},"calendario.año":{"Target":{"Entity":"calendario.año"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"calendario"},"Object":{"Role":"calendario.año"}},"State":"Generated","Weight":0.99,"ID":"calendarios_have_años"}]},"calendario_has_date":{"Binding":{"ConceptualEntity":"Calendario"},"State":"Generated","Roles":{"calendario":{"Target":{"Entity":"calendario"}},"calendario.date":{"Target":{"Entity":"calendario.date"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"calendario"},"Object":{"Role":"calendario.date"}},"State":"Generated","Weight":0.99,"ID":"calendarios_have_dates"}]},"medida_has_diferencia_produccion_6_meses_anterior":{"Binding":{"ConceptualEntity":"Medidas"},"State":"Generated","Roles":{"medida":{"Target":{"Entity":"medida"}},"medida.diferencia_produccion_6_meses_anterior":{"Target":{"Entity":"medida.diferencia_produccion_6_meses_anterior"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"medida"},"Object":{"Role":"medida.diferencia_produccion_6_meses_anterior"}},"State":"Generated","Weight":0.99,"ID":"medidas_have_diferencia_produccion_6_meses_anterior"}]},"medida_has_variacion__3_meses":{"Binding":{"ConceptualEntity":"Medidas"},"State":"Generated","Roles":{"medida":{"Target":{"Entity":"medida"}},"medida.variacion__3_meses":{"Target":{"Entity":"medida.variacion__3_meses"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"medida"},"Object":{"Role":"medida.variacion__3_meses"}},"State":"Generated","Weight":0.99,"ID":"medidas_have_variacion__3_meses"}]},"medida_has_variacion__1_anterior":{"Binding":{"ConceptualEntity":"Medidas"},"State":"Generated","Roles":{"medida":{"Target":{"Entity":"medida"}},"medida.variacion__1_anterior":{"Target":{"Entity":"medida.variacion__1_anterior"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"medida"},"Object":{"Role":"medida.variacion__1_anterior"}},"State":"Generated","Weight":0.99,"ID":"medidas_have_variacion__1_anterior"}]},"precios_internacionale_has_test":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.test":{"Target":{"Entity":"precios_internacionale.test"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.test"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_test"}]},"medida_has_diferencia_produccion_3_meses_anterior":{"Binding":{"ConceptualEntity":"Medidas"},"State":"Generated","Roles":{"medida":{"Target":{"Entity":"medida"}},"medida.diferencia_produccion_3_meses_anterior":{"Target":{"Entity":"medida.diferencia_produccion_3_meses_anterior"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"medida"},"Object":{"Role":"medida.diferencia_produccion_3_meses_anterior"}},"State":"Generated","Weight":0.99,"ID":"medidas_have_diferencia_produccion_3_meses_anterior"}]},"medida_has_produccion_ultimo_periodo":{"Binding":{"ConceptualEntity":"Medidas"},"State":"Generated","Roles":{"medida":{"Target":{"Entity":"medida"}},"medida.produccion_ultimo_periodo":{"Target":{"Entity":"medida.produccion_ultimo_periodo"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"medida"},"Object":{"Role":"medida.produccion_ultimo_periodo"}},"State":"Generated","Weight":0.99,"ID":"medidas_have_produccion_ultimo_periodo"}]},"medida_has_produccion_mes_anterior":{"Binding":{"ConceptualEntity":"Medidas"},"State":"Generated","Roles":{"medida":{"Target":{"Entity":"medida"}},"medida.produccion_mes_anterior":{"Target":{"Entity":"medida.produccion_mes_anterior"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"medida"},"Object":{"Role":"medida.produccion_mes_anterior"}},"State":"Generated","Weight":0.99,"ID":"medidas_have_produccion_mes_anterior"}]},"medida_has_diferencia_produccion_1_mes_anterior":{"Binding":{"ConceptualEntity":"Medidas"},"State":"Generated","Roles":{"medida":{"Target":{"Entity":"medida"}},"medida.diferencia_produccion_1_mes_anterior":{"Target":{"Entity":"medida.diferencia_produccion_1_mes_anterior"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"medida"},"Object":{"Role":"medida.diferencia_produccion_1_mes_anterior"}},"State":"Generated","Weight":0.99,"ID":"medidas_have_diferencia_produccion_1_mes_anterior"}]},"precios_internacionale_has_variación_cabezas_dentición_":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.variación_cabezas_dentición_":{"Target":{"Entity":"precios_internacionale.variación_cabezas_dentición_"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.variación_cabezas_dentición_"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_variación_cabezas_dentición_"}]},"precios_internacionale_has_variación_cabezas_dentición":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.variación_cabezas_dentición":{"Target":{"Entity":"precios_internacionale.variación_cabezas_dentición"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.variación_cabezas_dentición"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_variación_cabezas_dentición"}]},"precios_internacionale_has_variación_cabezas_hembra_":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.variación_cabezas_hembra_":{"Target":{"Entity":"precios_internacionale.variación_cabezas_hembra_"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.variación_cabezas_hembra_"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_variación_cabezas_hembra_"}]},"precios_internacionale_has_variación_cabezas_hembra":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.variación_cabezas_hembra":{"Target":{"Entity":"precios_internacionale.variación_cabezas_hembra"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.variación_cabezas_hembra"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_variación_cabezas_hembra"}]},"precios_internacionale_has_variación_cabezas_macho_":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.variación_cabezas_macho_":{"Target":{"Entity":"precios_internacionale.variación_cabezas_macho_"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.variación_cabezas_macho_"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_variación_cabezas_macho_"}]},"precios_internacionale_has_variación_cabezas_macho":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.variación_cabezas_macho":{"Target":{"Entity":"precios_internacionale.variación_cabezas_macho"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.variación_cabezas_macho"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_variación_cabezas_macho"}]},"precios_internacionale_has_cabezas_más_de_8_dientes":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.cabezas_más_de_8_dientes":{"Target":{"Entity":"precios_internacionale.cabezas_más_de_8_dientes"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.cabezas_más_de_8_dientes"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_cabezas_más_de_8_dientes"}]},"precios_internacionale_has_cabezas_8_dientes":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.cabezas_8_dientes":{"Target":{"Entity":"precios_internacionale.cabezas_8_dientes"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.cabezas_8_dientes"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_cabezas_8_dientes"}]},"precios_internacionale_has_cabezas_6_dientes":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.cabezas_6_dientes":{"Target":{"Entity":"precios_internacionale.cabezas_6_dientes"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.cabezas_6_dientes"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_cabezas_6_dientes"}]},"precios_internacionale_has_cabezas_4_dientes":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.cabezas_4_dientes":{"Target":{"Entity":"precios_internacionale.cabezas_4_dientes"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.cabezas_4_dientes"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_cabezas_4_dientes"}]},"precios_internacionale_has_cabezas_2_dientes":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.cabezas_2_dientes":{"Target":{"Entity":"precios_internacionale.cabezas_2_dientes"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.cabezas_2_dientes"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_cabezas_2_dientes"}]},"precios_internacionale_has_peso_promedio_por_dentición":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.peso_promedio_por_dentición":{"Target":{"Entity":"precios_internacionale.peso_promedio_por_dentición"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.peso_promedio_por_dentición"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_peso_promedio_por_dentición"}]},"calendario_has_anio_me":{"Binding":{"ConceptualEntity":"Calendario"},"State":"Generated","Roles":{"calendario":{"Target":{"Entity":"calendario"}},"calendario.anio_me":{"Target":{"Entity":"calendario.anio_me"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"calendario"},"Object":{"Role":"calendario.anio_me"}},"State":"Generated","Weight":0.99,"ID":"calendarios_have_anio_me"}]},"calendario_has_trimestre":{"Binding":{"ConceptualEntity":"Calendario"},"State":"Generated","Roles":{"calendario":{"Target":{"Entity":"calendario"}},"calendario.trimestre":{"Target":{"Entity":"calendario.trimestre"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"calendario"},"Object":{"Role":"calendario.trimestre"}},"State":"Generated","Weight":0.99,"ID":"calendarios_have_trimestres"}]},"calendario_has_nombre_me":{"Binding":{"ConceptualEntity":"Calendario"},"State":"Generated","Roles":{"calendario":{"Target":{"Entity":"calendario"}},"calendario.nombre_me":{"Target":{"Entity":"calendario.nombre_me"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"calendario"},"Object":{"Role":"calendario.nombre_me"}},"State":"Generated","Weight":0.99,"ID":"calendarios_have_nombre_me"}]},"precios_internacionale_has_peso_promedio_macho":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.peso_promedio_macho":{"Target":{"Entity":"precios_internacionale.peso_promedio_macho"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.peso_promedio_macho"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_peso_promedio_macho"}]},"precios_internacionale_has_peso_promedio_hembra":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.peso_promedio_hembra":{"Target":{"Entity":"precios_internacionale.peso_promedio_hembra"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.peso_promedio_hembra"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_peso_promedio_hembra"}]},"precios_internacionale_has_toneladas_macho_total":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.toneladas_macho_total":{"Target":{"Entity":"precios_internacionale.toneladas_macho_total"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.toneladas_macho_total"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_toneladas_macho_total"}]},"precios_internacionale_has_toneladas_hembra_total":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.toneladas_hembra_total":{"Target":{"Entity":"precios_internacionale.toneladas_hembra_total"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.toneladas_hembra_total"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_toneladas_hembra_total"}]},"precios_internacionale_has_MEJ_sobre_total":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.MEJ_sobre_total":{"Target":{"Entity":"precios_internacionale.MEJ_sobre_total"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.MEJ_sobre_total"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have__MEJ_sobre_total"}]},"precios_internacionale_has_relación_hembra_macho":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.relación_hembra_macho":{"Target":{"Entity":"precios_internacionale.relación_hembra_macho"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.relación_hembra_macho"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_relación_hembra_macho"}]},"precios_internacionale_has_cabezas_macho_total":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.cabezas_macho_total":{"Target":{"Entity":"precios_internacionale.cabezas_macho_total"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.cabezas_macho_total"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_cabezas_macho_total"}]},"precios_internacionale_has_cabezas_hembra_total":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.cabezas_hembra_total":{"Target":{"Entity":"precios_internacionale.cabezas_hembra_total"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.cabezas_hembra_total"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_cabezas_hembra_total"}]},"precios_internacionale_has_mínimo_cabezas_en_mes":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.mínimo_cabezas_en_mes":{"Target":{"Entity":"precios_internacionale.mínimo_cabezas_en_mes"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.mínimo_cabezas_en_mes"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_mínimo_cabezas_en_mes"}]},"precios_internacionale_has_máximo_cabezas_en_mes":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.máximo_cabezas_en_mes":{"Target":{"Entity":"precios_internacionale.máximo_cabezas_en_mes"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.máximo_cabezas_en_mes"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_máximo_cabezas_en_mes"}]},"precios_internacionale_has_cabezas_vs_promedio_histórico":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.cabezas_vs_promedio_histórico":{"Target":{"Entity":"precios_internacionale.cabezas_vs_promedio_histórico"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.cabezas_vs_promedio_histórico"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_cabezas_vs_promedio_histórico"}]},"precios_internacionale_has_ranking_categoría_por_cabezas":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.ranking_categoría_por_cabezas":{"Target":{"Entity":"precios_internacionale.ranking_categoría_por_cabezas"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.ranking_categoría_por_cabezas"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_ranking_categoría_por_cabezas"}]},"precios_internacionale_has_ranking_mes_por_cabezas":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.ranking_mes_por_cabezas":{"Target":{"Entity":"precios_internacionale.ranking_mes_por_cabezas"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.ranking_mes_por_cabezas"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_ranking_mes_por_cabezas"}]},"precios_internacionale_has_toneladas_acumulado_YTD":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.toneladas_acumulado_YTD":{"Target":{"Entity":"precios_internacionale.toneladas_acumulado_YTD"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.toneladas_acumulado_YTD"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_toneladas_acumulado_YTD"}]},"precios_internacionale_has_cabezas_acumulado_YTD":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.cabezas_acumulado_YTD":{"Target":{"Entity":"precios_internacionale.cabezas_acumulado_YTD"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.cabezas_acumulado_YTD"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_cabezas_acumulado_YTD"}]},"precios_internacionale_has_cabezas_promedio_mensual":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.cabezas_promedio_mensual":{"Target":{"Entity":"precios_internacionale.cabezas_promedio_mensual"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.cabezas_promedio_mensual"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_cabezas_promedio_mensual"}]},"precios_internacionale_has_participación_categoría_ton":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.participación_categoría_ton":{"Target":{"Entity":"precios_internacionale.participación_categoría_ton"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.participación_categoría_ton"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have__participación_categoría_ton"}]},"precios_internacionale_has_participación_categoría":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.participación_categoría":{"Target":{"Entity":"precios_internacionale.participación_categoría"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.participación_categoría"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have__participación_categoría"}]},"precios_internacionale_has_toneladas_año_anterior":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.toneladas_año_anterior":{"Target":{"Entity":"precios_internacionale.toneladas_año_anterior"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.toneladas_año_anterior"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_toneladas_año_anterior"}]},"precios_internacionale_has_cabezas_año_anterior":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.cabezas_año_anterior":{"Target":{"Entity":"precios_internacionale.cabezas_año_anterior"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.cabezas_año_anterior"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_cabezas_año_anterior"}]},"precios_internacionale_has_rendimiento_res_kg_ton":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.rendimiento_res_kg_ton":{"Target":{"Entity":"precios_internacionale.rendimiento_res_kg_ton"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.rendimiento_res_kg_ton"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_rendimiento_res_kg_ton"}]},"precios_internacionale_has_cabezas_macho":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.cabezas_macho":{"Target":{"Entity":"precios_internacionale.cabezas_macho"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.cabezas_macho"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have__cabezas_macho"}]},"precios_internacionale_has_cabezas_hembra":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.cabezas_hembra":{"Target":{"Entity":"precios_internacionale.cabezas_hembra"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.cabezas_hembra"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have__cabezas_hembra"}]},"precios_internacionale_has_variación_toneladas_YoY_":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.variación_toneladas_YoY_":{"Target":{"Entity":"precios_internacionale.variación_toneladas_YoY_"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.variación_toneladas_YoY_"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_variación_toneladas_YoY_"}]},"precios_internacionale_has_variación_cabezas_YoY_":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.variación_cabezas_YoY_":{"Target":{"Entity":"precios_internacionale.variación_cabezas_YoY_"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.variación_cabezas_YoY_"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_variación_cabezas_YoY_"}]},"precios_internacionale_has_peso_promedio_res":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.peso_promedio_res":{"Target":{"Entity":"precios_internacionale.peso_promedio_res"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.peso_promedio_res"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_peso_promedio_res"}]},"precios_internacionale_has_total_toneladas":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.total_toneladas":{"Target":{"Entity":"precios_internacionale.total_toneladas"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.total_toneladas"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_total_toneladas"}]},"precios_internacionale_has_total_cabezas":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.total_cabezas":{"Target":{"Entity":"precios_internacionale.total_cabezas"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.total_cabezas"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_total_cabezas"}]},"precios_internacionale_has_categoria":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.categoria":{"Target":{"Entity":"precios_internacionale.categoria"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.categoria"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_categorias"}]},"precios_internacionale_has_anio":{"Binding":{"ConceptualEntity":"Precios_internacionales"},"State":"Generated","Roles":{"precios_internacionale":{"Target":{"Entity":"precios_internacionale"}},"precios_internacionale.anio":{"Target":{"Entity":"precios_internacionale.anio"}}},"Phrasings":[{"Attribute":{"Subject":{"Role":"precios_internacionale"},"Object":{"Role":"precios_internacionale.anio"}},"State":"Generated","Weight":0.99,"ID":"precios_internacionales_have_anios"}]}},"Agents":{"Internal":{"Version":"1.1.0"}}}
+				contentType: json
+
+		annotation __PBI_TimeIntelligenceEnabled = 1
+
+		annotation PBI_QueryOrder = ["Precios_internacionales"]
+
+		annotation PBI_ProTooling = ["MCP-PBIModeling","TMDLView_Desktop"]
+

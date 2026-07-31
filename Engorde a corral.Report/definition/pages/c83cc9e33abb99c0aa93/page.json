@@ -3,7 +3,7 @@
   "name": "c83cc9e33abb99c0aa93",
   "displayName": "Composición feedlot",
   "displayOption": "ActualSize",
-  "height": 1000,
+  "height": 870,
   "width": 1280,
   "filterConfig": {
     "filters": [
@@ -64,5 +64,47 @@
       }
     ],
     "filterSortOrder": "Custom"
-  }
+  },
+  "visualInteractions": [
+    {
+      "source": "b90819bd734082c305b8",
+      "target": "8f308b0f476073b9ee74",
+      "type": "NoFilter"
+    },
+    {
+      "source": "b90819bd734082c305b8",
+      "target": "4a28db720268733c9a0a",
+      "type": "NoFilter"
+    },
+    {
+      "source": "b90819bd734082c305b8",
+      "target": "f2dd17488d5e7a229dcd",
+      "type": "NoFilter"
+    },
+    {
+      "source": "b90819bd734082c305b8",
+      "target": "75cecca20bb65364d14d",
+      "type": "NoFilter"
+    },
+    {
+      "source": "b90819bd734082c305b8",
+      "target": "940343c9c788573400bc",
+      "type": "NoFilter"
+    },
+    {
+      "source": "b90819bd734082c305b8",
+      "target": "51779529ad6e5c481b04",
+      "type": "NoFilter"
+    },
+    {
+      "source": "b90819bd734082c305b8",
+      "target": "86dda0beed65d07b8232",
+      "type": "NoFilter"
+    },
+    {
+      "source": "b90819bd734082c305b8",
+      "target": "2780f1d7a21a741480a1",
+      "type": "DataFilter"
+    }
+  ]
 }

@@ -4,10 +4,10 @@
   "position": {
     "x": 313.43283582089555,
     "y": 442.78606965174134,
-    "z": 11002,
+    "z": 11000,
     "height": 272.636815920398,
     "width": 940.29850746268664,
-    "tabOrder": 11002
+    "tabOrder": 11000
   },
   "visual": {
     "visualType": "lineChart",
@@ -833,62 +833,6 @@
         },
         "type": "Advanced",
         "howCreated": "User"
-      },
-      {
-        "name": "70dac6b666b120347d85",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Calendario"
-              }
-            },
-            "Property": "Año"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "03d978844dba0d80bde5",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Calendario"
-              }
-            },
-            "Property": "NombreMes"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "bf499890859807a5b1c2",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Medidas"
-              }
-            },
-            "Property": "Valor"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "dd0828dd40a20cb79eed",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "vw_engorde_corral"
-              }
-            },
-            "Property": "categoria"
-          }
-        },
-        "type": "Categorical"
       }
     ]
   }

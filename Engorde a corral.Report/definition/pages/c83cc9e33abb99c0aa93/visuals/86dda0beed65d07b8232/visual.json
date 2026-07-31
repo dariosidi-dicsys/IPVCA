@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "86dda0beed65d07b8232",
   "position": {
-    "x": 318.57142857142861,
-    "y": 761.42857142857144,
-    "z": 12000,
+    "x": 314,
+    "y": 605,
+    "z": 10000,
     "height": 167.14285714285717,
     "width": 930.00000000000011,
-    "tabOrder": 12000
+    "tabOrder": 10000
   },
   "visual": {
     "visualType": "lineChart",
@@ -497,6 +497,13 @@
                   "Value": "'Índice de Reposición'"
                 }
               }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
             }
           }
         }
@@ -615,48 +622,6 @@
           ]
         },
         "howCreated": "User"
-      },
-      {
-        "name": "a02fe579202a70071004",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Calendario"
-              }
-            },
-            "Property": "Año"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "be33fca00e9d0c6a3ca9",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Calendario"
-              }
-            },
-            "Property": "NombreMes"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "f79cebb2947521d31eae",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Medidas"
-              }
-            },
-            "Property": "Indice_Reposicion"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

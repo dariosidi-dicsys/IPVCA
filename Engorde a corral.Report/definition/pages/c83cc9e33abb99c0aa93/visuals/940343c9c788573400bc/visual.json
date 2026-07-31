@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "940343c9c788573400bc",
   "position": {
-    "x": 314.28571428571428,
-    "y": 118.57142857142858,
-    "z": 10000,
-    "height": 207.14285714285717,
-    "width": 940.00000000000011,
-    "tabOrder": 10000
+    "x": 314,
+    "y": 119,
+    "z": 8000,
+    "height": 233,
+    "width": 940,
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "pivotTable",
@@ -91,8 +91,8 @@
                 }
               },
               "queryRef": "Medidas.Valor Composicion",
-              "nativeQueryRef": "Valor",
-              "displayName": "Valor"
+              "nativeQueryRef": "Valor In y Eg",
+              "displayName": "Valor In y Eg"
             },
             {
               "field": {

@@ -874,62 +874,6 @@
         },
         "type": "Advanced",
         "howCreated": "User"
-      },
-      {
-        "name": "cbcf3c9c9ad3a3a0d780",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Calendario"
-              }
-            },
-            "Property": "Año"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "ee3a8efd16e5860d3c30",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Calendario"
-              }
-            },
-            "Property": "NombreMes"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "364e97d1bcc28520cd0d",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Medidas"
-              }
-            },
-            "Property": "Valor"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "bb25a72894359c84d691",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "vw_engorde_corral"
-              }
-            },
-            "Property": "categoria"
-          }
-        },
-        "type": "Categorical"
       }
     ]
   }

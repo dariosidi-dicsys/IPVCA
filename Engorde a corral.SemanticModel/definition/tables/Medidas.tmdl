@@ -678,6 +678,7 @@ table Medidas
 			    
 			    -- Si el mes está colapsado, devuelve blanco para evitar sumar Ingresos + Egresos
 			    BLANK()
+			    
 			)
 			```
 		formatString: #,0

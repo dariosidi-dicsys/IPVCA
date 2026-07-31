@@ -1828,7 +1828,7 @@ cultureInfo es-AR
 			          }
 			        },
 			        {
-			          "Valor": {
+			          "Valor In y Eg": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -2019,27 +2019,6 @@ cultureInfo es-AR
 			        {
 			          "var % valor composicion 1 anio antes": {
 			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
-			    "vw_engorde_corral.animal": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "vw_engorde_corral",
-			          "ConceptualProperty": "animal"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Animal": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
 			          }
 			        }
 			      ]

@@ -326,6 +326,36 @@
                     }
                   ],
                   "isToggled": true
+                },
+                {
+                  "identityValues": [
+                    {
+                      "Literal": {
+                        "Value": "'Abril'"
+                      }
+                    }
+                  ],
+                  "isToggled": true
+                },
+                {
+                  "identityValues": [
+                    {
+                      "Literal": {
+                        "Value": "'Mayo'"
+                      }
+                    }
+                  ],
+                  "isToggled": true
+                },
+                {
+                  "identityValues": [
+                    {
+                      "Literal": {
+                        "Value": "'Marzo'"
+                      }
+                    }
+                  ],
+                  "isToggled": true
                 }
               ]
             }
@@ -360,7 +390,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "175.8921537396921D"
+                  "Value": "218.45810461374398D"
                 }
               }
             }
@@ -468,6 +498,202 @@
         },
         "type": "Advanced",
         "howCreated": "User"
+      },
+      {
+        "name": "7c4724d03b674be45140",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calendario"
+              }
+            },
+            "Property": "Año"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "ea0b0ba3024c2cea762e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calendario"
+              }
+            },
+            "Property": "NombreMes"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "5c46941ab410c3cc2394",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Productos"
+              }
+            },
+            "Property": "NombreProducto"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "775be178005c7b4a0754",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas"
+              }
+            },
+            "Property": "Precio Base (Generico) Promedio"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "401b2630ab2655791045",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas"
+              }
+            },
+            "Property": "Precio Base Diferencia Q1 Mes Anterior Promedio"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "7c26354de7e65b55ae9b",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas"
+              }
+            },
+            "Property": "Precio Base Var % Q1 Mes Anterior Promedio"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "7b91d456689660870c07",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas"
+              }
+            },
+            "Property": "Precio Base Diferencia Q2 Mes Anterior Promedio"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "479664289328add9bd7a",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas"
+              }
+            },
+            "Property": "Precio Base Var % Q2 Mes Anterior Promedio"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "f630b436685ad5516ecc",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas"
+              }
+            },
+            "Property": "Precio Base Diferencia 3M Promedio"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "c50c94b313d78a6d8c1b",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas"
+              }
+            },
+            "Property": "Precio Base Var % 3M Promedio"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "a5a00f80bd47016a232e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas"
+              }
+            },
+            "Property": "Precio Base Diferencia 6M Promedio"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "db1ef2e62916cde085c7",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas"
+              }
+            },
+            "Property": "Precio Base Var % 6M Promedio"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "fec4fe2062197bb20548",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas"
+              }
+            },
+            "Property": "Precio Base Diferencia Anual Promedio"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "ea1f60de463ded8010a3",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas"
+              }
+            },
+            "Property": "Precio Base Var % Anual Promedio"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

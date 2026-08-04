@@ -20,16 +20,16 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "vw_precio_hacienda"
+                      "Entity": "Productos"
                     }
                   },
-                  "Property": "animal"
+                  "Property": "NombreProducto"
                 }
               },
-              "queryRef": "vw_precio_hacienda.animal",
-              "nativeQueryRef": "Animal",
+              "queryRef": "Productos.NombreProducto",
+              "nativeQueryRef": "Nombre",
               "active": true,
-              "displayName": "Animal"
+              "displayName": "Nombre"
             }
           ]
         }
@@ -43,7 +43,7 @@
         "levels": [
           {
             "queryRefs": [
-              "vw_precio_hacienda.animal"
+              "Productos.NombreProducto"
             ],
             "isCollapsed": true,
             "isPinned": true
@@ -88,8 +88,8 @@
                 "Version": 2,
                 "From": [
                   {
-                    "Name": "v",
-                    "Entity": "vw_precio_hacienda",
+                    "Name": "p",
+                    "Entity": "Productos",
                     "Type": 0
                   }
                 ],
@@ -102,10 +102,10 @@
                             "Column": {
                               "Expression": {
                                 "SourceRef": {
-                                  "Source": "v"
+                                  "Source": "p"
                                 }
                               },
-                              "Property": "animal"
+                              "Property": "NombreProducto"
                             }
                           }
                         ],
@@ -113,35 +113,42 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'Novillo'"
+                                "Value": "'Consumo Liviano'"
                               }
                             }
                           ],
                           [
                             {
                               "Literal": {
-                                "Value": "'Ternera'"
+                                "Value": "'Novillos 461/490'"
                               }
                             }
                           ],
                           [
                             {
                               "Literal": {
-                                "Value": "'Ternero'"
+                                "Value": "'Ternera Cruza'"
                               }
                             }
                           ],
                           [
                             {
                               "Literal": {
-                                "Value": "'Vaquillona'"
+                                "Value": "'Ternero AA'"
                               }
                             }
                           ],
                           [
                             {
                               "Literal": {
-                                "Value": "'Vaca'"
+                                "Value": "'Vaca Conserva'"
+                              }
+                            }
+                          ],
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'Vaca Manuf'"
                               }
                             }
                           ]
@@ -262,5 +269,23 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "c2aaa07d2b35594da821",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Productos"
+              }
+            },
+            "Property": "NombreProducto"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
   }
 }

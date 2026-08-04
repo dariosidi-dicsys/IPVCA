@@ -326,6 +326,16 @@
                     }
                   ],
                   "isToggled": true
+                },
+                {
+                  "identityValues": [
+                    {
+                      "Literal": {
+                        "Value": "'Abril'"
+                      }
+                    }
+                  ],
+                  "isToggled": true
                 }
               ]
             }

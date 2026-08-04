@@ -17,7 +17,6 @@ ref table Medidas
 ref table vw_precio_hacienda
 ref table Calendario
 ref table Bridge_ProductoCategoria
-ref table Bridge
 ref table Productos
 
 ref cultureInfo es-AR

@@ -33,6 +33,8 @@ table Productos
 
 		annotation SummarizationSetBy = Automatic
 
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column Operacion
 		lineageTag: 7c1cd319-bfc3-4515-bd19-01464c5489fa
 		summarizeBy: none
@@ -43,6 +45,7 @@ table Productos
 
 	column Llave
 		isHidden
+		formatString: 0
 		lineageTag: b5910c6b-c2bd-4856-94f1-b048f689cc5a
 		summarizeBy: sum
 		isNameInferred
@@ -70,7 +73,8 @@ table Productos
 				        {"Novillito -300/390", "Pie", "Novillo", 1, "Ninguna", 1},
 				        {"Novillito 391/430", "Pie", "Novillo", 1, "Ninguna", 1},
 				        {"Vaquillona (270-390)", "Pie", "Vaquillona", 1, "Ninguna", 1},
-				        {"Consumo Liviano", "Pie", "Novillo y Vaquillona", 1, "Ninguna", 1},
+				        {"Consumo Liviano", "Pie", "Novillo y Vaquillona", 1 , "Ninguna", 1},
+				        --{"Consumo Liviano", "Pie", "Novillo y Vaquillona", 0.57, "Multiplica", 1},
 				        {"Vaca Conserva", "Pie", "Vaca", 0.46, "Multiplica", 1},
 				        {"Ternera Cruza", "Pie", "Ternera", 1, "Ninguna", 1},
 				        {"Ternero AA", "Pie", "Ternero", 1, "Ninguna", 1},

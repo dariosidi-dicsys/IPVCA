@@ -144,7 +144,7 @@ table Calendario
 
 	partition Calendario = calculated
 		mode: import
-		source =
+		source = ```
 				ADDCOLUMNS(
 				    CALENDAR(
 				        MIN(vw_engorde_corral[fecha]),
@@ -152,9 +152,24 @@ table Calendario
 				    ),
 				    "Año", YEAR([Date]),
 				    "MesNumero", MONTH([Date]),
-				    "NombreMes", FORMAT([Date], "MMMM"),
-				    "NombreMesCorto", FORMAT([Date], "MMM"),
-				    "MesAnio", FORMAT([Date], "MMM-YYYY"),
+				    "NombreMes", SWITCH(
+				        MONTH([Date]),
+				        1, "Enero", 2, "Febrero", 3, "Marzo", 4, "Abril", 
+				        5, "Mayo", 6, "Junio", 7, "Julio", 8, "Agosto", 
+				        9, "Septiembre", 10, "Octubre", 11, "Noviembre", 12, "Diciembre"
+				    ),
+				    "NombreMesCorto", SWITCH(
+				        MONTH([Date]),
+				        1, "ene", 2, "feb", 3, "mar", 4, "abr", 
+				        5, "may", 6, "jun", 7, "jul", 8, "ago", 
+				        9, "sep", 10, "oct", 11, "nov", 12, "dic"
+				    ),
+				    "MesAnio", SWITCH(
+				        MONTH([Date]),
+				        1, "ene", 2, "feb", 3, "mar", 4, "abr", 
+				        5, "may", 6, "jun", 7, "jul", 8, "ago", 
+				        9, "sep", 10, "oct", 11, "nov", 12, "dic"
+				    ) & "-" & YEAR([Date]),
 				    "AnioMes", YEAR([Date]) * 100 + MONTH([Date]),
 				    "Trimestre", "T" & FORMAT([Date], "Q"),
 				    "NroTrimestre", INT((MONTH([Date]) + 2) / 3),
@@ -163,7 +178,12 @@ table Calendario
 				    "NroSemana", WEEKNUM([Date], 2),
 				    "AnioSemana", YEAR([Date]) * 100 + WEEKNUM([Date], 2),
 				    "Dia", DAY([Date]),
-				    "DiaSemana", FORMAT([Date], "DDDD"),
+				    "DiaSemana", SWITCH(
+				        WEEKDAY([Date], 2),
+				        1, "Lunes", 2, "Martes", 3, "Miércoles", 4, "Jueves", 
+				        5, "Viernes", 6, "Sábado", 7, "Domingo"
+				    ),
 				    "NroDiaSemana", WEEKDAY([Date], 2)
 				)
+				```
 

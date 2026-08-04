@@ -2073,25 +2073,6 @@ cultureInfo es-AR
 			        }
 			      ]
 			    },
-			    "calendario.llave": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Calendario",
-			          "ConceptualProperty": "Llave"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "llave": {
-			            "State": "Generated"
-			          }
-			        }
-			      ]
-			    },
 			    "producto": {
 			      "Definition": {
 			        "Binding": {
@@ -2130,6 +2111,16 @@ cultureInfo es-AR
 			        },
 			        {
 			          "Producto": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Nombre": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -2319,256 +2310,6 @@ cultureInfo es-AR
 			        }
 			      ]
 			    },
-			    "bridge": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Bridge"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "bridge": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "connection": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.491
-			          }
-			        },
-			        {
-			          "conduit": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.491
-			          }
-			        },
-			        {
-			          "association": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.491
-			          }
-			        },
-			        {
-			          "bond": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "tie": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "link": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "channel": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "passage": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "join": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "viaduct": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.466
-			          }
-			        }
-			      ]
-			    },
-			    "bridge.bridge_key": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Bridge",
-			          "ConceptualProperty": "BridgeKey"
-			        }
-			      },
-			      "State": "Generated",
-			      "Visibility": {
-			        "Value": "Hidden"
-			      },
-			      "Terms": [
-			        {
-			          "bridge key": {
-			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "BridgeKey": {
-			            "Type": "Noun",
-			            "State": "Generated",
-			            "Weight": 0.99
-			          }
-			        },
-			        {
-			          "key": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "main": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "basic": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "fundamental": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "central": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "major": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "keynote": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "essential": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.476
-			          }
-			        },
-			        {
-			          "bridge solution": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.475
-			          }
-			        },
-			        {
-			          "bridge explanation": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.475
-			          }
-			        },
-			        {
-			          "bridge basis": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.475
-			          }
-			        }
-			      ]
-			    },
 			    "medida.precio_base_diferencia_mensual": {
 			      "Definition": {
 			        "Binding": {
@@ -2749,6 +2490,16 @@ cultureInfo es-AR
 			        },
 			        {
 			          "Var % Q2 Ant": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Var % Q2 Mes Ant": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -3188,6 +2939,16 @@ cultureInfo es-AR
 			            },
 			            "Weight": 0.9
 			          }
+			        },
+			        {
+			          "Q2 Mes Ant": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -3207,6 +2968,16 @@ cultureInfo es-AR
 			        },
 			        {
 			          "Q1 Ant": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Q1 Mes Ant": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -3518,24 +3289,6 @@ cultureInfo es-AR
 			          "ID": "calendarios_have_vw_precio_haciendas"
 			        }
 			      ]
-			    },
-			    "calendario_has_bridge": {
-			      "Binding": {
-			        "ConceptualEntity": "Calendario"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "calendario": {
-			          "Target": {
-			            "Entity": "calendario"
-			          }
-			        },
-			        "bridge": {
-			          "Target": {
-			            "Entity": "bridge"
-			          }
-			        }
-			      }
 			    },
 			    "calendario_has_anio_quincena": {
 			      "Binding": {

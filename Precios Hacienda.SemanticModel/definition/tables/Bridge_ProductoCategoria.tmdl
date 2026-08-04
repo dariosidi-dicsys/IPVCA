@@ -74,7 +74,7 @@ table Bridge_ProductoCategoria
 				        {"Novillito 391/430", "Pie", "MDO Agroganadero", "Novillito 391/430", "Pesos"},
 				        {"Vaquillona (270-390)", "Pie", "MDO Agroganadero", "Vaquillona -350 (270-390)*", BLANK()},
 				        {"Consumo Liviano", "Pie", "MDO Agroganadero", "Novillito -300/390 (-350)", BLANK()},
-				        {"Consumo Liviano", "Pie", "MDO Agroganadero", "Novillito 391/430", "Pesos"},
+				        -- {"Consumo Liviano", "Pie", "MDO Agroganadero", "Novillito 391/430", "Pesos"}, -> VER
 				        {"Consumo Liviano", "Pie", "MDO Agroganadero", "Vaquillona -350 (270-390)*", BLANK()},
 				        {"Vaca Conserva", "Pie", "CCDH", "Vaca Conserva", BLANK()},
 				        {"Ternera Cruza", "Pie", "CCDH", "Ternera Cruza (160 - 180 g)", BLANK()},

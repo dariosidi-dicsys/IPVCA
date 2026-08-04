@@ -1,7 +1,3 @@
-relationship Calendario_Bridge
-	fromColumn: Calendario.Llave
-	toColumn: Bridge.BridgeKey
-
 relationship vw_precio_hacienda_fecha_Calendario_Date
 	fromColumn: vw_precio_hacienda.fecha
 	toColumn: Calendario.Date
